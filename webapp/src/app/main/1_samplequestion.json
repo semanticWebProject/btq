@@ -1,0 +1,27 @@
+{
+  "question": "Whats the capital of France",
+  "answers" :[
+    {
+      "id": 1,
+      "text" : "Marseille",
+      "description": "Marseille is a city in South France"
+    },
+    {
+      "id": 2,
+      "text" : "Madrid",
+      "description": "Madrid is the capital of Spain"
+    },
+    {
+      "id": 3,
+      "text" : "Mailand",
+      "description": "Mailand is a city in North Italy"
+    },
+    {
+      "id": 4,
+      "text" : "Paris",
+      "description": "Paris is the capital of France"
+    }
+
+  ],
+  "correct": 4
+}

@@ -1,0 +1,71 @@
+<div class="container">
+
+  <div>
+    <acme-navbar creation-date="main.creationDate"></acme-navbar>
+  </div>
+
+  <div class="jumbotron text-center" ng-if="main.selectCategory">
+    <!--<h1>'Allo, 'Allo!</h1>-->
+    <p class="lead">
+      <h2>Welcome to Quizzlybear</h2>
+      Please select your category:
+    </p>
+
+    <div class="row">
+      <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
+          <p>{{category.name}}</p>
+          <a href="#/" class="btn btn-primary" ng-click="main.chooseCategory(category.id)">Select</a>
+      </div>
+    </div>
+
+    <!--<p class="animated infinite" ng-class="main.classAnimation">-->
+      <!--<button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>-->
+    <!--</p>-->
+    <!--<p>-->
+      <!--With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>-->
+    <!--</p>-->
+  </div>
+
+    <div class="jumbotron" ng-if="!main.selectCategory">
+        <h3>Chosen category: <strong> {{main.categories[main.chosenCategoryID].name}} </strong> </h3>
+    </div>
+
+ <!-- Question and answer block -->
+ <div class="jumbotron" ng-if="main.askQuestion">
+   <p class="lead">{{main.question}}</p>
+    <hr>
+   <!-- Answers -->
+   <div class="answers" ng-repeat="answer in main.answers">
+     <button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">{{answer.text}}</button>
+     <p></p>
+   </div>
+   </div>
+
+
+  <!-- answer boxes, here comes the information -->
+  <div class="answerbox alert alert-success" role="alert" ng-if="main.correctAnswer">
+      <strong>Well done!</strong> You answered the question correctly.
+     <!-- TODO description here -->
+     <button type="button" class="btn btn-success pull-right" ng-click="main.loadQuestion()">Next</button>
+  </div>
+
+ <div class="answerbox alert alert-danger" role="alert" ng-if="main.wrongAnswer">
+    <strong>Sorry, that's not correct. {{main.answers[main.selectedAnswer-1].description}}</strong>
+    <button class="btn btn-fail pull-right" ng-click="main.reset()">Try again</button>
+ </div>
+
+
+  <!--<div class="row">-->
+    <!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
+      <!--<div class="thumbnail">-->
+        <!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
+        <!--<div class="caption">-->
+          <!--<h3>{{ awesomeThing.title }}</h3>-->
+          <!--<p>{{ awesomeThing.description }}</p>-->
+          <!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+</div>

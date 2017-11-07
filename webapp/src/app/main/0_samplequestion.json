@@ -1,0 +1,23 @@
+{
+  "question": "In which film or series the character Gandalf appears",
+  "answers" :[
+    {
+      "id": 1,
+      "text" : "Star Wars"
+    },
+    {
+      "id": 2,
+      "text" : "Game of Thrones"
+    },
+    {
+      "id": 3,
+      "text" : "Lord of the Rings"
+    },
+    {
+      "id": 4,
+      "text" : "Thor"
+    }
+
+  ],
+  "correct": 3
+}

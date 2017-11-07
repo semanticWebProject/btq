@@ -1,0 +1,27 @@
+<div class="container">
+  <div>
+    <acme-navbar></acme-navbar>
+  </div>
+
+  Chosen category: {{main.chosenCategoryID}} - {{main.categories[main.chosenCategoryID].name}}
+
+
+   <!-- Question and answer block -->
+ <div class="jumbotron">
+   <p class="lead">{{main.question}}?</p>
+    <hr>
+   <!-- Answers -->
+   <div ng-repeat="answer in main.answers">
+     <button type="button" class="btn btn-outline-primary btn-block" ng-click="main.validate(answer.id)">{{answer.text}}</button>
+     <p></p>
+   </div>
+ </div>
+ <div class="alert alert-success" role="alert" ng-if="main.correctAnswer">
+  <strong>Well done!</strong> You answered the question correctly.
+</div>
+  <div class="alert alert-danger" role="alert" ng-if="main.wrongAnswer">
+  <strong>Oops, you're obviously not the brightest under the sun. Try again!</strong>
+</div>
+
+
+</div>
