@@ -31,12 +31,14 @@
     vm.correctAnswer = false;
     vm.wrongAnswer = false;
     vm.score = 0;
+    vm.newHighscore = false;
 
     // Called when category is chosen, loads first question
     vm.chooseCategory = (function cC(catID) {
       console.log('chosen category: ' + catID);
       vm.chosenCategoryID = catID;
       vm.selectCategory = false;
+      vm.newHighscore = false;
       vm.score = 0;
       vm.loadQuestion();
     });
@@ -134,12 +136,13 @@
         localStorage.removeItem(keyQuestionCounterWrong);
         localStorage.setItem(keyQuestionCounterWrong, questionCount);
         
-        // Check for Highscore & reset score
+        // Check for highscore & reset score
         if (vm.score > localStorage.getItem(keyHighScore)) {
+        	vm.newHighscore = true;
+        	vm.highScore = vm.score;
         	localStorage.removeItem(keyHighScore);
         	localStorage.setItem(keyHighScore, vm.score);
         }
-        localStorage.setItem(keyScore, 0);
       }
 
       var questionCount = localStorage.getItem(keyQuestionCounter);

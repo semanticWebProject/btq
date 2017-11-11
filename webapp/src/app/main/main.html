@@ -56,7 +56,7 @@
 	<!-- answer boxes, here comes the information -->
 	<div class="answerbox alert alert-success" role="alert"
 		ng-if="main.correctAnswer">
-		<strong>Well done!</strong> You answered the question correctly.
+		<span class="glyphicon glyphicon-ok"></span> <strong>Well done!</strong> You answered the question correctly.
 		<!-- TODO description here -->
 		<button type="button" class="btn btn-success pull-right"
 			ng-click="main.loadQuestion()">Next</button>
@@ -64,10 +64,16 @@
 
 	<div class="answerbox alert alert-danger" role="alert"
 		ng-if="main.wrongAnswer">
-		<strong>Sorry, that's not correct.
-			{{main.answers[main.selectedAnswer-1].description}}</strong>
+		<span class="glyphicon glyphicon-remove"></span> <strong>Sorry, your answer is wrong.</strong>
+			{{main.answers[main.selectedAnswer-1].description}}
 		<button class="btn btn-fail pull-right" ng-click="main.reset()">Try
 			again</button>
+	</div>
+	
+	<div class="answerbox alert alert-success" role="alert"
+		ng-if="main.wrongAnswer && main.newHighscore">
+		<span class="glyphicon glyphicon-thumbs-up"></span> 
+		<strong>You set a new highscore:</strong> {{main.highScore}}
 	</div>
 
 

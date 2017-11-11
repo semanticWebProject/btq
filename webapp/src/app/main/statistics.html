@@ -1,29 +1,46 @@
 <div class="container">
 
-  <div>
-    <acme-navbar creation-date="main.creationDate"></acme-navbar>
-  </div>
-  <h1>Game Statistics</h1>
-  <div class="jumbotron">
-    <h4>Answered Questions: <strong> {{main.answeredQuestions}} </strong> </h4>
-    <h4>Correct Answers:    <strong> {{main.answeredQuestionsCorrect}} </strong> </h4>
-    <h4>Wrong Answers:      <strong> {{main.answeredQuestionsWrong}} </strong> </h4>
-    <h4>Highscore: 			<strong> {{main.highScore}} </strong> </h4>
-  </div>
+	<div>
+		<acme-navbar creation-date="main.creationDate"></acme-navbar>
+	</div>
 
-  <canvas id="barChart">Canvas can't be displayed</canvas>
+	<div class="jumbotron">
+		<h2 class="text-center">Game Statistics</h2>
+		<div class="row-statistics  align-middle">
+			<div class="col-md-6 text-center">
+				<p>
+					Answered Questions: <strong> {{main.answeredQuestions}} </strong>
+				<o>
+				<p>
+					<span class="glyphicon glyphicon-ok"></span> Correct Answers: <strong>
+						{{main.answeredQuestionsCorrect}} </strong>
+				</p>
+				<p>
+					<span class="glyphicon glyphicon-remove"></span> Wrong Answers: <strong> {{main.answeredQuestionsWrong}} </strong>
+				</p>
+			</div>
+			<div class="col-md-6 text-center">
+				<p>
+					<span class="glyphicon glyphicon-thumbs-up"></span> Highscore: <strong> {{main.highScore}} </strong>
+				</p>
+			</div>
+		</div>
 
-  <!--<div class="row">-->
-    <!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
-      <!--<div class="thumbnail">-->
-        <!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
-        <!--<div class="caption">-->
-          <!--<h3>{{ awesomeThing.title }}</h3>-->
-          <!--<p>{{ awesomeThing.description }}</p>-->
-          <!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+	</div>
+
+	<canvas id="barChart">Canvas can't be displayed</canvas>
+
+	<!--<div class="row">-->
+	<!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
+	<!--<div class="thumbnail">-->
+	<!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
+	<!--<div class="caption">-->
+	<!--<h3>{{ awesomeThing.title }}</h3>-->
+	<!--<p>{{ awesomeThing.description }}</p>-->
+	<!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
+	<!--</div>-->
+	<!--</div>-->
+	<!--</div>-->
+	<!--</div>-->
 
 </div>

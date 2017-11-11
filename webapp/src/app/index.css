@@ -40,3 +40,8 @@
 	-moz-animation-timing-function: linear;
 	-moz-animation-iteration-count: infinite;
 }
+
+.row-statistics {
+  display: flex;
+  align-items: center;
+}
