@@ -21,6 +21,7 @@
     var keyQuestionCounter = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
+    var keyHighScore = "highScore";
 
     vm.question = '';
     vm.answers  = '';
@@ -29,30 +30,34 @@
     vm.selectCategory = true;
     vm.correctAnswer = false;
     vm.wrongAnswer = false;
+    vm.score = 0;
 
-    //Called when category is chosen, loads first question
+    // Called when category is chosen, loads first question
     vm.chooseCategory = (function cC(catID) {
       console.log('chosen category: ' + catID);
       vm.chosenCategoryID = catID;
       vm.selectCategory = false;
+      vm.score = 0;
       vm.loadQuestion();
     });
 
-
+    // Load a question
     vm.loadQuestion = (function loadQuestion() {
       /* uncomment to reset statistics
       localStorage.removeItem(keyQuestionCounterCorrect);
       localStorage.removeItem(keyQuestionCounter);
       localStorage.removeItem(keyQuestionCounterWrong);
+      localStorage.removeItem(keyHighScore);
       */
       console.log('load new question');
       vm.askQuestion   = true;
       vm.correctAnswer = false;
       vm.wrongAnswer   = false;
+      
       // Simple GET request example:
       $http({
         method: 'GET',
-        url: 'app/main/'+vm.chosenCategoryID+'_samplequestion.json'
+        url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
        // url: 'http://134.155.234.95:8080/SWTBeatTheQuiz/service'
       }).then(function successCallback(response) {
 
@@ -82,26 +87,31 @@
     });
 
 
+    // Called when an answer is selected
     vm.validate = (function validate(id) {
       vm.selectedAnswer = id;
 
-      //As soon as answer is clicked, buttons are disabled and can't be clicked anymore
+      // As soon as answer is clicked, buttons are disabled and can't be clicked anymore
       jQuery(".answers button").attr("disabled","disabled");
-      //Correct answer is given
+      
+      // Correct answer is given
       if (vm.correct == id) {
-        console.log('correct');
+        console.log('correct answer selected');
         vm.correctAnswer = true;
         vm.wrongAnswer = false;
         vm.askQuestion = true;
         jQuery('.answers button.option-'+id).addClass('btn-success');
 
-        // Correct question counter
-        var questionCount= localStorage.getItem(keyQuestionCounterCorrect);
+        // Update correct question counter
+        var questionCount = localStorage.getItem(keyQuestionCounterCorrect);
         questionCount++;
-        console.log(questionCount);
+        console.log("Correct questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterCorrect);
         localStorage.setItem(keyQuestionCounterCorrect, questionCount);
-
+        
+        // Update score
+        vm.score++;
+        console.log("Current score: " + vm.score);
       }
       else {
         jQuery('.answers button.option-'+id).addClass('btn-danger');
@@ -117,14 +127,22 @@
         vm.wrongAnswer = true;
         vm.askQuestion = true;
 
-        // Correct question counter
-        var questionCount= localStorage.getItem(keyQuestionCounterWrong);
+        // Update wrong question counter
+        var questionCount = localStorage.getItem(keyQuestionCounterWrong);
         questionCount++;
+        console.log("Wrong questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterWrong);
         localStorage.setItem(keyQuestionCounterWrong, questionCount);
+        
+        // Check for Highscore & reset score
+        if (vm.score > localStorage.getItem(keyHighScore)) {
+        	localStorage.removeItem(keyHighScore);
+        	localStorage.setItem(keyHighScore, vm.score);
+        }
+        localStorage.setItem(keyScore, 0);
       }
 
-      var questionCount= localStorage.getItem(keyQuestionCounter);
+      var questionCount = localStorage.getItem(keyQuestionCounter);
       questionCount++;
       console.log(questionCount);
       localStorage.removeItem(keyQuestionCounter);

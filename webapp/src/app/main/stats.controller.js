@@ -12,9 +12,12 @@
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
 
+    var keyHighScore = "highScore";
+    
     vm.answeredQuestions        = localStorage.getItem(keyQuestionCounter);
     vm.answeredQuestionsCorrect = localStorage.getItem(keyQuestionCounterCorrect);
     vm.answeredQuestionsWrong   = localStorage.getItem(keyQuestionCounterWrong);
+    vm.highScore				= localStorage.getItem(keyHighScore);
 
     //bar chart
     var ctxB = document.getElementById("barChart").getContext('2d');
