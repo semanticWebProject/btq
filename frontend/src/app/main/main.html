@@ -1,9 +1,5 @@
 <div class="container">
 
-	<div>
-		<acme-navbar creation-date="main.creationDate"></acme-navbar>
-	</div>
-
 	<div class="jumbotron text-center" ng-if="main.selectCategory">
 		<p class="lead">
 		<h2>Beat the Quiz!</h2>
@@ -11,13 +7,20 @@
 		</p>
 
 		<div class="row">
-			<div class="col-sm-{{12 / main.categories.length}}"
-				ng-repeat="category in main.categories">
-				<p>{{category.name}}</p>
-				<a href="#/" class="btn btn-primary"
-					ng-click="main.chooseCategory(category.id)">Select</a>
-			</div>
-		</div>
+			<!--<div class="col-sm-{{12 / main.categories.length}}"-->
+				<!--ng-repeat="category in main.categories">-->
+				<!--<p>{{category.name}}</p>-->
+				<!--<a href="#/" class="btn btn-primary"-->
+					<!--ng-click="main.chooseCategory(category.id)">Select</a>-->
+			<!--</div>-->
+
+        <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
+            <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
+              <img src="{{category.thumbnail}}" alt="">
+            </a>
+        </div>
+    </div>
+
 
 		<!--<p class="animated infinite" ng-class="main.classAnimation">-->
 		<!--<button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>-->
@@ -26,13 +29,12 @@
 		<!--With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>-->
 		<!--</p>-->
 	</div>
-
-	<div class="jumbotron text-center" ng-if="!main.selectCategory">
-		<h3>
-			Chosen category: <strong>
-				{{main.categories[main.chosenCategoryID].name}} </strong>
-		</h3>
-	</div>
+  <nav aria-label="breadcrumb" role="navigation" ng-if="!main.selectCategory">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" aria-current="page" ng-click="main.reset()">Home</li>
+      <li class="breadcrumb-item active" aria-current="page">{{main.categories[main.chosenCategoryID].name}}</li>
+    </ol>
+  </nav>
 
 	<!-- score information -->
 	<div class="" ng-if="!main.selectCategory">
@@ -40,7 +42,7 @@
 	</div>
 
 	<!-- Question and answer block -->
-	<div class="jumbotron" ng-if="main.askQuestion">
+	<div class="jumbotron question" ng-if="main.askQuestion">
 		<p class="lead">{{main.question}}</p>
 		<hr>
 		<!-- Answers -->
@@ -64,15 +66,15 @@
 
 	<div class="answerbox alert alert-danger" role="alert"
 		ng-if="main.wrongAnswer">
-		<span class="glyphicon glyphicon-remove"></span> <strong>Sorry, your answer is wrong.</strong>
+		<span class="glyphicon glyphicon-remove"></span> <strong>Sorry, your answer is wrong.</strong><br/>
 			{{main.answers[main.selectedAnswer-1].description}}
 		<button class="btn btn-fail pull-right" ng-click="main.reset()">Try
 			again</button>
 	</div>
-	
+
 	<div class="answerbox alert alert-success" role="alert"
 		ng-if="main.wrongAnswer && main.newHighscore">
-		<span class="glyphicon glyphicon-thumbs-up"></span> 
+		<span class="glyphicon glyphicon-thumbs-up"></span>
 		<strong>You set a new highscore:</strong> {{main.highScore}}
 	</div>
 

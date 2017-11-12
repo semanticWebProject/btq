@@ -55,7 +55,7 @@
       vm.askQuestion   = true;
       vm.correctAnswer = false;
       vm.wrongAnswer   = false;
-      
+
       // Simple GET request example:
       $http({
         method: 'GET',
@@ -95,7 +95,7 @@
 
       // As soon as answer is clicked, buttons are disabled and can't be clicked anymore
       jQuery(".answers button").attr("disabled","disabled");
-      
+
       // Correct answer is given
       if (vm.correct == id) {
         console.log('correct answer selected');
@@ -110,7 +110,7 @@
         console.log("Correct questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterCorrect);
         localStorage.setItem(keyQuestionCounterCorrect, questionCount);
-        
+
         // Update score
         vm.score++;
         console.log("Current score: " + vm.score);
@@ -135,7 +135,7 @@
         console.log("Wrong questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterWrong);
         localStorage.setItem(keyQuestionCounterWrong, questionCount);
-        
+
         // Check for highscore & reset score
         if (vm.score > localStorage.getItem(keyHighScore)) {
         	vm.newHighscore = true;
@@ -153,14 +153,16 @@
     });
 
     /* New */ //TODO get this from the server
-    vm.categories = [
+       vm.categories = [
       {
         'id': 0,
-        'name': 'Actors & Movies'
+        'name': 'Actors & Movies',
+        'thumbnail': 'http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg'
       },
       {
         'id': 1,
-        'name': 'Geography'
+        'name': 'Geography',
+        'thumbnail': 'http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg'
       }
     ];
 
