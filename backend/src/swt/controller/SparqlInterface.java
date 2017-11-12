@@ -150,16 +150,12 @@ public class SparqlInterface {
             		question.setOption4(otherOption3);
             }
             
-            
-            
-            
            // System.out.println(question.createJSONRepresentationofQuestion());
             questionContents=question.createJSONRepresentationofQuestion();
             
             /*
             int i=1;
-            
-            
+
             for(HashMap<String, String> value : (ArrayList<HashMap<String, String>>)rs.get("result").get("rows")) {
             	
             	System.out.println("********************"+"Record "+i +"********************");
@@ -173,17 +169,13 @@ public class SparqlInterface {
             		i=i+1;
             }
             */
-        
-            
-            
-
-        }catch(EndpointException eex) {
+   
+        } catch(EndpointException eex) {
             System.out.println(eex);
             eex.printStackTrace();
         }
 		
 		return questionContents;
-	
 	}
 
 }
