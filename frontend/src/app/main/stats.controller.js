@@ -11,13 +11,30 @@
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
-
     var keyHighScore = "highScore";
-    
+
+
+    vm.resetStats = (function() {
+      console.log('reset stats');
+      localStorage.removeItem(keyQuestionCounter);
+      localStorage.removeItem(keyQuestionCounterCorrect);
+      localStorage.removeItem(keyQuestionCounterWrong);
+      localStorage.removeItem(keyHighScore);
+      localStorage.setItem(keyQuestionCounter, 0);
+      localStorage.setItem(keyQuestionCounterCorrect, 0);
+      localStorage.setItem(keyQuestionCounterWrong, 0);
+      localStorage.setItem(keyHighScore, 0);
+      vm.answeredQuestions        = 0;
+      vm.answeredQuestionsCorrect = 0;
+      vm.answeredQuestionsWrong   = 0;
+      vm.highScore				        = 0;
+
+    });
+
     vm.answeredQuestions        = localStorage.getItem(keyQuestionCounter);
     vm.answeredQuestionsCorrect = localStorage.getItem(keyQuestionCounterCorrect);
     vm.answeredQuestionsWrong   = localStorage.getItem(keyQuestionCounterWrong);
-    vm.highScore				= localStorage.getItem(keyHighScore);
+    vm.highScore				        = localStorage.getItem(keyHighScore);
 
     //bar chart
     var ctxB = document.getElementById("barChart").getContext('2d');

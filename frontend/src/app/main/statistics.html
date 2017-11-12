@@ -1,16 +1,13 @@
 <div class="container">
 
-	<div>
-		<acme-navbar creation-date="main.creationDate"></acme-navbar>
-	</div>
 
 	<div class="jumbotron">
 		<h2 class="text-center">Game Statistics</h2>
 		<div class="row-statistics  align-middle">
-			<div class="col-md-6 text-center">
+			<div class="col-md-12 text-center">
 				<p>
 					Answered Questions: <strong> {{main.answeredQuestions}} </strong>
-				<o>
+        </p>
 				<p>
 					<span class="glyphicon glyphicon-ok"></span> Correct Answers: <strong>
 						{{main.answeredQuestionsCorrect}} </strong>
@@ -18,11 +15,10 @@
 				<p>
 					<span class="glyphicon glyphicon-remove"></span> Wrong Answers: <strong> {{main.answeredQuestionsWrong}} </strong>
 				</p>
-			</div>
-			<div class="col-md-6 text-center">
 				<p>
 					<span class="glyphicon glyphicon-thumbs-up"></span> Highscore: <strong> {{main.highScore}} </strong>
 				</p>
+        <button ng-click="main.resetStats()" class="btn">Reset statistics</button>
 			</div>
 		</div>
 
