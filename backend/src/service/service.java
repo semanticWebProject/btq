@@ -14,7 +14,7 @@ import javax.ws.rs.FormParam;
 
 import swt.controller.SparqlInterface;
 
-@Path("/service")
+@Path("/question")
 public class service {
 	
 	@GET
