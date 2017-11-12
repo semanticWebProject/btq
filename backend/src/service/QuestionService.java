@@ -14,8 +14,8 @@ import javax.ws.rs.FormParam;
 
 import swt.controller.SparqlInterface;
 
-@Path("/service")
-public class service {
+@Path("/question")
+public class QuestionService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -25,19 +25,19 @@ public class service {
 								@Context HttpServletResponse response) {
 		response.setHeader("access-control-allow-origin", "*");
 		System.out.println("I am here " + System.getProperty("user.dir"));
-		System.out.println("Topic : " +topic );
-		System.out.println("Question Number : " +questionNo );
+		System.out.println("Topic: " + topic);
+		System.out.println("Question Number: " + questionNo);
 		SparqlInterface sparql=new SparqlInterface();
 		return sparql.getQuestion("geography");
 	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public String question(	@FormParam("topic") String topic,
-							@FormParam("questionNo") int questionNo) {
+	public String postQuestion(	@FormParam("topic") String topic,
+								@FormParam("questionNo") int questionNo) {
 		System.out.println("I am here " + System.getProperty("user.dir"));
-		System.out.println("Topic : " +topic );
-		System.out.println("Question Number : " +questionNo );
+		System.out.println("Topic: " + topic);
+		System.out.println("Question Number: " + questionNo);
 		SparqlInterface sparql=new SparqlInterface();
 		return sparql.getQuestion("geography");
 	}
