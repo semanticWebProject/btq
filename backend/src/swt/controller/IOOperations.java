@@ -23,45 +23,42 @@ public class IOOperations {
 	
 	public String getQuestion(String category) {
 		
-		String question="";
+		String question = "";
 		
 		try {
-			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse("config/"+getCategoryFileName(category));
+			Document document = builder.parse("config/" + getCategoryFileName(category));
 			XPathFactory xPathfactory = XPathFactory.newInstance();
 			XPath xpath = xPathfactory.newXPath();
 			XPathExpression expression = xpath.compile("/questions/question");
 			
 			NodeList nodeList = (NodeList) expression.evaluate(document, XPathConstants.NODESET);
 			
+			Random randomNumberGenerator = new Random();
 			
-			Random randomNumberGenerator=new Random();
-			
-			int totalResults=nodeList.getLength();
+			int totalResults = nodeList.getLength();
 			
 			System.out.println("Total Questions: " + totalResults);
 			
-			if(totalResults>0) {
-				int randomNumber=randomNumberGenerator.nextInt(totalResults);
+			if (totalResults > 0) {
+				int randomNumber = randomNumberGenerator.nextInt(totalResults);
 				
 				System.out.println("Random Number: " + randomNumber);
 				
-				Node item=nodeList.item(randomNumber);
-				NodeList childNodes=item.getChildNodes();
+				Node item = nodeList.item(randomNumber);
+				NodeList childNodes = item.getChildNodes();
 				
-				for(int i=0;i<childNodes.getLength();i++) {
+				for (int i = 0; i < childNodes.getLength(); i++) {
 					
-					if(childNodes.item(i).getNodeType()==1)
-						question=childNodes.item(i).getTextContent().trim();
+					if (childNodes.item(i).getNodeType() == 1)
+						question = childNodes.item(i).getTextContent().trim();
 						//System.out.println(i+" " +childNodes.item(i).getTextContent().trim());
 				}
 				
 			}
 			
-		}
-		catch(Exception ex) {
+		} catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
 		
@@ -71,12 +68,12 @@ public class IOOperations {
 	
 	public String getCategoryFileName(String category) {
 		
-		String fileName="";
+		String fileName = "";
 		
-		switch(category){
-						case "geography": fileName="geography.xml";
+		switch(category) {
+						case "geography": fileName = "geography.xml";
 						break;
-						default: fileName="geography.xml";
+						default: fileName = "geography.xml";
 						break;
 		}
 		return fileName;

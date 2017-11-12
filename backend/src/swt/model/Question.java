@@ -4,11 +4,11 @@ import org.json.*;
 
 public class Question {
 	
-	String questionText="";
-	String option1="";
-	String option2="";
-	String option3="";
-	String option4="";
+	String questionText = "";
+	String option1 = "";
+	String option2 = "";
+	String option3 = "";
+	String option4 = "";
 	int correctOptionIndex;
 	
 	public Question() {
@@ -19,36 +19,36 @@ public class Question {
 			String option2,String option3,String option4,
 			int correctOptionIndex) {
 		
-		this.questionText=questionText;
-		this.option1=option1;
-		this.option2=option2;
-		this.option3=option3;
-		this.option4=option4;
-		this.correctOptionIndex=correctOptionIndex;
+		this.questionText = questionText;
+		this.option1 = option1;
+		this.option2 = option2;
+		this.option3 = option3;
+		this.option4 = option4;
+		this.correctOptionIndex = correctOptionIndex;
 		
 	}
 	
 	public void setQuestionText(String questionText) {
-		this.questionText=questionText;
+		this.questionText = questionText;
 	}
 	
 	public void setOption1(String option) {
-		this.option1=option;
+		this.option1 = option;
 	}
 	
 	public void setOption2(String option) {
-		this.option2=option;
+		this.option2 = option;
 	}
 	
 	public void setOption3(String option) {
-		this.option3=option;
+		this.option3 = option;
 	}
 	
 	public void setOption4(String option) {
-		this.option4=option;
+		this.option4 = option;
 	}
 	public void setCorrectOptionIndex(int index) {
-		this.correctOptionIndex=index;
+		this.correctOptionIndex = index;
 	}
 	
 	public String getQuestionText() {
@@ -79,11 +79,11 @@ public class Question {
 		try {
 			json.put("question", this.questionText);
 			
-			JSONArray optionsArray=new JSONArray();
-			JSONObject option1=new JSONObject();
-			JSONObject option2=new JSONObject();
-			JSONObject option3=new JSONObject();
-			JSONObject option4=new JSONObject();
+			JSONArray optionsArray = new JSONArray();
+			JSONObject option1 = new JSONObject();
+			JSONObject option2 = new JSONObject();
+			JSONObject option3 = new JSONObject();
+			JSONObject option4 = new JSONObject();
 			
 			option1.put("id", 1);
 			option1.put("text", this.option1);
@@ -102,8 +102,7 @@ public class Question {
 			optionsArray.put(option4);
 			
 			json.put("answers", optionsArray);
-			
-			
+
 			json.put("correct", this.correctOptionIndex);
 		}
 		catch(Exception ex) {
