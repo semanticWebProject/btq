@@ -8,7 +8,7 @@ download file according to your operating system
 3. From Eclipse; add tomcat as run time environment by going to following screen:
 Windows  Preferences  Server  Runtime Environments  Add  [select path where you extracted tomcat ]
 
-4. Import backend application from File  Open Projects from File System option. Select path where you checked out backend application from git.
+4. Import only the backend application from File  Open Projects from File System option. Select path where you checked out backend application from git.
 
 5. After import; Right click on application and select Run  Run on Server.
 **
