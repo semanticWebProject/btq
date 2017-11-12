@@ -5,6 +5,7 @@ coverage/
 .idea/
 .tmp/
 dist/
+build/
 .classpath
 .DS_Store
 .project
