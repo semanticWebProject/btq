@@ -6,7 +6,7 @@ download file according to your operating system
 2. You need to install eclipse for Java EE developers (Eclipse oxygen for example).
 
 3. From Eclipse; add tomcat as run time environment by going to following screen:
-Windows  Preferences  Server  Runtime Environments  Add  <select path where you extracted tomcat >
+Windows  Preferences  Server  Runtime Environments  Add  [select path where you extracted tomcat]
 
 4. Import backend application from File  Open Projects from File System option. Select path where you checked out backend application from git.
 
