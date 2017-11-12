@@ -24,9 +24,9 @@ npm -v
 node -v
 ```
 
-##### Install required tools `yo`, `gulp` and `bower`:
+##### Install required tools `yo`, `gulp`, `bower` and `cordova`:
 ```
-npm install -g yo gulp bower
+npm install -g yo gulp bower cordova
 ```
 
 ##### Checkout the code from Github
@@ -50,8 +50,29 @@ gulp serve
 
 
 ##### Build the project with simply typing `gulp`
+The output of gulp will be written in the "www" directory which will be used by cordova to build the app. It includes the minified HTML, CSS, Javascript and other necessary files.
 ```
 gulp
 ```
 
 
+##### Deploy the app with `cordova`
+Follow [this guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html) to install cordova and the necessary build tools for Android.
+
+
+Add Android
+```
+cordova platform add android --save
+```
+Check if all requirements are met
+```
+cordova requirements android
+```
+Build the app
+```
+cordova build android --verbose
+```
+Deploy on the phone
+```
+cordova run android
+```
