@@ -2,8 +2,15 @@
 <questions>
 		<question>
 			<text>what is capital of {country}? </text>
+			<!-- <sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language en .  } } LIMIT 10</sparql>-->
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
+			
 		</question>
 		<question>
 			<text>what is population of {country}?</text>
+			<!-- <sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language en .  } } LIMIT 10</sparql>-->
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
 		</question>
 </questions>

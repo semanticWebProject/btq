@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+		<question>
+			<text>what is capital of {country}? </text>
+		</question>
+		<question>
+			<text>what is population of {country}?</text>
+		</question>
+</questions>

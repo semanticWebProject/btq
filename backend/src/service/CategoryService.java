@@ -24,11 +24,11 @@ public class CategoryService {
 		
 		Collection<Category> categories = io.getCategories();
 		
-		JSONArray response = new JSONArray();
+		JSONArray jsonResponse = new JSONArray();
 		for (Category category : categories) {
-			response.put(category.createJSONRepresentationofCategory());
+			jsonResponse.put(category.createJSONRepresentationofCategory());
 		}
 		
-		return response.toString();
+		return jsonResponse.toString();
 	}
 }
