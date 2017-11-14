@@ -1,9 +1,14 @@
 package swt.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -17,9 +22,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class IOOperations {
-	
+import swt.model.Category;
 
+
+public class IOOperations {
 	
 	public String getQuestion(String category) {
 		
@@ -29,7 +35,7 @@ public class IOOperations {
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse("config/"+getCategoryFileName(category));
+			Document document = builder.parse("categories/" + getCategoryFileName(category));
 			XPathFactory xPathfactory = XPathFactory.newInstance();
 			XPath xpath = xPathfactory.newXPath();
 			XPathExpression expression = xpath.compile("/questions/question");
@@ -81,6 +87,22 @@ public class IOOperations {
 		}
 		return fileName;
 		
+	}
+	
+	public Collection<Category> getCategories() {
+		Collection<Category> categories = new ArrayList<>();
+		
+		File folder = new File(this.getClass().getClassLoader().getResource("categories").getFile());
+		File[] fileList = folder.listFiles();
+		
+		for (int i = 0; i < fileList.length; i++) {
+			String categoryName = fileList[i].getName().substring(0, fileList[i].getName().length() - 4);
+			Category category = new Category(i, categoryName);
+			categories.add(category);
+			System.out.println("Category id: " + i + " name: " + categoryName);
+		}
+		
+		return categories;
 	}
 
 }

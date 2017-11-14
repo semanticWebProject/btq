@@ -15,7 +15,7 @@ import javax.ws.rs.FormParam;
 import swt.controller.SparqlInterface;
 
 @Path("/question")
-public class service {
+public class QuestionService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

@@ -8,5 +8,6 @@ dist/
 build/
 .classpath
 .DS_Store
-.project
-.settings
+/bin
+/frontend/.project
+/frontend/.settings/
