@@ -11,7 +11,7 @@
 
 
     /* Local variables */
-    var base_url = 'http://134.155.212.62:8080/backend/';
+    var base_url = 'http://134.155.212.252:8080/backend/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
@@ -73,6 +73,9 @@
           // when the response is available
           console.log(response.data['question']);
           vm.question = response.data['question'];
+          vm.imageURL    = response.data['imageURL'];
+          console.log(vm.imageURL);
+          if (vm.imageURL == null) {console.log('no image'); vm.imageURL = false; }
           vm.answers  = response.data['answers'];
           vm.correct  = response.data['correct'];
         }, function errorCallback(response) {

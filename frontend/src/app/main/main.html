@@ -44,6 +44,7 @@
 	<!-- Question and answer block -->
 	<div class="jumbotron question" ng-if="main.askQuestion">
 		<p class="lead">{{main.question}}</p>
+    <span ng-if="main.imageURL"><img src="{{main.imageURL}}"></span>
 		<hr>
 		<!-- Answers -->
 		<div class="answers" ng-repeat="answer in main.answers">

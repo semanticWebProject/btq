@@ -49,6 +49,9 @@ img {
   width: 100%;
   margin-bottom: 25px;
 }
+.question img {
+  max-height: 150px;
+}
 .jumbotron.question {
   margin-bottom: 10px;
 }
