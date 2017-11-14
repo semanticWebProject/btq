@@ -9,20 +9,16 @@
   function MainController(toastr, $http) {
     var vm = this;
 
-    vm.chosenCategoryID = '';
-    vm.showToastr = showToastr;
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-
-    var keyQuestionCounter = "questionCounter";
+    /* Local variables */
+    var base_url = 'http://134.155.212.62:8080/backend/';
+    var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
-    var keyHighScore = "highScore";
+    var keyHighScore              = "highScore";
 
+    /* Model variables */
+    vm.chosenCategoryID = '';
     vm.question = '';
     vm.answers  = '';
     vm.correct  = '';
@@ -32,6 +28,23 @@
     vm.wrongAnswer = false;
     vm.score = 0;
     vm.newHighscore = false;
+
+    /* Init Functions */
+    //getCategories(); //retrieves the categories from the server
+
+
+    /* Model functions */
+    //resets all model variables to get back to the home screen
+    vm.reset = (function reset() {
+      console.log('reset');
+       vm.askQuestion = false;
+       vm.selectCategory = true;
+       vm.correctAnswer = false;
+       vm.wrongAnswer = false;
+       vm.chosenCategoryID = 'None';
+       vm.selectedAnswer = 'None';
+       vm.selectCategory = true;
+     });
 
     // Called when category is chosen, loads first question
     vm.chooseCategory = (function cC(catID) {
@@ -45,13 +58,6 @@
 
     // Load a question
     vm.loadQuestion = (function loadQuestion() {
-      /* uncomment to reset statistics
-      localStorage.removeItem(keyQuestionCounterCorrect);
-      localStorage.removeItem(keyQuestionCounter);
-      localStorage.removeItem(keyQuestionCounterWrong);
-      localStorage.removeItem(keyHighScore);
-      */
-      console.log('load new question');
       vm.askQuestion   = true;
       vm.correctAnswer = false;
       vm.wrongAnswer   = false;
@@ -59,8 +65,8 @@
       // Simple GET request example:
       $http({
         method: 'GET',
-        url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
-       // url: 'http://134.155.234.95:8080/SWTBeatTheQuiz/service'
+        // url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
+       url: base_url+'question'
       }).then(function successCallback(response) {
 
           // this callback will be called asynchronously
@@ -76,18 +82,6 @@
         });
 
     });
-
-    vm.reset = (function reset() {
-      console.log('reset');
-       vm.askQuestion = false;
-       vm.selectCategory = true;
-       vm.correctAnswer = false;
-       vm.wrongAnswer = false;
-       vm.chosenCategoryID = 'None';
-       vm.selectedAnswer = 'None';
-       vm.selectCategory = true;
-    });
-
 
     // Called when an answer is selected
     vm.validate = (function validate(id) {
@@ -152,7 +146,20 @@
       localStorage.setItem(keyQuestionCounter, questionCount);
     });
 
-    /* New */ //TODO get this from the server
+
+    /* Utility functions */
+    // get the categories
+    function getCategories() {
+      $http({
+            method: 'GET',
+           url: base_url+'category'
+          }).then(function successCallback(response) {
+            console.log(response);
+            vm.categories = response;
+          });
+
+    }
+      // temporary local workaround for the categories
        vm.categories = [
       {
         'id': 0,
