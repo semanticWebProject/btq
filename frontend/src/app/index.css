@@ -41,17 +41,52 @@
 	-moz-animation-iteration-count: infinite;
 }
 
+.flash-icon{
+	color:#449d44;
+
+	animation-name: flash;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+	//Firefox 1+
+	-webkit-animation-name: flash;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+
+	//Safari 3-4
+	-moz-animation-name: flash;
+	-moz-animation-duration: 2s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+}
+
 .row-statistics {
-  align-items: center;
+  text-align: center;
 }
 
 img {
   width: 100%;
   margin-bottom: 25px;
 }
+
+.question span {
+  display: block;
+  text-align: center;
+}
 .question img {
   max-height: 150px;
+  max-width: 300px;
+  margin-bottom: 0px;
 }
 .jumbotron.question {
   margin-bottom: 10px;
+}
+.scoreInformation {
+  padding-right: 15px;
+  padding-top: 10px;
+}
+.nextButton {
+  margin-bottom: 20px;
 }

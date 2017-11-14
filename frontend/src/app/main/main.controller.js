@@ -11,7 +11,7 @@
 
 
     /* Local variables */
-    var base_url = 'http://134.155.212.252:8080/backend/';
+    var base_url = 'https://swt-btq.herokuapp.com/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
@@ -101,6 +101,14 @@
         vm.askQuestion = true;
         jQuery('.answers button.option-'+id).addClass('btn-success');
 
+        //Flashes score icon
+        setTimeout(function() {
+          jQuery('.scoreInformation').addClass('flash-icon');
+        }, 800);
+        setTimeout(function() {
+          jQuery('.scoreInformation').removeClass('flash-icon');
+        }, 2000);
+
         // Update correct question counter
         var questionCount = localStorage.getItem(keyQuestionCounterCorrect);
         questionCount++;
@@ -141,7 +149,14 @@
         	localStorage.setItem(keyHighScore, vm.score);
         }
       }
+      // scroll down
+      $('html, body').animate({
+         scrollTop: document.body.scrollHeight
+         //scrollTop: $('#your-id').offset().top
+         //scrollTop: $('.your-class').offset().top
+      }, 'slow');
 
+      //update question counter
       var questionCount = localStorage.getItem(keyQuestionCounter);
       questionCount++;
       console.log(questionCount);
