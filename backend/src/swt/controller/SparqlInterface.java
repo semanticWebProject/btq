@@ -29,9 +29,11 @@ public class SparqlInterface {
 		// replace parameters in query
 		System.out.println(questionXML.getQuestionText());
 		System.out.println(questionXML.getParameter1());
-		String query = questionXML.getSparqlQuery().replace("parameter1", questionXML.getParameter1());
-		query = query.replace("parameter2", questionXML.getParameter2());
+		String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
+		query = query.replace("{parameter2}", questionXML.getParameter2());
 
+		System.out.println("Query: "+query);
+		
 		// run query and get result
 		ArrayList<HashMap<String, String>> records = runSparqlQuery(query);
 		HashSet<Integer> options = createRandomOptions(records.size());
@@ -48,9 +50,11 @@ public class SparqlInterface {
 		// get parameter of question
 		String regex = "[{](.)+[}]";
 		Pattern regexPattern = Pattern.compile(regex);
-		Matcher matcher = regexPattern.matcher(questionXML.getQuestionText());
+		question.setQuestionText(questionXML.getQuestionText());
+		Matcher matcher = regexPattern.matcher(question.getQuestionText());
+		matcher.find();
 		String parameter = matcher.group(0);
-		question.getQuestionText().replace(parameter, questionParameter);
+		question.setQuestionText(question.getQuestionText().replace(parameter, questionParameter));
 
 		return question;
 	}
@@ -122,29 +126,34 @@ public class SparqlInterface {
 		int randomNumber;
 		ArrayList<Integer> optionsPosition = new ArrayList<Integer>();
 
+		optionsPosition.add(0);
 		optionsPosition.add(1);
 		optionsPosition.add(2);
 		optionsPosition.add(3);
-		optionsPosition.add(4);
+		int optionNo=0;
 
 		// set other answer options
-		while (optionsPosition.size() >= 1) {
+		while (optionsPosition.size() > 1) {
 			randomNumber = randomNumberGenerator.nextInt(optionsPosition.size());
 			int index = optionsPosition.get(randomNumber);
 			optionsPosition.remove(randomNumber);
 
 			switch (index) {
+			case 0:
+				question.setOption1(answers[optionNo]);
+				optionNo++;
+				break;
 			case 1:
-				question.setOption1(answers[index]);
+				question.setOption2(answers[optionNo]);
+				optionNo++;
 				break;
 			case 2:
-				question.setOption2(answers[index]);
+				question.setOption3(answers[optionNo]);
+				optionNo++;
 				break;
 			case 3:
-				question.setOption3(answers[index]);
-				break;
-			case 4:
-				question.setOption4(answers[index]);
+				question.setOption4(answers[optionNo]);
+				optionNo++;
 				break;
 			}
 		}

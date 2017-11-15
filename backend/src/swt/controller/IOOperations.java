@@ -60,7 +60,7 @@ public class IOOperations {
 				if (item.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) item;
 					questionXML.setQuestionText(element.getElementsByTagName("text").item(0).getTextContent());
-//					questionXML.setSparqlQuery(element.getElementsByTagName("sparql").item(0).getTextContent());
+					questionXML.setSparqlQuery(element.getElementsByTagName("sparql").item(0).getTextContent());
 					questionXML.setParameter1(element.getElementsByTagName("parameter1").item(0).getTextContent());
 					questionXML.setParameter2(element.getElementsByTagName("parameter2").item(0).getTextContent());
 				}
