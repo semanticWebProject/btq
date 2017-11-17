@@ -48,7 +48,7 @@ public class IOOperations {
 			Random randomNumberGenerator = new Random();
 			int totalResults = nodeList.getLength();
 			System.out.println("Total Questions: " + totalResults);
-			
+			totalResults = 2; // for testing
 			if (totalResults > 0) {
 				int randomNumber = randomNumberGenerator.nextInt(totalResults);
 				
@@ -56,24 +56,42 @@ public class IOOperations {
 				
 				// select random question from questions
 				Node item = nodeList.item(randomNumber);
-				System.out.println("Current Element: " + item.getNodeName());
+//				System.out.println("Current Element: " + item.getNodeName());
 
 				// set attributes for question from xml context
 				if (item.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) item;
+					try {
+						questionXML.setQueryEndpoint(Integer.parseInt(element.getElementsByTagName("endpoint").item(0).getTextContent()));	
+					}
+					catch(Exception e) {
+						System.err.println("Query endpoint could not be read");
+						System.exit(1);
+					}
+					
 					questionXML.setQuestionText(element.getElementsByTagName("text").item(0).getTextContent());
-					questionXML.setSparqlQuery(element.getElementsByTagName("sparql").item(0).getTextContent());
-					questionXML.setParameter1(element.getElementsByTagName("parameter1").item(0).getTextContent());
-					questionXML.setParameter2(element.getElementsByTagName("parameter2").item(0).getTextContent());
+					questionXML.setSparqlQuery( element.getElementsByTagName("sparql").item(0).getTextContent());
+					questionXML.setParameter1(  element.getElementsByTagName("parameter1").item(0).getTextContent());
+					questionXML.setParameter2(  element.getElementsByTagName("parameter2").item(0).getTextContent());
+					questionXML.setEasyFilter(  element.getElementsByTagName("easy").item(0).getTextContent());
+					questionXML.setMediumFilter(element.getElementsByTagName("medium").item(0).getTextContent());
+					questionXML.setHardFilter(  element.getElementsByTagName("hard").item(0).getTextContent());
 				}
 			}
 			
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
+		// just for testing
+		System.out.println("Queryendpoint: " + questionXML.getQueryEndpoint());
 		System.out.println("Text: " + questionXML.getQuestionText());
-//		System.out.println("Sparql: " + questionXML.getSparqlQuery());
+		System.out.println("Sparql: " + questionXML.getSparqlQuery());
 		System.out.println("Parameter1: " + questionXML.getParameter1());
+		System.out.println("Parameter2: " + questionXML.getParameter2());
+		System.out.println("Easy: " + questionXML.getEasyFilter());
+		System.out.println("Medium: " + questionXML.getMediumFilter());
+		System.out.println("Hard: " + questionXML.getHardFilter());
+
 		return questionXML;
 		
 	}
