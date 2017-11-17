@@ -1,15 +1,28 @@
 package swt.model;
 
 public class QuestionXML {
-	
+	private int    queryEndpoint;
 	private String questionText;
 	private String sparqlQuery;
 	private String parameter1;
 	private String parameter2;
+	private String easyFilter;
+	private String mediumFilter;
+	private String hardFilter;
+	
 
 	public QuestionXML() {
 	}
 
+	public int getQueryEndpoint() {
+		return queryEndpoint;
+	}
+
+	public void setQueryEndpoint(int queryEndpoint) {
+		this.queryEndpoint = queryEndpoint;
+	}
+
+	
 	public String getQuestionText() {
 		return questionText;
 	}
@@ -40,6 +53,30 @@ public class QuestionXML {
 
 	public void setParameter2(String parameter2) {
 		this.parameter2 = parameter2;
+	}
+	
+	public String getEasyFilter() {
+		return easyFilter;
+	}
+
+	public void setEasyFilter(String easyFilter) {
+		this.easyFilter = easyFilter;
+	}
+	
+	public String getMediumFilter() {
+		return mediumFilter;
+	}
+
+	public void setMediumFilter(String mediumFilter) {
+		this.mediumFilter = mediumFilter;
+	}
+	
+	public String getHardFilter() {
+		return hardFilter;
+	}
+
+	public void setHardFilter(String hardFilter) {
+		this.hardFilter = hardFilter;
 	}
 	
 	

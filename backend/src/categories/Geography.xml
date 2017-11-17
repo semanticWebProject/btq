@@ -1,15 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <questions>
 		<question>
-			<text>what is capital of {country}? </text>
+			<endpoint>1</endpoint>
+			<text>what is the capital of {country}? </text>
 			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } LIMIT 10</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
 		</question>
 		<question>
-			<text>what is population of {country}?</text>
+			<endpoint>1</endpoint>
+			<text>what is the population of {country}?</text>
 			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } LIMIT 10</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>To which {country} does this flag belong?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2></parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+		<endpoint>1</endpoint>
+			<text>What is the flag of {country}?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>What is the population of {country}?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>What currency is used in {country}?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>What is capital of {country}?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>cityLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>What is highest point of {country}?</text>
+			<sparql>SELECT ?continentLabel ?countryLabel ?pop ?area ?cord ?pic ?pointLabel ?aboveSealevel WHERE {     ?country wdt:P31 wd:Q6256.     ?country wdt:P30 ?continent.     ?country wdt:P1082 ?pop.     ?country wdt:P610 ?point.     ?country wdt:P2046 ?area.     ?point wdt:P2044 ?aboveSealevel.     ?point wdt:P18 ?pic.     ?point  wdt:P625 ?cord.     OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } </sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>pointLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>What is deepest point of {country}?</text>
+			<sparql>
+			SELECT ?countryLabel  ?pointLabel (MAX(?belowSealevel) AS ?lowest)
+WHERE {
+
+    ?country wdt:P31 wd:Q6256.
+    ?country wdt:P30 ?continent.
+    ?country wdt:P1589 ?point.
+    ?point wdt:P2044 ?belowSealevel.
+
+    ?point  wdt:P625 ?cord.
+    OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+ 
+    }
+
+group by ?countryLabel ?pointLabel
+Order by ?lowest
+			</sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2>pointLabel</parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>In which country {National Park} is located?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2></parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>Distances between two places?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2></parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
+		</question>
+		<question>
+			<endpoint>1</endpoint>
+			<text>Who is the head of {Country}?</text>
+			<sparql></sparql>
+			<parameter1>countryLabel</parameter1>
+			<parameter2></parameter2>
+			<easy></easy>
+			<medium></medium>
+			<hard></hard>
 		</question>
 </questions>

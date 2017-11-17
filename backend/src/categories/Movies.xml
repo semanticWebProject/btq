@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <questions>
-		<question>
-			<text>what is capital of {country}? </text>
-		</question>
-		<question>
-			<text>what is population of {country}?</text>
-		</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>In which movie {siblings} worked together?</text>
+		<sparql>SELECT DISTINCT CONCAT(?castLabel,' , ',?cast2Label) AS ?cast  ?movieLabel WHERE { ?movie rdf:type dbo:Film . ?movie rdfs:label ?movieLabel . ?movie dbo:starring ?cast . ?cast  dbo:parent ?parent . ?cast  rdfs:label ?castLabel . ?movie2 rdfs:label ?movieLabel2 . ?movie2 dbo:starring ?cast2 . ?cast2 dbo:starring ?cast2 . ?cast2  rdfs:label ?cast2Label . filter(langMatches(lang(?movieLabel),"EN")) . filter(langMatches(lang(?movieLabel2),"EN")) . filter(?parent = ?parent2) . filter(?cast != ?cast2) filter langMatches( lang(?castLabel), "EN" ) filter langMatches( lang(?cast2Label), "EN" ) } OFFSET 250 LIMIT 10</sparql>
+		<parameter1>movieLabel</parameter1>
+		<parameter2>cast</parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>In which year {actor} was born?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Which movie is directed after work by {author}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Which actor was born in {year}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Which movie was publish in {year}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Identify {maleActor}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Identify {femaleActor}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Who is writer and director of {movie}?</text>
+		<sparql></sparql>
+		<parameter1></parameter1>
+		<parameter2></parameter2>
+		<easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
 </questions>
