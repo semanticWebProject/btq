@@ -34,10 +34,12 @@ public class IOOperations {
 		QuestionXML questionXML = new QuestionXML();
 				
 		try {
+			
 			// read in xml for categoryId
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(this.getClass().getClassLoader().getResource("categories").getFile() + "/" + getCategoryFileName(categoryId));
+			document.getDocumentElement().normalize();
 			
 			// get all questions
 			NodeList nodeList = document.getElementsByTagName("question");
@@ -72,7 +74,6 @@ public class IOOperations {
 		System.out.println("Text: " + questionXML.getQuestionText());
 //		System.out.println("Sparql: " + questionXML.getSparqlQuery());
 		System.out.println("Parameter1: " + questionXML.getParameter1());
-
 		return questionXML;
 		
 	}
