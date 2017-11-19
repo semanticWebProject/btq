@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<questions>
+<category id="0" name="Geography" image="http://www.google.de">
 		<question>
 			<endpoint>1</endpoint>
 			<text>what is the capital of {country}? </text>
@@ -137,4 +137,4 @@ Order by ?lowest
 			<medium></medium>
 			<hard></hard>
 		</question>
-</questions>
+</category>

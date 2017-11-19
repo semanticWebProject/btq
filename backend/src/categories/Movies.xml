@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<questions>
+<category id="1" name="Actors &amp; Movies" image="http://www.google.de">
 	<question>
 		<endpoint>0</endpoint>
 		<text>In which movie {siblings} worked together?</text>
@@ -80,4 +80,4 @@
 		<medium></medium>
 		<hard></hard>
 	</question>
-</questions>
+</category>

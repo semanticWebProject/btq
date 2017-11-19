@@ -1,32 +1,42 @@
 package swt.model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class Category {
 
-		private int id;
-		private String name;
-		
-		public Category() {
-		}
-		
-		public Category(int id, String name) {
-			this.id = id;
-			this.name = name;
-		}
-	
-		public JSONObject createJSONRepresentationofCategory() {
-			JSONObject json = new JSONObject();
-			try {
-				json.put("id", this.id);
-				json.put("name", this.name);
-			}
-			catch(Exception ex) {
-				System.out.println(ex.getMessage());
-			}
-			
-			return json;
-		}
+    private int id;
+    private String name;
+    private String imageURL;
 
+    public Category() {
+    }
+
+    public Category(int id, String name, String imageURL) {
+        this.id = id;
+        this.name = name;
+        this.imageURL = imageURL;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

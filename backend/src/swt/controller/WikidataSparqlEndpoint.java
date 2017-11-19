@@ -15,17 +15,14 @@ public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
 	private String WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql";
 	
 	protected Question getQuestionFromSparqlEndpoint(QuestionXML questionXML) {
-		
 
 		Question question = new Question();
 		
 		// replace parameters in query
-		System.out.println(questionXML.getQuestionText());
-		System.out.println(questionXML.getParameter1());
 		String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
 		query = query.replace("{parameter2}", questionXML.getParameter2());
 
-		System.out.println("Query: "+query);
+		System.out.println("Query: "+ query);
 		
 		// run query and get result
 		ArrayList<HashMap<String, String>> records = runSparqlQuery(WIKIDATA_ENDPOINT, query);
@@ -39,18 +36,15 @@ public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
 		String wrongAnswer3 	= records.get((int) options.toArray()[3]).get(questionXML.getParameter2());
 		String[] wrongAnswers 	= new String[] { wrongAnswer1, wrongAnswer2, wrongAnswer3 };
 		question = setOptionAnswer(question, wrongAnswers, correctAnswer);
-		System.out.println("questionParameter: " + questionParameter);
-		System.out.println("Correct answers: " + correctAnswer);
-		System.out.println("Wrong answers: " + Arrays.toString(wrongAnswers));
 		
 		// get parameter of question
 		String regex = "[{](.)+[}]";
 		Pattern regexPattern = Pattern.compile(regex);
-		question.setQuestionText(questionXML.getQuestionText());
-		Matcher matcher = regexPattern.matcher(question.getQuestionText());
+		question.setQuestion(questionXML.getQuestionText());
+		Matcher matcher = regexPattern.matcher(question.getQuestion());
 		matcher.find();
 		String parameter = matcher.group(0);
-		question.setQuestionText(question.getQuestionText().replace(parameter, questionParameter));
+		question.setQuestion(question.getQuestion().replace(parameter, questionParameter));
 
 		return question;
 	}

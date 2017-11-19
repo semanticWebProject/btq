@@ -1,17 +1,39 @@
 package swt.model;
 
-public class QuestionXML {
-	private int    queryEndpoint;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+public final class QuestionXML {
+
+	@JacksonXmlProperty(localName = "endpoint")
+	private int queryEndpoint;
+	@JacksonXmlProperty(localName = "text")
 	private String questionText;
+	@JacksonXmlProperty(localName = "sparql")
 	private String sparqlQuery;
+	@JacksonXmlProperty(localName = "parameter1")
 	private String parameter1;
+	@JacksonXmlProperty(localName = "parameter2")
 	private String parameter2;
+	@JacksonXmlProperty(localName = "easy")
 	private String easyFilter;
+	@JacksonXmlProperty(localName = "medium")
 	private String mediumFilter;
+	@JacksonXmlProperty(localName = "hard")
 	private String hardFilter;
 	
 
 	public QuestionXML() {
+	}
+
+	public QuestionXML(int queryEndpoint, String questionText, String sparqlQuery, String parameter1, String parameter2, String easyFilter, String mediumFilter, String hardFilter) {
+		this.queryEndpoint = queryEndpoint;
+		this.questionText = questionText;
+		this.sparqlQuery = sparqlQuery;
+		this.parameter1 = parameter1;
+		this.parameter2 = parameter2;
+		this.easyFilter = easyFilter;
+		this.mediumFilter = mediumFilter;
+		this.hardFilter = hardFilter;
 	}
 
 	public int getQueryEndpoint() {
@@ -78,7 +100,6 @@ public class QuestionXML {
 	public void setHardFilter(String hardFilter) {
 		this.hardFilter = hardFilter;
 	}
-	
-	
+
 	
 }

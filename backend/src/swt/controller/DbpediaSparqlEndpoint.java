@@ -20,7 +20,7 @@ public class DbpediaSparqlEndpoint extends AbstractQueryEndpoint {
 		String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
 		query = query.replace("{parameter2}", questionXML.getParameter2());
 
-		System.out.println("Query: "+query);
+		System.out.println("Query: "+ query);
 		
 		ArrayList<HashMap<String, String>> records = runSparqlQuery(DBPEDIA_ENDPOINT, query);
 		
@@ -38,13 +38,13 @@ public class DbpediaSparqlEndpoint extends AbstractQueryEndpoint {
 		// set question text
 		String regex = "[{](.)+[}]";
 		Pattern regexPattern = Pattern.compile(regex);
-		question.setQuestionText(questionXML.getQuestionText());
-		Matcher matcher = regexPattern.matcher(question.getQuestionText());
+		question.setQuestion(questionXML.getQuestionText());
+		Matcher matcher = regexPattern.matcher(question.getQuestion());
 		matcher.find();
 		String parameter = matcher.group(0);
-		question.setQuestionText(question.getQuestionText().replace(parameter, questionParameter));
+		question.setQuestion(question.getQuestion().replace(parameter, questionParameter));
 
-		System.out.println("question text: " + question.getQuestionText().replace(parameter, questionParameter));
+		System.out.println("question text: " + question.getQuestion().replace(parameter, questionParameter));
 		System.out.println("questionParameter: " + questionParameter);
 		System.out.println("Correct answers: " + correctAnswer);
 		System.out.println("Wrong answers: " + Arrays.toString(wrongAnswers));
