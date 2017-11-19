@@ -14,6 +14,8 @@ public final class QuestionXML {
 	private String parameter1;
 	@JacksonXmlProperty(localName = "parameter2")
 	private String parameter2;
+	@JacksonXmlProperty(localName = "offsetMax")
+	private int offsetMax;
 	@JacksonXmlProperty(localName = "easy")
 	private String easyFilter;
 	@JacksonXmlProperty(localName = "medium")
@@ -25,12 +27,14 @@ public final class QuestionXML {
 	public QuestionXML() {
 	}
 
-	public QuestionXML(int queryEndpoint, String questionText, String sparqlQuery, String parameter1, String parameter2, String easyFilter, String mediumFilter, String hardFilter) {
+	public QuestionXML(int queryEndpoint, String questionText, String sparqlQuery, String parameter1,
+					   String parameter2, int offsetMax, String easyFilter, String mediumFilter, String hardFilter) {
 		this.queryEndpoint = queryEndpoint;
 		this.questionText = questionText;
 		this.sparqlQuery = sparqlQuery;
 		this.parameter1 = parameter1;
 		this.parameter2 = parameter2;
+		this.offsetMax = offsetMax;
 		this.easyFilter = easyFilter;
 		this.mediumFilter = mediumFilter;
 		this.hardFilter = hardFilter;
@@ -101,5 +105,11 @@ public final class QuestionXML {
 		this.hardFilter = hardFilter;
 	}
 
-	
+	public int getOffsetMax() {
+		return offsetMax;
+	}
+
+	public void setOffsetMax(int offsetMax) {
+		this.offsetMax = offsetMax;
+	}
 }

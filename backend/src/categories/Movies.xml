@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="1" name="Actors &amp; Movies" image="http://www.google.de">
+<category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
 	<question>
 		<endpoint>0</endpoint>
 		<text>In which movie {siblings} worked together?</text>
 		<sparql>SELECT DISTINCT CONCAT(?castLabel,' , ',?cast2Label) AS ?cast  ?movieLabel WHERE { ?movie rdf:type dbo:Film . ?movie rdfs:label ?movieLabel . ?movie dbo:starring ?cast . ?cast  dbo:parent ?parent . ?cast  rdfs:label ?castLabel . ?movie2 rdfs:label ?movieLabel2 . ?movie2 dbo:starring ?cast2 . ?cast2 dbo:starring ?cast2 . ?cast2  rdfs:label ?cast2Label . filter(langMatches(lang(?movieLabel),"EN")) . filter(langMatches(lang(?movieLabel2),"EN")) . filter(?parent = ?parent2) . filter(?cast != ?cast2) filter langMatches( lang(?castLabel), "EN" ) filter langMatches( lang(?cast2Label), "EN" ) } OFFSET 250 LIMIT 10</sparql>
 		<parameter1>movieLabel</parameter1>
 		<parameter2>cast</parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -16,7 +17,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -26,7 +28,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -36,7 +39,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -46,7 +50,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -56,7 +61,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -66,7 +72,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
@@ -76,7 +83,8 @@
 		<sparql></sparql>
 		<parameter1></parameter1>
 		<parameter2></parameter2>
-		<easy></easy>
+        <offsetMax></offsetMax>
+        <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>

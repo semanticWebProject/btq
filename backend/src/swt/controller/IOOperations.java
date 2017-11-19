@@ -29,7 +29,7 @@ public class IOOperations {
         Random randomNumberGenerator = new Random();
         int totalResults = categoryXML.getQuestion().length;
         System.out.println("Total Questions: " + totalResults);
-        totalResults = 2; // for testing
+//        totalResults = 2; // for testing
         if (totalResults > 0) {
             int randomNumber = randomNumberGenerator.nextInt(totalResults);
 
@@ -55,12 +55,19 @@ public class IOOperations {
     }
 
     private String getCategoryFileName(int categoryId) {
+        String filename = "";
 
         File folder = new File(this.getClass().getClassLoader().getResource("categories").getFile());
-        File category = folder.listFiles()[categoryId];
+        File[] fileList = folder.listFiles();
 
-        return category.getName();
+        for (int i = 0; i < fileList.length; i++) {
+            File file = new File(fileList[i].getAbsolutePath());
+            CategoryXML categoryXML = getCategory(file);
+            if (categoryXML.getId() == categoryId)
+                return file.getName();
+        }
 
+        return filename;
     }
 
     public Collection<Category> getCategories() {

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class Question {
 	
-	String question = "";
+	private String question = "";
+	private String image = "";
 	private ArrayList<Answer> answers;
 	private int correct;
 	
@@ -13,13 +14,22 @@ public class Question {
 		
 	}
 
-	public Question(String question, ArrayList<Answer> answers, int correct) {
-		this.question = question;
-		this.answers = answers;
-		this.correct = correct;
-	}
+    public Question(String question, String image, ArrayList<Answer> answers, int correct) {
+        this.question = question;
+        this.image = image;
+        this.answers = answers;
+        this.correct = correct;
+    }
 
-	public String getQuestion() {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getQuestion() {
 		return question;
 	}
 

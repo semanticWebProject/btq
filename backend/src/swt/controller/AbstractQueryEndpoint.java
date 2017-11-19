@@ -35,6 +35,7 @@ public abstract class AbstractQueryEndpoint {
         HashMap<String, HashMap> result = new HashMap<>();
 
         try {
+            sparql = sparql + " LIMIT 10";
             result = endpoint.query(sparql);
         } catch (EndpointException e) {
             e.printStackTrace();

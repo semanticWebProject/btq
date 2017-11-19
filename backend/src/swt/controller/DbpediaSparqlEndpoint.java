@@ -1,9 +1,6 @@
 package swt.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +16,10 @@ public class DbpediaSparqlEndpoint extends AbstractQueryEndpoint {
 	
 		String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
 		query = query.replace("{parameter2}", questionXML.getParameter2());
+
+		Random randomNumberGenerator = new Random();
+		int randomOffset = randomNumberGenerator.nextInt(questionXML.getOffsetMax());
+		query = query.replace("{offset}", String.valueOf(randomOffset));
 
 		System.out.println("Query: "+ query);
 		
@@ -42,7 +43,13 @@ public class DbpediaSparqlEndpoint extends AbstractQueryEndpoint {
 		Matcher matcher = regexPattern.matcher(question.getQuestion());
 		matcher.find();
 		String parameter = matcher.group(0);
-		question.setQuestion(question.getQuestion().replace(parameter, questionParameter));
+
+		if (questionParameter.startsWith("http")) {
+			question.setImage(questionParameter);
+			question.setQuestion(question.getQuestion().replace(parameter, ""));
+		} else {
+			question.setQuestion(question.getQuestion().replace(parameter, questionParameter));
+		}
 
 		System.out.println("question text: " + question.getQuestion().replace(parameter, questionParameter));
 		System.out.println("questionParameter: " + questionParameter);

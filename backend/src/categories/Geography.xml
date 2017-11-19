@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="0" name="Geography" image="http://www.google.de">
+<category id="0" name="Geography" image="http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg">
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the capital of {country}?</text>
-			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } LIMIT 10</sparql>
+			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>cityLabel</parameter2>
+			<offsetMax>200</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
@@ -13,29 +14,40 @@
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the population of {country}?</text>
-			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } LIMIT 10</sparql>
+			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256. SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } OPTIONAL { ?country wdt:P1082 ?population. } } OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
-			<parameter2>cityLabel</parameter2>
+			<parameter2>population</parameter2>
+			<offsetMax>190</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
-			<text>To which {country} does this flag belong?</text>
-			<sparql></sparql>
-			<parameter1>countryLabel</parameter1>
-			<parameter2></parameter2>
+			<text>To which country does this flag belong? {flag}</text>
+			<sparql>SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+				?country wdt:P31 wd:Q6256.
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				OPTIONAL { ?country wdt:P41 ?flag_image. }
+				} OFFSET {offset}</sparql>
+			<parameter1>flag_image</parameter1>
+			<parameter2>countryLabel</parameter2>
+			<offsetMax>190</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
 		</question>
 		<question>
 		<endpoint>1</endpoint>
-			<text>What is the flag of {country}?</text>
-			<sparql></sparql>
+			<text>Which is the flag of {country}?</text>
+			<sparql>SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+				?country wdt:P31 wd:Q6256.
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				OPTIONAL { ?country wdt:P41 ?flag_image. }
+				} OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
-			<parameter2>cityLabel</parameter2>
+			<parameter2>flag_image</parameter2>
+			<offsetMax>190</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
@@ -43,9 +55,14 @@
 		<question>
 			<endpoint>1</endpoint>
 			<text>Which currency is used in {country}?</text>
-			<sparql></sparql>
+			<sparql>SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+				?country wdt:P31 wd:Q6256.
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				OPTIONAL { ?country wdt:P38 ?currency. }
+				} OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
-			<parameter2>cityLabel</parameter2>
+			<parameter2>currencyLabel</parameter2>
+			<offsetMax>200</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
@@ -53,9 +70,22 @@
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the highest point in {country}?</text>
-			<sparql>SELECT ?continentLabel ?countryLabel ?pop ?area ?cord ?pic ?pointLabel ?aboveSealevel WHERE {     ?country wdt:P31 wd:Q6256.     ?country wdt:P30 ?continent.     ?country wdt:P1082 ?pop.     ?country wdt:P610 ?point.     ?country wdt:P2046 ?area.     ?point wdt:P2044 ?aboveSealevel.     ?point wdt:P18 ?pic.     ?point  wdt:P625 ?cord.     OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } </sparql>
+			<sparql>SELECT ?{parameter1} ?{parameter2}
+				WHERE {
+				?country wdt:P31 wd:Q6256.
+				?country wdt:P30 ?continent.
+				?country wdt:P1082 ?pop.
+				?country wdt:P610 ?point.
+				?country wdt:P2046 ?area.
+				?point wdt:P2044 ?aboveSealevel.
+				?point wdt:P18 ?pic.
+				?point  wdt:P625 ?cord.
+				OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				} OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>pointLabel</parameter2>
+			<offsetMax>170</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
@@ -64,55 +94,60 @@
 			<endpoint>1</endpoint>
 			<text>What is the deepest point in {country}?</text>
 			<sparql>
-			SELECT ?countryLabel  ?pointLabel (MAX(?belowSealevel) AS ?lowest)
-WHERE {
+				SELECT  ?{parameter1}  ?{parameter2}
+				WHERE {
+				?country wdt:P31 wd:Q6256.
+				?country wdt:P30 ?continent.
+				?country wdt:P1589 ?point.
+				?point wdt:P2044 ?belowSealevel.
 
-    ?country wdt:P31 wd:Q6256.
-    ?country wdt:P30 ?continent.
-    ?country wdt:P1589 ?point.
-    ?point wdt:P2044 ?belowSealevel.
-
-    ?point  wdt:P625 ?cord.
-    OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }
-    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
- 
-    }
-
-group by ?countryLabel ?pointLabel
-Order by ?lowest
+				?point  wdt:P625 ?cord.
+				OPTIONAL { ?aboveSealevel wdt:P2237 wd:Q11573. }
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				}
+				group by ?countryLabel ?pointLabel
+				Order by ?lowest   OFFSET {offset}
 			</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>pointLabel</parameter2>
+			<offsetMax>10</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
 		</question>
-		<question>
+		<!--<question>
 			<endpoint>1</endpoint>
 			<text>In which country is the {National Park} located?</text>
-			<sparql></sparql>
+			<sparql>  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2></parameter2>
+			<offsetMax></offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-		</question>
-		<question>
+		</question>-->
+		<!--<question>
 			<endpoint>1</endpoint>
 			<text>What is the distance between {twoPlaces}?</text>
-			<sparql></sparql>
+			<sparql>  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2></parameter2>
+			<offsetMax></offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-		</question>
+		</question>-->
 		<question>
 			<endpoint>1</endpoint>
 			<text>Who is the head of {Country}?</text>
-			<sparql></sparql>
+			<sparql>SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+				?country wdt:P31 wd:Q6256.
+				?country wdt:P35 ?head_of_state.
+				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+				} OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
-			<parameter2></parameter2>
+			<parameter2>head_of_stateLabel</parameter2>
+			<offsetMax>200</offsetMax>
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
