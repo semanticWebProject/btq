@@ -8,10 +8,11 @@
   /** @ngInject */
   function MainController(toastr, $http) {
     var vm = this;
-
+    vm.firstLoad = 1;
 
     /* Local variables */
-    var base_url = 'https://swt-btq.herokuapp.com/';
+    // var base_url = 'https://swt-btq.herokuapp.com/';
+    var base_url = 'http://134.155.210.159:8080/backend/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
@@ -30,7 +31,7 @@
     vm.newHighscore = false;
 
     /* Init Functions */
-    //getCategories(); //retrieves the categories from the server
+    getCategories(); //retrieves the categories from the server
 
 
     /* Model functions */
@@ -44,6 +45,7 @@
        vm.chosenCategoryID = 'None';
        vm.selectedAnswer = 'None';
        vm.selectCategory = true;
+       vm.firstLoad = 1;
      });
 
     // Called when category is chosen, loads first question
@@ -66,23 +68,38 @@
       $http({
         method: 'GET',
         // url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
-       url: base_url+'question'
+       url: base_url+'category/'+vm.chosenCategoryID+'/question'
       }).then(function successCallback(response) {
 
           // this callback will be called asynchronously
           // when the response is available
-          console.log(response.data['question']);
+          // console.log(response.data['question']);
           vm.question = response.data['question'];
-          vm.imageURL    = response.data['imageURL'];
+          vm.imageURL = response.data['imageURL'];
           console.log(vm.imageURL);
           if (vm.imageURL == null) {console.log('no image'); vm.imageURL = false; }
           vm.answers  = response.data['answers'];
           vm.correct  = response.data['correct'];
+          if (vm.firstLoad == 1) {
+            vm.firstLoad = 0;
+            console.log('first load');
+            vm.loadFields();
+          }
+
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           console.log(response);
         });
+
+    });
+
+    vm.loadFields = (function() {
+      console.log('load fields after click');
+      vm.imageURLField = 'loading ...';
+      vm.questionField = vm.question;
+      vm.imageURLField = vm.imageURL;
+      vm.answersField  = vm.answers;
 
     });
 
@@ -95,7 +112,10 @@
 
       // Correct answer is given
       if (vm.correct == id) {
-        console.log('correct answer selected');
+        // load question once question was answered correctly
+        console.log(' ---- Loading new question already ---- ');
+        vm.loadQuestion();
+
         vm.correctAnswer = true;
         vm.wrongAnswer = false;
         vm.askQuestion = true;
@@ -107,18 +127,16 @@
         }, 800);
         setTimeout(function() {
           jQuery('.scoreInformation').removeClass('flash-icon');
-        }, 2000);
+        }, 3800);
 
         // Update correct question counter
         var questionCount = localStorage.getItem(keyQuestionCounterCorrect);
         questionCount++;
-        console.log("Correct questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterCorrect);
         localStorage.setItem(keyQuestionCounterCorrect, questionCount);
 
         // Update score
         vm.score++;
-        console.log("Current score: " + vm.score);
       }
       else {
         jQuery('.answers button.option-'+id).addClass('btn-danger');
@@ -149,11 +167,10 @@
         	localStorage.setItem(keyHighScore, vm.score);
         }
       }
-      // scroll down
+
+      // scroll down for validation
       $('html, body').animate({
          scrollTop: document.body.scrollHeight
-         //scrollTop: $('#your-id').offset().top
-         //scrollTop: $('.your-class').offset().top
       }, 'slow');
 
       //update question counter
@@ -169,15 +186,15 @@
     // get the categories
     function getCategories() {
       $http({
-            method: 'GET',
-           url: base_url+'category'
-          }).then(function successCallback(response) {
-            console.log(response);
-            vm.categories = response;
-          });
+        method: 'GET',
+        url: base_url+'category'
+      }).then(function successCallback(response) {
+        vm.categories = response.data;
+      });
 
     }
       // temporary local workaround for the categories
+    /*
        vm.categories = [
       {
         'id': 0,
@@ -190,6 +207,7 @@
         'thumbnail': 'http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg'
       }
     ];
+    */
 
   }
 })();

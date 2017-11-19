@@ -16,6 +16,7 @@
 
         <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
             <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
+              <p>{{category.name}}</p>
               <img src="{{category.thumbnail}}" alt="">
             </a>
         </div>
@@ -43,11 +44,11 @@
 
 	<!-- Question and answer block -->
 	<div class="jumbotron question" ng-if="main.askQuestion">
-		<p class="lead">{{main.question}}</p>
-    <span ng-if="main.imageURL"><img src="{{main.imageURL}}"></span>
+		<p class="lead">{{main.questionField}}</p>
+    <span ng-if="main.imageURL"><img ng-src="{{main.imageURLField}}"></span>
 		<hr>
 		<!-- Answers -->
-		<div class="answers" ng-repeat="answer in main.answers">
+		<div class="answers" ng-repeat="answer in main.answersField">
 			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">{{answer.text}}</button>
 			<p></p>
 		</div>
@@ -55,7 +56,7 @@
 
   <!-- Boxes after validation -->
   <!-- next box if correct -->
-  <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadQuestion()">Next</button>
+  <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">Next</button>
 
   <!--{{main.answers[main.selectedAnswer-1].description}}-->
   <button ng-if="main.wrongAnswer"class="nextButton btn btn-fail pull-right" ng-click="main.reset()">You lost. Try again</button>
