@@ -11,3 +11,8 @@ build/
 /bin
 /frontend/.project
 /frontend/.settings/
+
+# IntelliJ specific
+/frontend/frontend.iml
+/backend/backend.iml
+out/

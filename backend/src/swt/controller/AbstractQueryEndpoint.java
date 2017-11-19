@@ -109,19 +109,19 @@ public abstract class AbstractQueryEndpoint {
 
 		// set correct answer option
 		switch (optionsPosition.get(0)) {
-		case 1:
+		case 0:
 			question.setOption1(correctAnswer);
 			question.setCorrectOptionIndex(1);
 			break;
-		case 2:
+		case 1:
 			question.setOption2(correctAnswer);
 			question.setCorrectOptionIndex(2);
 			break;
-		case 3:
+		case 2:
 			question.setOption3(correctAnswer);
 			question.setCorrectOptionIndex(3);
 			break;
-		case 4:
+		case 3:
 			question.setOption4(correctAnswer);
 			question.setCorrectOptionIndex(4);
 			break;
