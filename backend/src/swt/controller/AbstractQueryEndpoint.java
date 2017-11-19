@@ -2,10 +2,7 @@ package swt.controller;
 
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 import com.bordercloud.sparql.Endpoint;
 import com.bordercloud.sparql.EndpointException;
@@ -103,6 +100,7 @@ public abstract class AbstractQueryEndpoint {
         question.setCorrect(optionsPosition.get(0));
 
         // set all answers
+        Collections.sort(answers, Comparator.comparing(Answer::getId));
         question.setAnswers(answers);
 
         return question;
