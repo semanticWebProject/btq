@@ -76,8 +76,9 @@ img {
   text-align: center;
 }
 .question img {
-  max-height: 150px;
-  max-width: 300px;
+  /*max-height: 150px;*/
+  /*max-width: 300px;*/
+  width: 200px;
   margin-bottom: 0px;
 }
 .jumbotron.question {

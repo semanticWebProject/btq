@@ -1,7 +1,6 @@
 package swt.controller;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import com.bordercloud.sparql.Endpoint;

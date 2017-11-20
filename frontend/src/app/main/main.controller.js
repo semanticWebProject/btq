@@ -12,7 +12,7 @@
 
     /* Local variables */
     // var base_url = 'https://swt-btq.herokuapp.com/';
-    var base_url = 'http://134.155.210.159:8080/backend/';
+    var base_url = 'http://localhost:8080/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
@@ -68,14 +68,14 @@
       $http({
         method: 'GET',
         // url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
-       url: base_url+'category/'+vm.chosenCategoryID+'/question'
+       url: base_url + 'category/'+ vm.chosenCategoryID + '/question'
       }).then(function successCallback(response) {
 
           // this callback will be called asynchronously
           // when the response is available
           // console.log(response.data['question']);
           vm.question = response.data['question'];
-          vm.imageURL = response.data['imageURL'];
+          vm.imageURL = response.data['image'];
           console.log(vm.imageURL);
           if (vm.imageURL == null) {console.log('no image'); vm.imageURL = false; }
           vm.answers  = response.data['answers'];
