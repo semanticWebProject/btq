@@ -2,88 +2,44 @@
 <category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
 	<question>
 		<endpoint>0</endpoint>
-		<text>In which movie {siblings} worked together?</text>
-		<sparql>SELECT DISTINCT CONCAT(?castLabel,' , ',?cast2Label) AS ?cast  ?movieLabel WHERE { ?movie rdf:type dbo:Film . ?movie rdfs:label ?movieLabel . ?movie dbo:starring ?cast . ?cast  dbo:parent ?parent . ?cast  rdfs:label ?castLabel . ?movie2 rdfs:label ?movieLabel2 . ?movie2 dbo:starring ?cast2 . ?cast2 dbo:starring ?cast2 . ?cast2  rdfs:label ?cast2Label . filter(langMatches(lang(?movieLabel),"EN")) . filter(langMatches(lang(?movieLabel2),"EN")) . filter(?parent = ?parent2) . filter(?cast != ?cast2) filter langMatches( lang(?castLabel), "EN" ) filter langMatches( lang(?cast2Label), "EN" ) } OFFSET 250 LIMIT 10</sparql>
-		<parameter1>movieLabel</parameter1>
-		<parameter2>cast</parameter2>
-        <offsetMax></offsetMax>
+		<text>Identify Actor {parameter1} </text>
+		<sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt SELECT DISTINCT (str(?{parameter1})) as ?{parameter1}  ?{parameter2} WHERE { ?actor rdf:type umbel-rc:Actor. ?actor rdfs:label ?{parameter2} . ?actor dbo:thumbnail ?{parameter1} . ?actor foaf:gender ?gender . filter(langMatches(lang(?{parameter2}),"EN")) filter(?gender="male"@en)} OFFSET {offset} LIMIT 20 </sparql>
+		<parameter1>imageURL</parameter1>
+		<parameter2>actorLabel</parameter2>
+        <offsetMax>2500</offsetMax>
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>In which year {actor} was born?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
+		<text>Identify Actor {parameter1} </text>
+		<sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt SELECT DISTINCT (str(?{parameter1})) as ?{parameter1}  ?{parameter2} WHERE { ?actor rdf:type umbel-rc:Actor. ?actor rdfs:label ?{parameter2} . ?actor dbo:thumbnail ?{parameter1} . ?actor foaf:gender ?gender . filter(langMatches(lang(?{parameter2}),"EN")) filter(?gender="female"@en)} OFFSET {offset} LIMIT 20 </sparql>
+		<parameter1>imageURL</parameter1>
+		<parameter2>actorLabel</parameter2>
+        <offsetMax>1000</offsetMax>
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>Which movie is directed after work by {author}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
+		<text>In which year actor {parameter1} started career ? </text>
+		<sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt SELECT ?{parameter1} , ?{parameter2} WHERE { ?actor rdf:type umbel-rc:Actor. ?actor rdfs:label ?{parameter1} . ?actor dbo:activeYearsStartYear ?{parameter2} . filter(langMatches(lang(?{parameter1}),"EN")) } OFFSET {offset} LIMIT 20 </sparql>
+		<parameter1>actorLabel</parameter1>
+		<parameter2>startYear</parameter2>
+        <offsetMax>5000</offsetMax>
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
 	</question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>Which actor was born in {year}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
-        <easy></easy>
-		<medium></medium>
-		<hard></hard>
-	</question>
-	<question>
-		<endpoint>0</endpoint>
-		<text>Which movie was publish in {year}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
-        <easy></easy>
-		<medium></medium>
-		<hard></hard>
-	</question>
-	<question>
-		<endpoint>0</endpoint>
-		<text>Identify {maleActor}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
-        <easy></easy>
-		<medium></medium>
-		<hard></hard>
-	</question>
-	<question>
-		<endpoint>0</endpoint>
-		<text>Identify {femaleActor}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
-        <easy></easy>
-		<medium></medium>
-		<hard></hard>
-	</question>
-	<question>
-		<endpoint>0</endpoint>
-		<text>Who is writer and director of {movie}?</text>
-		<sparql></sparql>
-		<parameter1></parameter1>
-		<parameter2></parameter2>
-        <offsetMax></offsetMax>
+		<text>When actor {parameter1} was born ? </text>
+		<sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt SELECT DISTINCT ?{parameter1} , ?{parameter2} WHERE { ?actor rdf:type umbel-rc:Actor. ?actor rdfs:label ?{parameter1} . ?actor dbo:birthDate ?{parameter2} . filter(langMatches(lang(?{parameter1}),"EN")) } OFFSET {offset} LIMIT 20 </sparql>
+		<parameter1>actorLabel</parameter1>
+		<parameter2>dateOfBirth</parameter2>
+        <offsetMax>5000</offsetMax>
         <easy></easy>
 		<medium></medium>
 		<hard></hard>

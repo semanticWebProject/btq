@@ -18,6 +18,8 @@ public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
 		// replace parameters in query
 		String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
 		query = query.replace("{parameter2}", questionXML.getParameter2());
+		query=query.replace("#lt", "<");
+		query=query.replace("#gt", ">");
 
 		Random randomNumberGenerator = new Random();
 		int randomOffset = randomNumberGenerator.nextInt(questionXML.getOffsetMax());
