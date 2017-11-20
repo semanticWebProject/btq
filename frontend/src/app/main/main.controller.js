@@ -11,8 +11,8 @@
     vm.firstLoad = 1;
 
     /* Local variables */
-    // var base_url = 'https://swt-btq.herokuapp.com/';
-    var base_url = 'http://134.155.210.159:8080/backend/';
+     var base_url = 'https://swt-btq.herokuapp.com/';
+//    var base_url = 'http://134.155.210.159:8080/backend/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
@@ -20,7 +20,7 @@
 
     /* Model variables */
     vm.chosenCategoryID = '';
-    vm.question = '';
+    vm.question = 'The question is being loaded. Please be patient!';
     vm.answers  = '';
     vm.correct  = '';
     vm.askQuestion = false;
@@ -40,18 +40,26 @@
       console.log('reset');
        vm.askQuestion = false;
        vm.selectCategory = true;
+       vm.chosenCategory = 'None';
        vm.correctAnswer = false;
        vm.wrongAnswer = false;
-       vm.chosenCategoryID = 'None';
        vm.selectedAnswer = 'None';
        vm.selectCategory = true;
        vm.firstLoad = 1;
+       vm.question = 'The question is being loaded. Please be patient!';
+       vm.answers  = '';
+       vm.correct  = '';
      });
 
     // Called when category is chosen, loads first question
     vm.chooseCategory = (function cC(catID) {
       console.log('chosen category: ' + catID);
-      vm.chosenCategoryID = catID;
+      for (var i = 0; i<vm.categories.length; i++) {
+        if (vm.categories[i].id == catID) {
+          console.log('category chosen: ' + vm.categories[i]);
+          vm.chosenCategory = vm.categories[i];
+        }
+      }
       vm.selectCategory = false;
       vm.newHighscore = false;
       vm.score = 0;
@@ -65,21 +73,27 @@
       vm.wrongAnswer   = false;
 
       // Simple GET request example:
+      // vm.question = 'The question is being loaded. Please be patient!';
       $http({
         method: 'GET',
-        // url: 'app/main/' + vm.chosenCategoryID + '_samplequestion.json'
-       url: base_url+'category/'+vm.chosenCategoryID+'/question'
+        url: base_url+'category/'+vm.chosenCategory.id+'/question'
       }).then(function successCallback(response) {
 
           // this callback will be called asynchronously
           // when the response is available
-          // console.log(response.data['question']);
+           console.log(response.data);
           vm.question = response.data['question'];
-          vm.imageURL = response.data['imageURL'];
-          console.log(vm.imageURL);
-          if (vm.imageURL == null) {console.log('no image'); vm.imageURL = false; }
           vm.answers  = response.data['answers'];
           vm.correct  = response.data['correct'];
+          vm.imageURL = response.data['image'];
+          if (vm.imageURL == null) {
+            console.log('no image'); vm.imageURL = false;
+          }
+          else {
+            console.log('image is loaded: ');
+            console.log(vm.imageURL);
+          }
+
           if (vm.firstLoad == 1) {
             vm.firstLoad = 0;
             console.log('first load');
@@ -190,10 +204,22 @@
         url: base_url+'category'
       }).then(function successCallback(response) {
         vm.categories = response.data;
+        console.log(response);
       });
 
     }
-      // temporary local workaround for the categories
+
+
+    // close menu on click
+    $('.nav li').click(function() {
+      //  alert('test');
+        $('.nav li').removeClass('active');
+        $(this).addClass('active');
+        console.log('navbar should close')
+        $('.navbar-collapse').removeClass('in');
+    })
+
+    // temporary local workaround for the categories
     /*
        vm.categories = [
       {
@@ -207,7 +233,7 @@
         'thumbnail': 'http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg'
       }
     ];
-    */
+  */
 
   }
 })();
