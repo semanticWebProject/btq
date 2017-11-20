@@ -75,7 +75,7 @@ img {
   display: block;
   text-align: center;
 }
-.question img {
+.question .questionImage img {
   max-height: 150px;
   max-width: 300px;
   width: auto;

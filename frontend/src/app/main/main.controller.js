@@ -114,6 +114,16 @@
       vm.questionField = vm.question;
       vm.imageURLField = vm.imageURL;
       vm.answersField  = vm.answers;
+      if (vm.answers[0].text.includes('http')) {
+        console.log('image answer')
+        vm.imageAnswer = true;
+        vm.textAnswer = false;
+      }
+      else {
+      console.log('text answer')
+        vm.textAnswer = true;
+        vm.imageAnswer = false;
+      }
 
     });
 

@@ -44,12 +44,13 @@
 	<!-- Question and answer block -->
 	<div class="jumbotron question" ng-if="main.askQuestion">
 		<p class="lead">{{main.questionField}}</p>
-    <span ng-if="main.imageURL"><img ng-src="{{main.imageURLField}}"></span>
+    <span class="questionImage" ng-if="main.imageURL"><img ng-src="{{main.imageURLField}}"></span>
 		<hr>
 		<!-- Answers -->
 		<div class="answers" ng-repeat="answer in main.answersField">
-			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">{{answer.text}}</button>
-			<p></p>
+			<button ng-if="main.textAnswer"  type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">{{answer.text}}</button>
+      <img    ng-if="main.imageAnswer" class="option-{{answer.id}}" src="{{answer.text}}" ng-click="main.validate(answer.id)" />
+      <p></p>
 		</div>
 	</div>
 
