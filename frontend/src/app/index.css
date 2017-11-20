@@ -75,19 +75,26 @@ img {
   display: block;
   text-align: center;
 }
-.question img {
-  /*max-height: 150px;*/
-  /*max-width: 300px;*/
-  width: 200px;
+.question .questionImage img {
+  max-height: 150px;
+  max-width: 300px;
+  width: auto;
   margin-bottom: 0px;
 }
 .jumbotron.question {
   margin-bottom: 10px;
 }
 .scoreInformation {
-  padding-right: 15px;
-  padding-top: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
 }
 .nextButton {
   margin-bottom: 20px;
+  margin-top: 19px;
+  margin-right: 15px;
 }
+
+.page-header {
+  margin-top: 0px;
+}
+

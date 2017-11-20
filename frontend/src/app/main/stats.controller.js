@@ -15,6 +15,7 @@
 
 
     vm.resetStats = (function() {
+      window.location.reload();
       console.log('reset stats');
       localStorage.removeItem(keyQuestionCounter);
       localStorage.removeItem(keyQuestionCounterCorrect);
