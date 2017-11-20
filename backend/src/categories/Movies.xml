@@ -44,4 +44,16 @@
 		<medium></medium>
 		<hard></hard>
 	</question>
+	<question>
+		<endpoint>0</endpoint>
+		<text>Who is actor and director of {parameter1} ? </text>
+		<sparql>SELECT DISTINCT ?{parameter1} , (concat(?writerLabel, " : ",?directorLabel)) as ?{parameter2} WHERE { ?movie rdf:type dbo:Film . ?movie rdfs:label ?{parameter1} .  ?movie dbo:writer ?writer . ?writer rdfs:label ?writerLabel . ?movie dbo:director ?director . ?director rdfs:label ?directorLabel . filter(langMatches(lang(?{parameter1}),"EN"))  . filter(langMatches(lang(?writerLabel),"EN"))  . filter(langMatches(lang(?directorLabel),"EN"))  . }  OFFSET {offset} LIMIT 20 </sparql>
+		<parameter1>movieLabel</parameter1>
+		<parameter2>writerDirector</parameter2>
+        <offsetMax>900</offsetMax>
+        <easy></easy>
+		<medium></medium>
+		<hard></hard>
+	</question>
+	
 </category>
