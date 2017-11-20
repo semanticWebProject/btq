@@ -95,6 +95,8 @@
     });
 
     vm.loadFields = (function() {
+      // reset selected answer
+      vm.selectedAnswer = 'None';
       console.log('load fields after click');
       vm.imageURLField = 'loading ...';
       vm.questionField = vm.question;

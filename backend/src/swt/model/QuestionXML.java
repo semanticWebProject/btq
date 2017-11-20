@@ -22,13 +22,16 @@ public final class QuestionXML {
 	private String mediumFilter;
 	@JacksonXmlProperty(localName = "hard")
 	private String hardFilter;
+	@JacksonXmlProperty(localName = "description")
+	private String description;
 	
 
 	public QuestionXML() {
 	}
 
 	public QuestionXML(int queryEndpoint, String questionText, String sparqlQuery, String parameter1,
-					   String parameter2, int offsetMax, String easyFilter, String mediumFilter, String hardFilter) {
+					   String parameter2, int offsetMax, String easyFilter, String mediumFilter,
+					   String hardFilter, String description) {
 		this.queryEndpoint = queryEndpoint;
 		this.questionText = questionText;
 		this.sparqlQuery = sparqlQuery;
@@ -38,6 +41,7 @@ public final class QuestionXML {
 		this.easyFilter = easyFilter;
 		this.mediumFilter = mediumFilter;
 		this.hardFilter = hardFilter;
+		this.description = description;
 	}
 
 	public int getQueryEndpoint() {
@@ -111,5 +115,13 @@ public final class QuestionXML {
 
 	public void setOffsetMax(int offsetMax) {
 		this.offsetMax = offsetMax;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

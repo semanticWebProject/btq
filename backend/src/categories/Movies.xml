@@ -19,7 +19,8 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-	</question>
+        <description>{parameter2} is this: {parameter1}.</description>
+    </question>
 	<question>
 		<endpoint>0</endpoint>
 		<text>Who is this actress? {parameter1}</text>
@@ -40,7 +41,8 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-	</question>
+        <description>{parameter2} is this: {parameter1}.</description>
+    </question>
 	<question>
 		<endpoint>0</endpoint>
 		<text>In which year did the actor/actress {parameter1} start his/her career?</text>
@@ -59,7 +61,8 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-	</question>
+        <description>{parameter2} is the year of where {parameter1} started a career.</description>
+    </question>
 	<question>
 		<endpoint>0</endpoint>
 		<text>When was the actor/actress {parameter1} born?</text>
@@ -80,7 +83,8 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-	</question>
+        <description>{parameter2} is the birth date of {parameter1}, for example.</description>
+    </question>
 	<question>
 		<endpoint>0</endpoint>
 		<text>Who is the writer as well as director of the movie {parameter1}? </text>
@@ -102,6 +106,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-	</question>
+        <description>{parameter2} is the writer and director of {parameter1}.</description>
+    </question>
 	
 </category>

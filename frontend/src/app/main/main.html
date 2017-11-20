@@ -49,8 +49,12 @@
 		<hr>
 		<!-- Answers -->
 		<div class="answers" ng-repeat="answer in main.answersField">
-			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">{{answer.text}}</button>
-			<p></p>
+			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">
+        <div ng-if="!answer.text.startsWith('http')">{{answer.text}}</div>
+        <img src="{{answer.text}}" ng-if="answer.text.startsWith('http')">
+        <div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id"><strong>{{answer.description}}</strong></div>
+      </button>
+      <p></p>
 		</div>
 	</div>
 

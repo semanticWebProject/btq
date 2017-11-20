@@ -4,13 +4,15 @@ public class Answer {
 
     private int id;
     private String text;
+    private String description;
 
     public Answer() {
     }
 
-    public Answer(int id, String text) {
+    public Answer(int id, String text, String description) {
         this.id = id;
         this.text = text;
+        this.description = description;
     }
 
     public int getId() {
@@ -27,5 +29,13 @@ public class Answer {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -4,7 +4,11 @@ import swt.model.Question;
 import swt.model.QuestionXML;
 
 public class SparqlInterface {
-	
+
+	private String WIKIDATA_ENDPOINT = "https://query.wikidata.org/sparql";
+	private String DBPEDIA_ENDPOINT  = "http://dbpedia.org/sparql";
+
+
 	// just for testing
 	public static void main(String [] args) {
 		SparqlInterface sq = new SparqlInterface();
@@ -20,12 +24,12 @@ public class SparqlInterface {
 		if (queryEndpointId == 0) {
 			//DBPedia
 			DbpediaSparqlEndpoint de = new DbpediaSparqlEndpoint();
-			question = de.getQuestionFromSparqlEndpoint(questionXML);
+			question = de.getQuestionFromSparqlEndpoint(questionXML, DBPEDIA_ENDPOINT);
 		}
 		else if(queryEndpointId == 1) {
 			// wikidata
 			WikidataSparqlEndpoint we = new WikidataSparqlEndpoint();
-			question = we.getQuestionFromSparqlEndpoint(questionXML);
+			question = we.getQuestionFromSparqlEndpoint(questionXML, WIKIDATA_ENDPOINT);
 		}
 		else {
 			
