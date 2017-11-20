@@ -73,7 +73,6 @@
       vm.wrongAnswer   = false;
 
       // Simple GET request example:
-      // vm.question = 'The question is being loaded. Please be patient!';
       $http({
         method: 'GET',
         url: base_url+'category/'+vm.chosenCategory.id+'/question'
@@ -243,7 +242,7 @@
         'thumbnail': 'http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg'
       }
     ];
-  */
+    */
 
   }
 })();

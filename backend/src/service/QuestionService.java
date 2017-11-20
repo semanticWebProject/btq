@@ -17,6 +17,8 @@ public class QuestionService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getQuestion(@PathParam("categoryId") int categoryId, @Context HttpServletResponse response) {
 		response.setHeader("access-control-allow-origin", "*");
+		response.setContentType("application/json;charset=UTF-8");
+
 		ObjectMapper mapper = new ObjectMapper();
 		SparqlInterface sparql = new SparqlInterface();
 
