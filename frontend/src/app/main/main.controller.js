@@ -11,7 +11,8 @@
     vm.firstLoad = 1;
 
     /* Local variables */
-     var base_url = 'http://localhost:8080/';
+    var base_url = 'https://swt-btq.herokuapp.com/';
+     // var base_url = 'http://localhost:8080/';
 //    var base_url = 'http://134.155.210.159:8080/backend/';
     var keyQuestionCounter        = "questionCounter";
     var keyQuestionCounterCorrect = "questionCounterCorrect";
