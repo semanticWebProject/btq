@@ -12,7 +12,7 @@
             ?actor foaf:gender ?gender .
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="male"@en)
-            }</sparql>
+            } OFFSET {offset}</sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
         <offsetMax>2500</offsetMax>
@@ -33,7 +33,7 @@
             ?actor foaf:gender ?gender .
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="female"@en)
-            }
+            } OFFSET {offset}
         </sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
@@ -54,7 +54,7 @@
             ?actor dbo:activeYearsStartYear ?startYear .
             filter(langMatches(lang(?actorLabel),"EN"))
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
-            BIND (STR(?startYear)  AS ?stripped_startYear)} </sparql>
+            BIND (STR(?startYear)  AS ?stripped_startYear)} OFFSET {offset} </sparql>
 		<parameter1>stripped_actorLabel</parameter1>
 		<parameter2>stripped_startYear</parameter2>
         <offsetMax>5000</offsetMax>
@@ -76,7 +76,7 @@
             filter(xsd:date(?dateOfBirth))
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             BIND (STR(?dateOfBirth)  AS ?stripped_dateOfBirth)
-            } </sparql>
+            } OFFSET {offset}</sparql>
         <parameter1>stripped_actorLabel</parameter1>
 		<parameter2>stripped_dateOfBirth</parameter2>
         <offsetMax>5000</offsetMax>
@@ -99,7 +99,7 @@
             ?director owl:sameAs ?writer .
             filter(langMatches(lang(?movieLabel),"EN"))  .
             filter(langMatches(lang(?writerLabel),"EN"))  .
-            filter(langMatches(lang(?directorLabel),"EN"))  . }</sparql>
+            filter(langMatches(lang(?directorLabel),"EN"))  . } OFFSET {offset}</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>
