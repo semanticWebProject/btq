@@ -29,15 +29,28 @@
     vm.wrongAnswer = false;
     vm.score = 0;
     vm.newHighscore = false;
+    vm.dificultyLevel = 0; // default: easy
+    vm.gameLives = 5;      // default: easy
+    vm.dificultyLevelDescription = 'Easy mode is selected. You have 5 lives'; //default: easy
 
     /* Init Functions */
     getCategories(); //retrieves the categories from the server
 
 
     /* Model functions */
-    //resets all model variables to get back to the home screen
-    vm.reset = (function reset() {
-      console.log('reset');
+    //resets all value if game is over or home is clicked, otherwise load new question,
+    vm.reset = (function reset(home) {
+      console.log('-- Home: ' + home);
+
+      if (vm.gameLives > 0 && !home) {
+        console.log('lives are still there');
+        vm.loadFields();
+        vm.wrongAnswer = '';
+        return;
+      }
+      console.log('reset or lost' + home);
+
+
        vm.askQuestion = false;
        vm.selectCategory = true;
        vm.chosenCategory = 'None';
@@ -49,6 +62,9 @@
        vm.question = 'The question is being loaded. Please be patient!';
        vm.answers  = '';
        vm.correct  = '';
+       vm.dificultyLevel = 0; // default: easy
+       vm.gameLives = 5;      // default: easy
+       vm.nextButtonText = 'You lost all your lives. Try again!';
      });
 
     // Called when category is chosen, loads first question
@@ -73,11 +89,13 @@
       vm.wrongAnswer   = false;
 
       // Simple GET request example:
+      var url = base_url+'category/'+vm.chosenCategory.id+'/question?level='+vm.dificultyLevel;
       $http({
         method: 'GET',
-        url: base_url+'category/'+vm.chosenCategory.id+'/question'
-      }).then(function successCallback(response) {
+        url: url
 
+      }).then(function successCallback(response) {
+        console.log(url);
           // this callback will be called asynchronously
           // when the response is available
            console.log(response.data);
@@ -111,6 +129,7 @@
       vm.questionField = vm.question;
       vm.imageURLField = vm.imageURL;
       vm.answersField  = vm.answers;
+      vm.correctAnswer = '';
       // assume the following answer options also contain pictures
       if (vm.answers[0].text.includes('http')) {
         vm.imageAnswer = true;
@@ -126,19 +145,31 @@
     // Called when an answer is selected
     vm.validate = (function validate(id) {
       vm.selectedAnswer = id;
+      console.log('Selected ID: ' + id);
 
       // As soon as answer is clicked, buttons are disabled and can't be clicked anymore
       jQuery(".answers button").attr("disabled","disabled");
 
-      // Correct answer is given
-      if (vm.correct == id) {
-        // load question once question was answered correctly
+      //update highscore
+      if (vm.score > localStorage.getItem(keyHighScore)) {
+        vm.newHighscore = true;
+        vm.highScore = vm.score;
+        localStorage.removeItem(keyHighScore);
+        localStorage.setItem(keyHighScore, vm.score);
+      }
+
+      // always load question once question was answered correctly (lives might be still there)
+      if (vm.correct == id || vm.gameLives > 0) {
         console.log(' ---- Loading new question already ---- ');
         vm.loadQuestion();
+      }
 
+      // Correct answer is given
+      if (vm.correct == id) {
         vm.correctAnswer = true;
         vm.wrongAnswer = false;
         vm.askQuestion = true;
+        vm.nextButtonText = 'Next';
         jQuery('.answers button.option-'+id).addClass('btn-success');
 
         //Flashes score icon
@@ -171,21 +202,21 @@
         vm.correctAnswer = false;
         vm.wrongAnswer = true;
         vm.askQuestion = true;
+        vm.gameLives--;
+        console.log('game lives: '  + vm.gameLives);
 
+        if (vm.gameLives > 0){
+          vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
+        }
+        else {
+          vm.nextButtonText = 'You lost the game :(';
+        }
         // Update wrong question counter
         var questionCount = localStorage.getItem(keyQuestionCounterWrong);
         questionCount++;
-        console.log("Wrong questions: " + questionCount);
         localStorage.removeItem(keyQuestionCounterWrong);
         localStorage.setItem(keyQuestionCounterWrong, questionCount);
 
-        // Check for highscore & reset score
-        if (vm.score > localStorage.getItem(keyHighScore)) {
-        	vm.newHighscore = true;
-        	vm.highScore = vm.score;
-        	localStorage.removeItem(keyHighScore);
-        	localStorage.setItem(keyHighScore, vm.score);
-        }
       }
 
       // scroll down for validation
@@ -196,7 +227,6 @@
       //update question counter
       var questionCount = localStorage.getItem(keyQuestionCounter);
       questionCount++;
-      console.log(questionCount);
       localStorage.removeItem(keyQuestionCounter);
       localStorage.setItem(keyQuestionCounter, questionCount);
     });
@@ -225,6 +255,33 @@
         $('.navbar-collapse').removeClass('in');
     })
 
+
+    vm.selectDifficultyLevel = (function(difficultyLevel) {
+      console.log('selected level: '+ difficultyLevel);
+      vm.dificultyLevel = difficultyLevel;
+      switch(difficultyLevel) {
+        case 0: vm.gameLives = 5;
+                vm.dificultyLevelDescription = 'You selected the easy mode. You have 5 lives';
+                $('.difficultyLevel .easyOption').addClass('btn-success');
+                $('.difficultyLevel .mediumOption').removeClass('btn-warning');
+                $('.difficultyLevel .hardOption').removeClass('btn-danger');
+          break;
+        case 1:
+                vm.gameLives = 3;
+                vm.dificultyLevelDescription = 'You selected the medium mode. You have 3 lives';
+                $('.difficultyLevel .easyOption').removeClass('btn-success');
+                $('.difficultyLevel .mediumOption').addClass('btn-warning');
+                $('.difficultyLevel .hardOption').removeClass('btn-danger');
+          break;
+        case 2:
+                vm.gameLives = 1;
+                vm.dificultyLevelDescription = 'You selected the hard mode.  You have only 1 live';
+                $('.difficultyLevel .easyOption').removeClass('btn-success');
+                $('.difficultyLevel .mediumOption').removeClass('btn-warning');
+                $('.difficultyLevel .hardOption').addClass('btn-danger');
+          break;
+      }
+    });
     // temporary local workaround for the categories
     /*
        vm.categories = [
