@@ -86,11 +86,7 @@
           vm.correct  = response.data['correct'];
           vm.imageURL = response.data['image'];
           if (vm.imageURL == null) {
-            console.log('no image'); vm.imageURL = false;
-          }
-          else {
-            console.log('image is loaded: ');
-            console.log(vm.imageURL);
+            vm.imageURL = false;
           }
 
           if (vm.firstLoad == 1) {
@@ -115,13 +111,12 @@
       vm.questionField = vm.question;
       vm.imageURLField = vm.imageURL;
       vm.answersField  = vm.answers;
+      // assume the following answer options also contain pictures
       if (vm.answers[0].text.includes('http')) {
-        console.log('image answer')
         vm.imageAnswer = true;
         vm.textAnswer = false;
       }
       else {
-      console.log('text answer')
         vm.textAnswer = true;
         vm.imageAnswer = false;
       }

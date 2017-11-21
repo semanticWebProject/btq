@@ -44,7 +44,7 @@
 		<div class="answers" ng-repeat="answer in main.answersField">
 			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">
         <div ng-if="main.textAnswer">{{answer.text}}</div>
-        <img src="{{answer.text}}" ng-if="main.imageAnswer">
+        <img src="{{answer.text}}" class="option-{{answer.id}}" ng-if="main.imageAnswer">
         <div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id"><strong>{{answer.description}}</strong></div>
       </button>
       <p></p>
