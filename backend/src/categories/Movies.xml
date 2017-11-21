@@ -19,7 +19,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>
@@ -41,7 +41,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>

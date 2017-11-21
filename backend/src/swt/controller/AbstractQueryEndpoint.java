@@ -144,13 +144,25 @@ public abstract class AbstractQueryEndpoint {
 
         int index = 1;
         int position = 0;
+        HashSet<String> uniqueAnswers = new HashSet<>();
+
+        // saving both parameters of unique answers in a HashMap
         while (wrongAnswers.size() < 3) {
+            // get record entry
             HashMap<String, String> record = records.get((int) options.toArray()[index++]);
-            if (! wrongAnswers.containsKey(record.get(questionXML.getParameter2())) && ! record.get(questionXML.getParameter2()).equalsIgnoreCase(correctAnswer)) {
+            String parameter2 = record.get(questionXML.getParameter2());
+
+            // check for uniqueness
+            if (! uniqueAnswers.contains(parameter2) && ! parameter2.equalsIgnoreCase(correctAnswer)) {
+
+                // save parameters for this answer
                 ArrayList<String> answerRecord = new ArrayList<>();
-                answerRecord.add(record.get(questionXML.getParameter2()));
+                answerRecord.add(parameter2);
                 answerRecord.add(record.get(questionXML.getParameter1()));
                 wrongAnswers.put(position++, answerRecord);
+
+                // add to unique answer hashset
+                uniqueAnswers.add(parameter2);
             }
         }
 
