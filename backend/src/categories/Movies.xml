@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
-	<question>
+<questions>
+    <question>
 		<endpoint>0</endpoint>
 		<text>Who is this actor? {parameter1}</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
@@ -12,14 +12,14 @@
             ?actor foaf:gender ?gender .
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="male"@en)
-            }</sparql>
+            } OFFSET {offset}</sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
         <offsetMax>2500</offsetMax>
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>
@@ -33,7 +33,7 @@
             ?actor foaf:gender ?gender .
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="female"@en)
-            }
+            } OFFSET {offset}
         </sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
@@ -41,7 +41,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>
@@ -54,7 +54,7 @@
             ?actor dbo:activeYearsStartYear ?startYear .
             filter(langMatches(lang(?actorLabel),"EN"))
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
-            BIND (STR(?startYear)  AS ?stripped_startYear)} </sparql>
+            BIND (STR(?startYear)  AS ?stripped_startYear)} OFFSET {offset} </sparql>
 		<parameter1>stripped_actorLabel</parameter1>
 		<parameter2>stripped_startYear</parameter2>
         <offsetMax>5000</offsetMax>
@@ -65,7 +65,7 @@
     </question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>When was the actor/actress {parameter1} born?</text>
+		<text>When was the {parameter1} born?</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
             SELECT DISTINCT ?{parameter1}, ?{parameter2}
             WHERE {
@@ -76,7 +76,7 @@
             filter(xsd:date(?dateOfBirth))
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             BIND (STR(?dateOfBirth)  AS ?stripped_dateOfBirth)
-            } </sparql>
+            } OFFSET {offset}</sparql>
         <parameter1>stripped_actorLabel</parameter1>
 		<parameter2>stripped_dateOfBirth</parameter2>
         <offsetMax>5000</offsetMax>
@@ -99,7 +99,7 @@
             ?director owl:sameAs ?writer .
             filter(langMatches(lang(?movieLabel),"EN"))  .
             filter(langMatches(lang(?writerLabel),"EN"))  .
-            filter(langMatches(lang(?directorLabel),"EN"))  . }</sparql>
+            filter(langMatches(lang(?directorLabel),"EN"))  . } OFFSET {offset}</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>
@@ -108,5 +108,4 @@
 		<hard></hard>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
-	
-</category>
+</questions>

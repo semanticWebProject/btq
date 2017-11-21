@@ -12,10 +12,10 @@ public class SparqlInterface {
 	// just for testing
 	public static void main(String [] args) {
 		SparqlInterface sq = new SparqlInterface();
-		sq.getQuestion(0);
+		sq.getQuestion(0,0);
 	}
 
-	public Question getQuestion(int categoryId) {
+	public Question getQuestion(int categoryId,int level) {
 		IOOperations ioops = new IOOperations();
 		QuestionXML questionXML = ioops.getQuestion(categoryId);
 		Question question = new Question();

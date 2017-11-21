@@ -5,14 +5,16 @@ public class Answer {
     private int id;
     private String text;
     private String description;
+    private String descriptionImage;
 
     public Answer() {
     }
 
-    public Answer(int id, String text, String description) {
+    public Answer(int id, String text, String description, String descriptionImage) {
         this.id = id;
         this.text = text;
         this.description = description;
+        this.descriptionImage = descriptionImage;
     }
 
     public int getId() {
@@ -37,5 +39,13 @@ public class Answer {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescriptionImage() {
+        return descriptionImage;
+    }
+
+    public void setDescriptionImage(String descriptionImage) {
+        this.descriptionImage = descriptionImage;
     }
 }
