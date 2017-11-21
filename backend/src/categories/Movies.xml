@@ -65,7 +65,7 @@
     </question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>When was the actor/actress {parameter1} born?</text>
+		<text>When was the {parameter1} born?</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
             SELECT DISTINCT ?{parameter1}, ?{parameter2}
             WHERE {

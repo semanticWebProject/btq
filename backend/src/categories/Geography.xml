@@ -38,7 +38,7 @@
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-			<description>The flag of {parameter2} is {parameter1}.</description>
+			<description>The flag of {parameter2} is {parameter1}</description>
 		</question>
 		<question>
 		<endpoint>1</endpoint>
@@ -54,7 +54,7 @@
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-			<description>{parameter2} is the flag of {parameter1}.</description>
+			<description>This is the flag of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>

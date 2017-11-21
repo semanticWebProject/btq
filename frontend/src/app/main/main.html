@@ -7,12 +7,6 @@
 		</p>
 
 		<div class="row">
-			<!--<div class="col-sm-{{12 / main.categories.length}}"-->
-				<!--ng-repeat="category in main.categories">-->
-				<!--<p>{{category.name}}</p>-->
-				<!--<a href="#/" class="btn btn-primary"-->
-					<!--ng-click="main.chooseCategory(category.id)">Select</a>-->
-			<!--</div>-->
 
         <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
             <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
@@ -69,19 +63,6 @@
 		<strong>You set a new highscore:</strong> {{main.highScore}}
 	</div>
 
-
-	<!--<div class="row">-->
-	<!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
-	<!--<div class="thumbnail">-->
-	<!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
-	<!--<div class="caption">-->
-	<!--<h3>{{ awesomeThing.title }}</h3>-->
-	<!--<p>{{ awesomeThing.description }}</p>-->
-	<!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
 
 </div>
 
