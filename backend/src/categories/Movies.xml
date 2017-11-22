@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<questions id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
+<questions>
 	<question>
 		<endpoint>0</endpoint>
 		<text>Who is this actor? {parameter1}</text>
-        <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
+        <sparql>
+            PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
         	SELECT DISTINCT (str(?{parameter1})) as ?imageURL
         	(str(?{parameter2})) as ?actorLabel
@@ -17,22 +18,23 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="male"@en)
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} AND ?pr #lt {toPageRank})
             } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
         <offsetMax>70</offsetMax>
         <levels>
-        	<level id="0" offsetMax="60" fromPageRank="15" toPageRank="80"></level>
-        	<level id="1" offsetMax="180" fromPageRank="8" toPageRank="16"></level>
-        	<level id="2" offsetMax="2150" fromPageRank="0" toPageRank="9"></level>
+        	<level id="0" offsetMax="60"   fromPageRank="15" toPageRank="80"></level>
+        	<level id="1" offsetMax="180"  fromPageRank="8"  toPageRank="16"></level>
+        	<level id="2" offsetMax="2150" fromPageRank="0"  toPageRank="9"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
 		<text>Who is this actress? {parameter1}</text>
-        <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
+        <sparql>
+            PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
         	SELECT DISTINCT (str(?{parameter1})) as ?imageURL
         	(str(?{parameter2})) as ?actorLabel
@@ -46,15 +48,15 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="female"@en)
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} AND ?pr #lt {toPageRank})
             } OFFSET {offset} LIMIT 10
         </sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
         <offsetMax>1000</offsetMax>
         <levels>
-        	<level id="0" offsetMax="150" fromPageRank="5" toPageRank="56"></level>
-        	<level id="1" offsetMax="525" fromPageRank="2" toPageRank="6"></level>
+        	<level id="0" offsetMax="150"  fromPageRank="5" toPageRank="56"></level>
+        	<level id="1" offsetMax="525"  fromPageRank="2" toPageRank="6"></level>
         	<level id="2" offsetMax="1510" fromPageRank="0" toPageRank="3"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
@@ -62,7 +64,8 @@
     <question>
 		<endpoint>0</endpoint>
 		<text>In which year did the actor/actress {parameter1} start his/her career?</text>
-		<sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
+		<sparql>
+            PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
 			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
             SELECT ?{parameter1}, ?{parameter2}
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
@@ -73,23 +76,24 @@
             ?actor dbo:activeYearsStartYear ?startYear .
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} AND ?pr #lt {toPageRank})
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             BIND (STR(?startYear)  AS ?stripped_startYear)} OFFSET {offset} LIMIT 10 </sparql>
 		<parameter1>stripped_actorLabel</parameter1>
 		<parameter2>stripped_startYear</parameter2>
         <offsetMax>5000</offsetMax>
          <levels>
-        	<level id="0" offsetMax="185" fromPageRank="12" toPageRank="80"></level>
-        	<level id="1" offsetMax="580" fromPageRank="5" toPageRank="12"></level>
-        	<level id="2" offsetMax="4300" fromPageRank="0" toPageRank="5"></level>
+        	<level id="0" offsetMax="185"  fromPageRank="12" toPageRank="80"></level>
+        	<level id="1" offsetMax="580"  fromPageRank="5"  toPageRank="12"></level>
+        	<level id="2" offsetMax="4300" fromPageRank="0"  toPageRank="5"></level>
         </levels>
         <description>{parameter2} is the year of when {parameter1} started a career.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
 		<text>When was the actor/actress {parameter1} born?</text>
-        <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
+        <sparql>
+            PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
             SELECT DISTINCT ?{parameter1}, ?{parameter2}
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
@@ -101,7 +105,7 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(xsd:date(?dateOfBirth))
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} AND ?pr #lt {toPageRank})
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             BIND (STR(?dateOfBirth)  AS ?stripped_dateOfBirth)
             } OFFSET {offset} LIMIT 10</sparql>
@@ -109,17 +113,18 @@
 		<parameter2>stripped_dateOfBirth</parameter2>
         <offsetMax>5000</offsetMax>
         <levels>
-        	<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
+        	<level id="0" offsetMax="40" fromPageRank="25"  toPageRank="80"></level>
         	<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        	<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
+        	<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
         </levels>
         <description>{parameter2} is the birth date of {parameter1}, for example.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
 		<text>Who is the writer as well as director of the movie {parameter1}? </text>
-        <sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-           SELECT DISTINCT ?{parameter1} , ?{parameter2}
+        <sparql>
+            PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+            SELECT DISTINCT ?{parameter1} , ?{parameter2}
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -134,14 +139,14 @@
             filter(langMatches(lang(?movieLabel),"EN"))  .
             filter(langMatches(lang(?writerLabel),"EN"))  .
             filter(langMatches(lang(?directorLabel),"EN"))  .
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
+            filter(?pr #gt {fromPageRank} AND ?pr #lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>
          <levels>
-        	<level id="0" offsetMax="50" fromPageRank="1.5" toPageRank="8.0"></level>
+        	<level id="0" offsetMax="50"  fromPageRank="1.5"  toPageRank="8.0"></level>
         	<level id="1" offsetMax="100" fromPageRank="0.35" toPageRank="1.4"></level>
-        	<level id="2" offsetMax="200" fromPageRank="0" toPageRank="0.35"></level>
+        	<level id="2" offsetMax="200" fromPageRank="0"    toPageRank="0.35"></level>
         </levels>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
