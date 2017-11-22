@@ -76,9 +76,9 @@
 
   <!-- Boxes after validation -->
   <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">{{main.nextButtonText}}</button>
-  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-fail    pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
+  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-danger  pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
 
-  <div class="answerbox alert alert-success" role="alert" ng-if="main.wrongAnswer && main.newHighscore">
+  <div class="answerbox alert alert-success" role="alert" ng-if="main.newHighscore">
     <span class="glyphicon glyphicon-thumbs-up"></span>
     <strong>You set a new highscore:</strong> {{main.highScore}}
   </div>

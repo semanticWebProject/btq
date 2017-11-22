@@ -33,6 +33,7 @@
     vm.dificultyLevel = 0; // default: easy
     vm.gameLives = 5;      // default: easy
     vm.dificultyLevelDescription = 'Easy mode is selected. You have 5 lives'; //default: easy
+    vm.questionLoaded = false;
 
     /* Init Functions */
     getCategories(); //retrieves the categories from the server
@@ -46,12 +47,11 @@
       if (vm.gameLives > 0 && !home) {
         console.log('lives are still there');
         vm.loadFields();
-        vm.wrongAnswer = '';
         return;
       }
       console.log('reset or lost' + home);
 
-
+      window.location.reload();
        vm.askQuestion = false;
        vm.selectCategory = true;
        vm.chosenCategory = 'None';
@@ -86,20 +86,30 @@
     // Load a question
     vm.loadQuestion = (function loadQuestion() {
       vm.askQuestion   = true;
-      vm.correctAnswer = false;
-      vm.wrongAnswer   = false;
+
 
       // Simple GET request example:
       var url = base_url+'category/'+vm.chosenCategory.id+'/question?level='+vm.dificultyLevel;
       $http({
         method: 'GET',
         url: url
-
       }).then(function successCallback(response) {
-        console.log(url);
+          vm.questionLoaded = true;
+          jQuery("button.nextButton").removeAttr("disabled","disabled");
+          if (vm.correctAnswer) {
+            vm.nextButtonText = 'Next';
+          }
+          else {
+            if (vm.gameLives > 0){
+              vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
+            }
+            else {
+              vm.nextButtonText = 'You lost the game :(';
+            }
+          }
+
           // this callback will be called asynchronously
           // when the response is available
-           console.log(response.data);
           vm.question = response.data['question'];
           vm.answers  = response.data['answers'];
           vm.correct  = response.data['correct'];
@@ -124,21 +134,28 @@
 
     vm.loadFields = (function() {
       // reset selected answer
-      vm.selectedAnswer = 'None';
-      console.log('load fields after click');
-      vm.imageURLField = 'loading ...';
-      vm.questionField = vm.question;
-      vm.imageURLField = vm.imageURL;
-      vm.answersField  = vm.answers;
-      vm.correctAnswer = '';
-      // assume the following answer options also contain pictures
-      if (vm.answers[0].text.includes('http')) {
-        vm.imageAnswer = true;
-        vm.textAnswer = false;
-      }
-      else {
-        vm.textAnswer = true;
-        vm.imageAnswer = false;
+      if (vm.questionLoaded) { //might break
+
+        vm.questionLoaded = false;
+
+        vm.selectedAnswer = 'None';
+        console.log('load fields after click');
+        vm.imageURLField = 'loading ...';
+        vm.questionField = vm.question;
+        vm.imageURLField = vm.imageURL;
+        vm.answersField  = vm.answers;
+        vm.correctAnswer = false;
+        vm.wrongAnswer   = false;
+        vm.newHighscore  = false;
+        // assume the following answer options also contain pictures
+        if (vm.answers[0].text.includes('http')) {
+          vm.imageAnswer = true;
+          vm.textAnswer = false;
+        }
+        else {
+          vm.textAnswer = true;
+          vm.imageAnswer = false;
+        }
       }
 
     });
@@ -151,35 +168,25 @@
       // As soon as answer is clicked, buttons are disabled and can't be clicked anymore
       jQuery(".answers button").attr("disabled","disabled");
 
-      //update highscore
-      if (vm.score > localStorage.getItem(keyHighScore)) {
-        vm.newHighscore = true;
-        vm.highScore = vm.score;
-        localStorage.removeItem(keyHighScore);
-        localStorage.setItem(keyHighScore, vm.score);
-      }
-
       // always load question once question was answered correctly (lives might be still there)
       if (vm.correct == id || vm.gameLives > 0) {
-        console.log(' ---- Loading new question already ---- ');
         vm.loadQuestion();
+        jQuery("button.nextButton").attr("disabled","disabled");
+        console.log(' ---- Loading new question already ---- ');
       }
 
       // Correct answer is given
       if (vm.correct == id) {
-        vm.correctAnswer = true;
-        vm.wrongAnswer = false;
-        vm.askQuestion = true;
-        vm.nextButtonText = 'Next';
+        vm.nextButtonText = 'Loading ...';
         jQuery('.answers button.option-'+id).addClass('btn-success');
 
         //Flashes score icon
         setTimeout(function() {
           jQuery('.scoreInformation').addClass('flash-icon');
-        }, 800);
+        }, 500);
         setTimeout(function() {
           jQuery('.scoreInformation').removeClass('flash-icon');
-        }, 3800);
+        }, 1500);
 
         // Update correct question counter
         var questionCount = localStorage.getItem(keyQuestionCounterCorrect);
@@ -187,37 +194,61 @@
         localStorage.removeItem(keyQuestionCounterCorrect);
         localStorage.setItem(keyQuestionCounterCorrect, questionCount);
 
+        vm.correctAnswer = true;
+        vm.wrongAnswer = false;
+        vm.askQuestion = true;
+
         // Update score
         vm.score++;
+
+        //update highscore
+        console.log('currenct highscore: ' + localStorage.getItem(keyHighScore));
+        if (vm.score > localStorage.getItem(keyHighScore)) {
+          vm.newHighscore = true;
+          vm.highScore = vm.score;
+          localStorage.removeItem(keyHighScore);
+          localStorage.setItem(keyHighScore, vm.score);
+        }
       }
+      // wrong answer
       else {
         jQuery('.answers button.option-'+id).addClass('btn-danger');
         //Flashes the correct answer for 2s after 800ms
         setTimeout(function() {
           jQuery('.answers button.option-'+vm.correct).addClass('btn-success flash-button');
-        }, 800);
+        }, 500);
         setTimeout(function() {
           jQuery('.answers button.option-'+vm.correct).removeClass('flash-button');
-        }, 2000);
+        }, 1500);
 
-        vm.correctAnswer = false;
-        vm.wrongAnswer = true;
-        vm.askQuestion = true;
         vm.gameLives--;
         console.log('game lives: '  + vm.gameLives);
 
-        if (vm.gameLives > 0){
-          vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
-        }
-        else {
-          vm.nextButtonText = 'You lost the game :(';
-        }
+
         // Update wrong question counter
         var questionCount = localStorage.getItem(keyQuestionCounterWrong);
         questionCount++;
         localStorage.removeItem(keyQuestionCounterWrong);
         localStorage.setItem(keyQuestionCounterWrong, questionCount);
+        vm.correctAnswer = false;
+        vm.wrongAnswer = true;
+        vm.askQuestion = true;
 
+        //update highscore
+        console.log('currenct highscore: ' + localStorage.getItem(keyHighScore));
+        if (vm.score > localStorage.getItem(keyHighScore)) {
+          vm.newHighscore = true;
+          vm.highScore = vm.score;
+          localStorage.removeItem(keyHighScore);
+          localStorage.setItem(keyHighScore, vm.score);
+        }
+
+        if (vm.gameLives > 0){
+          vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
+        }
+        if (vm.gameLives == 0) {
+          vm.nextButtonText = 'You lost the game :(';
+        }
       }
 
       // scroll down for validation
@@ -283,21 +314,6 @@
           break;
       }
     });
-    // temporary local workaround for the categories
-    /*
-       vm.categories = [
-      {
-        'id': 0,
-        'name': 'Actors & Movies',
-        'thumbnail': 'http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg'
-      },
-      {
-        'id': 1,
-        'name': 'Geography',
-        'thumbnail': 'http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg'
-      }
-    ];
-    */
 
   }
 })();
