@@ -8,6 +8,10 @@ import java.util.Random;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import swt.model.Category;
+import swt.model.QuestionXML;
+import swt.model.CategoryXML;
+import swt.model.Level;
 import swt.model.*;
 
 import javax.ws.rs.NotFoundException;
@@ -55,9 +59,14 @@ public class IOOperations {
         System.out.println("Sparql: " + question.getSparqlQuery());
         System.out.println("Parameter1: " + question.getParameter1());
         System.out.println("Parameter2: " + question.getParameter2());
-        System.out.println("Easy: " + question.getEasyFilter());
-        System.out.println("Medium: " + question.getMediumFilter());
-        System.out.println("Hard: " + question.getHardFilter());
+        System.out.println("Levels: " + question.getLevels());
+
+        System.out.println("Easy : "+question.getLevelDetails(1).getOffsetMax());
+        System.out.println("Medium : "+question.getLevelDetails(2).getOffsetMax());
+        System.out.println("Hard : "+question.getLevelDetails(3).getOffsetMax());
+
+        //System.out.println("Medium: " + question.getMediumFilter());
+        //System.out.println("Hard: " + question.getHardFilter());
 
         return question;
 

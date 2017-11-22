@@ -23,12 +23,13 @@ public abstract class AbstractQueryEndpoint {
      * @return ArrayList of results
      */
     protected ArrayList<HashMap<String, String>> runSparqlQuery(String sparqlEndpoint, String sparql) {
-        Endpoint endpoint = new Endpoint(sparqlEndpoint, false);
+        Endpoint endpoint = new Endpoint(sparqlEndpoint, true);
+        
         endpoint.setMethodHTTPRead("GET");
         HashMap<String, HashMap> result = new HashMap<>();
-
+        
         try {
-            sparql = sparql + " LIMIT 10";
+            sparql = sparql ;//+ " LIMIT 10";
             result = endpoint.query(sparql);
         } catch (EndpointException e) {
             e.printStackTrace();
@@ -117,7 +118,7 @@ public abstract class AbstractQueryEndpoint {
      * @param questionXML QuestionXML object which contains all information stored in the xml files
      * @return Question object
      */
-    protected Question getQuestionFromSparqlEndpoint(QuestionXML questionXML, String endpoint) {
+    protected Question getQuestionFromSparqlEndpoint(QuestionXML questionXML, String endpoint,int level) {
 
         Question question = new Question();
 
@@ -125,10 +126,13 @@ public abstract class AbstractQueryEndpoint {
         String query = questionXML.getSparqlQuery().replace("{parameter1}", questionXML.getParameter1());
         query = query.replace("{parameter2}", questionXML.getParameter2());
         query=query.replace("#lt", "<");
+        query=query.replace("#amp", "&");
         query=query.replace("#gt", ">");
-
+        query=query.replace("{fromPageRank}", String.valueOf(questionXML.getLevelDetails(level).getFromPageRank()));
+        query=query.replace("{toPageRank}", String.valueOf(questionXML.getLevelDetails(level).getToPageRank()));
+        
         Random randomNumberGenerator = new Random();
-        int randomOffset = randomNumberGenerator.nextInt(questionXML.getOffsetMax());
+        int randomOffset = randomNumberGenerator.nextInt(questionXML.getLevelDetails(level).getOffsetMax());
         query = query.replace("{offset}", String.valueOf(randomOffset));
 
         System.out.println("Query: "+ query);

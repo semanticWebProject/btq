@@ -24,12 +24,12 @@ public class SparqlInterface {
 		if (queryEndpointId == 0) {
 			//DBPedia
 			DbpediaSparqlEndpoint de = new DbpediaSparqlEndpoint();
-			question = de.getQuestionFromSparqlEndpoint(questionXML, DBPEDIA_ENDPOINT);
+			question = de.getQuestionFromSparqlEndpoint(questionXML, DBPEDIA_ENDPOINT,level);
 		}
 		else if(queryEndpointId == 1) {
 			// wikidata
 			WikidataSparqlEndpoint we = new WikidataSparqlEndpoint();
-			question = we.getQuestionFromSparqlEndpoint(questionXML, WIKIDATA_ENDPOINT);
+			question = we.getQuestionFromSparqlEndpoint(questionXML, WIKIDATA_ENDPOINT,level);
 		}
 		else {
 			
