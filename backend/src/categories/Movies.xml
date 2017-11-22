@@ -23,9 +23,9 @@
 		<parameter2>actorLabel</parameter2>
         <offsetMax>70</offsetMax>
         <levels>
-        	<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
-        	<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        	<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
+        	<level id="0" offsetMax="60" fromPageRank="15" toPageRank="80"></level>
+        	<level id="1" offsetMax="180" fromPageRank="8" toPageRank="16"></level>
+        	<level id="2" offsetMax="2150" fromPageRank="0" toPageRank="9"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
     </question>
@@ -53,9 +53,9 @@
 		<parameter2>actorLabel</parameter2>
         <offsetMax>1000</offsetMax>
         <levels>
-        	<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
-        	<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        	<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
+        	<level id="0" offsetMax="150" fromPageRank="5" toPageRank="56"></level>
+        	<level id="1" offsetMax="525" fromPageRank="2" toPageRank="6"></level>
+        	<level id="2" offsetMax="1510" fromPageRank="0" toPageRank="3"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
     </question>
@@ -80,11 +80,11 @@
 		<parameter2>stripped_startYear</parameter2>
         <offsetMax>5000</offsetMax>
          <levels>
-        	<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
-        	<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        	<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
+        	<level id="0" offsetMax="185" fromPageRank="12" toPageRank="80"></level>
+        	<level id="1" offsetMax="580" fromPageRank="5" toPageRank="12"></level>
+        	<level id="2" offsetMax="4300" fromPageRank="0" toPageRank="5"></level>
         </levels>
-        <description>{parameter2} is the year of where {parameter1} started a career.</description>
+        <description>{parameter2} is the year of when {parameter1} started a career.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
