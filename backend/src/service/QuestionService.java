@@ -27,7 +27,7 @@ public class QuestionService {
 		//Generate random level if level is null from input
 	   if(questionLevel==0) {
 		   Random randomLevelGenerator = new Random();
-		   questionLevel = randomLevelGenerator.nextInt(2) + 1;
+		   questionLevel = randomLevelGenerator.nextInt(2) ;
 	   }
 				
 		
