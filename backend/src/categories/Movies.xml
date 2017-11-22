@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
+<questions id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
 	<question>
 		<endpoint>0</endpoint>
 		<text>Who is this actor? {parameter1}</text>
@@ -145,4 +145,4 @@
         </levels>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
-</category>
+</questions>
