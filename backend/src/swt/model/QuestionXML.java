@@ -1,5 +1,9 @@
 package swt.model;
 
+import java.util.HashMap;
+import java.util.List;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public final class QuestionXML {
@@ -16,32 +20,31 @@ public final class QuestionXML {
 	private String parameter2;
 	@JacksonXmlProperty(localName = "offsetMax")
 	private int offsetMax;
-	@JacksonXmlProperty(localName = "easy")
-	private String easyFilter;
-	@JacksonXmlProperty(localName = "medium")
-	private String mediumFilter;
-	@JacksonXmlProperty(localName = "hard")
-	private String hardFilter;
-	@JacksonXmlProperty(localName = "description")
+    @JacksonXmlProperty(localName = "description")
 	private String description;
-	
+    
+    @JacksonXmlElementWrapper(localName = "levels")
+    @JacksonXmlProperty(localName = "level")
+    private List<Level> levels;
+    
+    
+    HashMap<Integer,Level> levelDetails;
 
 	public QuestionXML() {
+		
+		
 	}
 
 	public QuestionXML(int queryEndpoint, String questionText, String sparqlQuery, String parameter1,
-					   String parameter2, int offsetMax, String easyFilter, String mediumFilter,
-					   String hardFilter, String description) {
+					   String parameter2, int offsetMax, String description,List<Level> levels) {
 		this.queryEndpoint = queryEndpoint;
 		this.questionText = questionText;
 		this.sparqlQuery = sparqlQuery;
 		this.parameter1 = parameter1;
 		this.parameter2 = parameter2;
 		this.offsetMax = offsetMax;
-		this.easyFilter = easyFilter;
-		this.mediumFilter = mediumFilter;
-		this.hardFilter = hardFilter;
 		this.description = description;
+		
 	}
 
 	public int getQueryEndpoint() {
@@ -85,29 +88,6 @@ public final class QuestionXML {
 		this.parameter2 = parameter2;
 	}
 	
-	public String getEasyFilter() {
-		return easyFilter;
-	}
-
-	public void setEasyFilter(String easyFilter) {
-		this.easyFilter = easyFilter;
-	}
-	
-	public String getMediumFilter() {
-		return mediumFilter;
-	}
-
-	public void setMediumFilter(String mediumFilter) {
-		this.mediumFilter = mediumFilter;
-	}
-	
-	public String getHardFilter() {
-		return hardFilter;
-	}
-
-	public void setHardFilter(String hardFilter) {
-		this.hardFilter = hardFilter;
-	}
 
 	public int getOffsetMax() {
 		return offsetMax;
@@ -124,4 +104,37 @@ public final class QuestionXML {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	public void setLevels(List<Level> levels) {
+		this.levels=levels;
+	}
+	
+	public List<Level> getLevels(){
+		return this.levels;
+	}
+	
+	
+	public Level getLevelDetails(int levelId) {
+		
+		//convert list into hashmap if it is not converted
+		if(this.levelDetails==null) {
+			this.levelDetails=new HashMap<Integer,Level>();
+			for(Level level :levels) {
+				
+				levelDetails.put(level.getId(),level);
+				
+			}
+		}
+		
+		
+		Level levelDetails=new Level();
+		
+		if(this.levelDetails.get(levelId)!=null)
+			levelDetails= this.levelDetails.get(levelId);
+		else
+			System.out.println("No details present");
+		
+		return levelDetails;
+	} 
 }
