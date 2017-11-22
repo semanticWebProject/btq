@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg">
-	<question>
+<questions>
+    <question>
 		<endpoint>0</endpoint>
 		<text>Who is this actor? {parameter1}</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
@@ -19,7 +19,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>
@@ -41,7 +41,7 @@
         <easy></easy>
 		<medium></medium>
 		<hard></hard>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
 	<question>
 		<endpoint>0</endpoint>
@@ -65,7 +65,7 @@
     </question>
 	<question>
 		<endpoint>0</endpoint>
-		<text>When was the actor/actress {parameter1} born?</text>
+		<text>When was the {parameter1} born?</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
             SELECT DISTINCT ?{parameter1}, ?{parameter2}
             WHERE {
@@ -108,5 +108,4 @@
 		<hard></hard>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
-	
-</category>
+</questions>

@@ -7,12 +7,10 @@ import java.util.Random;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
-import swt.model.Category;
-import swt.model.QuestionXML;
-import swt.model.CategoryXML;
+import swt.model.*;
+
+import javax.ws.rs.NotFoundException;
 
 
 public class IOOperations {
@@ -22,12 +20,23 @@ public class IOOperations {
         QuestionXML question = new QuestionXML();
 
         // read in xml for categoryId
-        File file = new File(this.getClass().getClassLoader().getResource("categories").getFile() + "/" + getCategoryFileName(categoryId));
-        CategoryXML categoryXML = getCategory(file);
+        XmlMapper mapper = new XmlMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
+
+        String fileName = getCategoryFileName(categoryId);
+        File file = new File(this.getClass().getClassLoader().getResource("categories/" + fileName).getFile());
+
+        QuestionsXML questionsXML = null;
+        try {
+            questionsXML = mapper.readValue(file, QuestionsXML.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // get a random number and select question
         Random randomNumberGenerator = new Random();
-        int totalResults = categoryXML.getQuestion().length;
+        int totalResults = questionsXML.getQuestion().length;
         System.out.println("Total Questions: " + totalResults);
 //        totalResults = 2; // for testing
         if (totalResults > 0) {
@@ -36,7 +45,7 @@ public class IOOperations {
             System.out.println("Random Number: " + randomNumber);
 
             // select random question from questions
-            question = categoryXML.getQuestion()[randomNumber];
+            question = questionsXML.getQuestion()[randomNumber];
 
         }
 
@@ -54,31 +63,23 @@ public class IOOperations {
 
     }
 
-    private String getCategoryFileName(int categoryId) {
-        String filename = "";
-
-        File folder = new File(this.getClass().getClassLoader().getResource("categories").getFile());
-        File[] fileList = folder.listFiles();
-
-        for (int i = 0; i < fileList.length; i++) {
-            File file = new File(fileList[i].getAbsolutePath());
-            CategoryXML categoryXML = getCategory(file);
-            if (categoryXML.getId() == categoryId)
-                return file.getName();
-        }
-
-        return filename;
-    }
 
     public Collection<Category> getCategories() {
         Collection<Category> categories = new ArrayList<>();
+        XmlMapper mapper = new XmlMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
-        File folder = new File(this.getClass().getClassLoader().getResource("categories").getFile());
-        File[] fileList = folder.listFiles();
+        // get category including all questions
+        CategoriesXML categoriesXML = null;
+        try {
+            File file = new File(this.getClass().getClassLoader().getResource("categories/Categories.xml").getFile());
+            categoriesXML = mapper.readValue(file, CategoriesXML.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        for (int i = 0; i < fileList.length; i++) {
-            File file = new File(fileList[i].getAbsolutePath());
-            CategoryXML categoryXML = getCategory(file);
+        for (CategoryXML categoryXML : categoriesXML.getCategory()) {
             Category category = new Category(categoryXML.getId(), categoryXML.getName(), categoryXML.getImageURL());
             categories.add(category);
         }
@@ -86,19 +87,26 @@ public class IOOperations {
         return categories;
     }
 
-    private CategoryXML getCategory(File file) {
+    private String getCategoryFileName(int categoryId) {
+
         XmlMapper mapper = new XmlMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, Boolean.TRUE);
 
         // get category including all questions
-        CategoryXML category = null;
+        CategoriesXML categoriesXML = null;
         try {
-            category = mapper.readValue(file, CategoryXML.class);
+            File file = new File(this.getClass().getClassLoader().getResource("categories/Categories.xml").getFile());
+            categoriesXML = mapper.readValue(file, CategoriesXML.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return category;
+        for (CategoryXML categoryXML : categoriesXML.getCategory()) {
+            if (categoryXML.getId() == categoryId)
+                return categoryXML.getFileName();
+        }
+
+        return null;
     }
 }

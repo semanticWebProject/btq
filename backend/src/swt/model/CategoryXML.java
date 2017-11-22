@@ -1,17 +1,10 @@
 package swt.model;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-import java.util.Arrays;
 
 
-@JacksonXmlRootElement(localName = "category")
+
 public final class CategoryXML {
-
-	@JacksonXmlElementWrapper(localName = "question", useWrapping = false)
-	private QuestionXML[] question;
 
 	@JacksonXmlProperty(localName = "id", isAttribute = true)
 	private int id;
@@ -19,26 +12,17 @@ public final class CategoryXML {
 	private String name;
 	@JacksonXmlProperty(localName = "image", isAttribute = true)
 	private String imageURL;
+	@JacksonXmlProperty(localName = "fileName", isAttribute = true)
+	private String fileName;
 
 	public CategoryXML() {
 	}
 
-	public CategoryXML(QuestionXML[] question) {
-		this.question = question;
-	}
-
-	public QuestionXML[] getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(QuestionXML[] question) {
-		this.question = question;
-	}
-
-	@Override public String toString() {
-		return "Questions{" +
-				"questions=" + Arrays.toString(question) +
-				'}';
+	public CategoryXML(int id, String name, String imageURL, String fileName) {
+		this.id = id;
+		this.name = name;
+		this.imageURL = imageURL;
+		this.fileName = fileName;
 	}
 
 	public int getId() {
@@ -63,5 +47,13 @@ public final class CategoryXML {
 
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="0" name="Geography" image="http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg">
-		<question>
+<questions>
+	<question>
 			<endpoint>1</endpoint>
 			<text>What is the capital of {country}?</text>
 			<sparql>SELECT ?{parameter1} ?{parameter2} WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city . SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  } } OFFSET {offset}</sparql>
@@ -38,7 +38,7 @@
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-			<description>The flag of {parameter2} is {parameter1}.</description>
+			<description>The flag of {parameter2} is {parameter1}</description>
 		</question>
 		<question>
 		<endpoint>1</endpoint>
@@ -54,7 +54,7 @@
 			<easy></easy>
 			<medium></medium>
 			<hard></hard>
-			<description>{parameter2} is the flag of {parameter1}.</description>
+			<description>This is the flag of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
@@ -160,4 +160,4 @@
 			<hard></hard>
 			<description>{parameter2} is the head of {parameter1}.</description>
 		</question>
-</category>
+</questions>

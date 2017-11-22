@@ -5,6 +5,10 @@
   padding: 0.2em 0;
 }
 
+h2 {
+  margin-top: 0px;
+}
+
 .thumbnail {
   height: 200px;
 }
@@ -84,17 +88,35 @@ img {
 .jumbotron.question {
   margin-bottom: 10px;
 }
-.scoreInformation {
-  padding-right: 10px;
-  padding-top: 0px;
-}
+
 .nextButton {
   margin-bottom: 20px;
-  margin-top: 19px;
-  margin-right: 15px;
+  margin-top: 0.6em;
 }
 
 .page-header {
   margin-top: 0px;
 }
 
+.btn {
+  white-space: normal;
+}
+.difficultyLevel {
+  margin-bottom: 20px;
+}
+.gamePlayInformation {
+  font-size: large;
+}
+.gameLivesInformation {
+  position: absolute;
+  margin: 10px 0 0 10px;
+}
+.scoreInformation {
+  position: absolute;
+  right: 10px;
+  margin: 10px 10px 0 0;
+}
+
+.dificultyLevelDescription {
+  margin-top: 20px;
+}

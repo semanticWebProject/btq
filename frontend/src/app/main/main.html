@@ -1,12 +1,28 @@
 <div class="container">
 
 	<div class="jumbotron text-center" ng-if="main.selectCategory">
-		<p class="lead">
+
 		<h2>Beat the Quiz!</h2>
-		Please select a category:
-		</p>
 
 		<div class="row">
+
+      <!-- Choose difficulty level -->
+      <div class="col-sm-12 difficultyLevel">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-success easyOption" ng-click="main.selectDifficultyLevel(0)">Easy</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default mediumOption" ng-click="main.selectDifficultyLevel(1)">Medium</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default hardOption" ng-click="main.selectDifficultyLevel(2)">Hard</button>
+          </div>
+        </div>
+        <div class="dificultyLevelDescription">{{main.dificultyLevelDescription}}</div>
+      </div>
+
+      <!-- Category select - Text -->
 			<!--<div class="col-sm-{{12 / main.categories.length}}"-->
 				<!--ng-repeat="category in main.categories">-->
 				<!--<p>{{category.name}}</p>-->
@@ -14,74 +30,59 @@
 					<!--ng-click="main.chooseCategory(category.id)">Select</a>-->
 			<!--</div>-->
 
-        <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
-            <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
-              <img src="{{category.imageURL}}" alt="">
-            </a>
-        </div>
+      <!-- Category select - Image -->
+      <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
+          <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
+            <img src="{{category.imageURL}}" alt="">
+          </a>
+      </div>
+
     </div>
+	</div><!-- end jumbotron -->
 
-
-		<!--<p class="animated infinite" ng-class="main.classAnimation">-->
-		<!--<button type="button" class="btn btn-lg btn-success" ng-click="main.showToastr()">Splendid Toastr</button>-->
-		<!--</p>-->
-		<!--<p>-->
-		<!--With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>-->
-		<!--</p>-->
-	</div>
+  <!-- Breadcrumbs -->
   <nav aria-label="breadcrumb" role="navigation" ng-if="!main.selectCategory">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item" aria-current="page" ng-click="main.reset()">Home</li>
+      <li class="breadcrumb-item" aria-current="page" ng-click="main.reset(true)">Home</li>
       <li class="breadcrumb-item active" aria-current="page">{{main.chosenCategory.name}}</li>
     </ol>
   </nav>
 
-	<!-- score information -->
-	<div class="" ng-if="!main.selectCategory">
-		<h4 class="pull-right scoreInformation"><span class="glyphicon glyphicon-ok-sign"></span> {{main.score}} </h4>
+	<!-- Game information -->
+	<div class="gamePlayInformation" ng-if="!main.selectCategory">
+    <span class="pull-left gameLivesInformation">
+      <span class="glyphicon glyphicon-heart"></span> {{main.gameLives}}
+    </span>
+    <span class="pull-right scoreInformation">
+		  <span class="glyphicon glyphicon-ok-sign"></span> {{main.score}}
+    </span>
 	</div>
 
 	<!-- Question and answer block -->
 	<div class="jumbotron question" ng-if="main.askQuestion">
 		<p class="lead">{{main.questionField}}</p>
-    <span class="questionImage" ng-if="main.imageURL"><img ng-src="{{main.imageURLField}}"></span>
+    <span class="questionImage" ng-if="main.imageURLField"><img ng-src="{{main.imageURLField}}"></span>
 		<hr>
 		<!-- Answers -->
 		<div class="answers" ng-repeat="answer in main.answersField">
 			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">
         <div ng-if="main.textAnswer">{{answer.text}}</div>
-        <img src="{{answer.text}}" class="option-{{answer.id}}" ng-if="main.imageAnswer">
-        <div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id"><strong>{{answer.description}}</strong></div>
+        <img ng-if="main.imageAnswer" src="{{answer.text}}" >
+        <!--<div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id"><strong>{{answer.description}}</strong></div>-->
       </button>
       <p></p>
 		</div>
 	</div>
 
   <!-- Boxes after validation -->
-  <!-- next box if correct -->
-  <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">Next</button>
+  <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">{{main.nextButtonText}}</button>
+  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-fail    pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
 
-  <!--{{main.answers[main.selectedAnswer-1].description}}-->
-  <button ng-if="main.wrongAnswer"class="nextButton btn btn-fail pull-right" ng-click="main.reset()">You lost. Try again</button>
+  <div class="answerbox alert alert-success" role="alert" ng-if="main.wrongAnswer && main.newHighscore">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    <strong>You set a new highscore:</strong> {{main.highScore}}
+  </div>
 
-	<div class="answerbox alert alert-success" role="alert" ng-if="main.wrongAnswer && main.newHighscore">
-		<span class="glyphicon glyphicon-thumbs-up"></span>
-		<strong>You set a new highscore:</strong> {{main.highScore}}
-	</div>
-
-
-	<!--<div class="row">-->
-	<!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
-	<!--<div class="thumbnail">-->
-	<!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
-	<!--<div class="caption">-->
-	<!--<h3>{{ awesomeThing.title }}</h3>-->
-	<!--<p>{{ awesomeThing.description }}</p>-->
-	<!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
 
 </div>
 
