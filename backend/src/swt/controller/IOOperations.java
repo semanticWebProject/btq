@@ -45,7 +45,7 @@ public class IOOperations {
 //        totalResults = 2; // for testing
         if (totalResults > 0) {
             int randomNumber = randomNumberGenerator.nextInt(totalResults);
-        		
+        	
             System.out.println("Random Number: " + randomNumber);
 
             // select random question from questions

@@ -15,9 +15,9 @@
 			<parameter2>cityLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40" fromPageRank="9000" toPageRank="11400"></level>
-        		<level id="1" offsetMax="100" fromPageRank="7001" toPageRank="9000"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="7000"></level>
+        		<level id="0" offsetMax="99" fromPageRank="245" toPageRank="11400"></level>
+        		<level id="1" offsetMax="24" fromPageRank="150" toPageRank="245"></level>
+        		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
         	</levels>
 			<description>{parameter2} is the capital of {parameter1}.</description>
 		</question>
@@ -36,9 +36,9 @@
 			<parameter2>population</parameter2>
 			<offsetMax>190</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
-        		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
+        		<level id="0" offsetMax="99" fromPageRank="245" toPageRank="11400"></level>
+        		<level id="1" offsetMax="24" fromPageRank="150" toPageRank="245"></level>
+        		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
         	</levels>
 			<description>{parameter2} is the population of {parameter1}.</description>
 		</question>
