@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<questions>
+<questions id="0" name="Geography" image="http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg">
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the capital of {country}?</text>
-			<sparql>
-			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 			SELECT ?{parameter1} ?{parameter2}
 			WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city .
 			SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  }
@@ -16,17 +15,16 @@
 			<parameter2>cityLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="9000" toPageRank="11400"></level>
-        		<level id="1" offsetMax="100" fromPageRank="7001" toPageRank="9000"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"    toPageRank="7000"></level>
+        		<level id="0" offsetMax="99" fromPageRank="245" toPageRank="11400"></level>
+        		<level id="1" offsetMax="24" fromPageRank="150" toPageRank="245"></level>
+        		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
         	</levels>
 			<description>{parameter2} is the capital of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the population of {country}?</text>
-			<sparql>
-			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 			SELECT ?{parameter1} ?{parameter2}
 			WHERE { ?country wdt:P31 wd:Q6256.
 			SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
@@ -38,18 +36,17 @@
 			<parameter2>population</parameter2>
 			<offsetMax>190</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
-        		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="0" offsetMax="99" fromPageRank="245" toPageRank="11400"></level>
+        		<level id="1" offsetMax="24" fromPageRank="150" toPageRank="245"></level>
+        		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
         	</levels>
 			<description>{parameter2} is the population of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
 			<text>To which country does this flag belong? {flag}</text>
-			<sparql>
-				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-			 	SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+			<sparql> PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			 SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
 				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 				SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
@@ -60,18 +57,17 @@
 			<parameter2>countryLabel</parameter2>
 			<offsetMax>190</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
+        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
         		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
         	</levels>
 			<description>The flag of {parameter2} is {parameter1}.</description>
 		</question>
 		<question>
 		<endpoint>1</endpoint>
 			<text>Which is the flag of {country}?</text>
-			<sparql>
-				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
 				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 				SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
@@ -91,9 +87,8 @@
 		<question>
 			<endpoint>1</endpoint>
 			<text>Which currency is used in {country}?</text>
-			<sparql>
-				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
 				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 				SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
@@ -104,18 +99,17 @@
 			<parameter2>currencyLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
+        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
         		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
         	</levels>
 			<description>{parameter2} is the currency of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
 			<text>What is the highest point in {country}?</text>
-			<sparql>
-				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-				SELECT ?{parameter1} ?{parameter2}
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			SELECT ?{parameter1} ?{parameter2}
 				WHERE {
 				?country wdt:P31 wd:Q6256.
 				?country wdt:P30 ?continent.
@@ -134,9 +128,9 @@
 			<parameter2>pointLabel</parameter2>
 			<offsetMax>170</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
+        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
         		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
         	</levels>
 			<description>{parameter2} is the highest point in {parameter1}.</description>
 		</question>
@@ -164,9 +158,9 @@
 			<parameter2>pointLabel</parameter2>
 			<offsetMax>10</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
+        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
         		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
         	</levels>
 			<description>{parameter2} is the deepest point in {parameter1}.</description>
 		</question>
@@ -195,9 +189,8 @@
 		<question>
 			<endpoint>1</endpoint>
 			<text>Who is the head of {Country}?</text>
-			<sparql>
-				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
+			<sparql>PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
 				?country wdt:P35 ?head_of_state.
 				SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
@@ -208,9 +201,9 @@
 			<parameter2>head_of_stateLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="40"  fromPageRank="25" toPageRank="80"></level>
+        		<level id="0" offsetMax="40" fromPageRank="25" toPageRank="80"></level>
         		<level id="1" offsetMax="100" fromPageRank="10" toPageRank="25"></level>
-        		<level id="2" offsetMax="200" fromPageRank="0"  toPageRank="10"></level>
+        		<level id="2" offsetMax="200" fromPageRank="0" toPageRank="10"></level>
         	</levels>
 			<description>{parameter2} is the head of {parameter1}.</description>
 		</question>
