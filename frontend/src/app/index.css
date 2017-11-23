@@ -30,19 +30,19 @@ h2 {
 	animation-name: flash;
 	animation-duration: 2s;
 	animation-timing-function: linear;
-	animation-iteration-count: infinite;
+	animation-iteration-count: 2;
 
 	//Firefox 1+
 	-webkit-animation-name: flash;
 	-webkit-animation-duration: 2s;
 	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: 2;
 
 	//Safari 3-4
 	-moz-animation-name: flash;
 	-moz-animation-duration: 2s;
 	-moz-animation-timing-function: linear;
-	-moz-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: 2;
 }
 
 .flash-icon{
@@ -51,19 +51,19 @@ h2 {
 	animation-name: flash;
 	animation-duration: 2s;
 	animation-timing-function: linear;
-	animation-iteration-count: infinite;
+	animation-iteration-count: 2;
 
 	//Firefox 1+
 	-webkit-animation-name: flash;
 	-webkit-animation-duration: 2s;
 	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: 2;
 
 	//Safari 3-4
 	-moz-animation-name: flash;
 	-moz-animation-duration: 2s;
 	-moz-animation-timing-function: linear;
-	-moz-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: 2;
 }
 
 .row-statistics {
@@ -89,6 +89,11 @@ img {
   margin-bottom: 10px;
 }
 
+.answers img {
+  max-width: 20em;
+  margin-bottom: 0px;
+}
+
 .nextButton {
   margin-bottom: 20px;
   margin-top: 0.6em;
@@ -106,6 +111,7 @@ img {
 }
 .gamePlayInformation {
   font-size: large;
+  position: relative;
 }
 .gameLivesInformation {
   position: absolute;
@@ -113,7 +119,7 @@ img {
 }
 .scoreInformation {
   position: absolute;
-  right: 10px;
+  right: 1px;
   margin: 10px 10px 0 0;
 }
 

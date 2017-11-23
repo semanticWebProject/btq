@@ -66,8 +66,8 @@
 		<!-- Answers -->
 		<div class="answers" ng-repeat="answer in main.answersField">
 			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">
-        <div ng-if="main.textAnswer">{{answer.text}}</div>
-        <img ng-if="main.imageAnswer" src="{{answer.text}}" >
+        <div ng-if="answer.text.indexOf('http') == -1">{{answer.text}}</div>
+        <img ng-if="answer.text.indexOf('http') > -1"  src="{{answer.text}}" >
         <!--<div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id"><strong>{{answer.description}}</strong></div>-->
       </button>
       <p></p>
@@ -76,9 +76,9 @@
 
   <!-- Boxes after validation -->
   <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">{{main.nextButtonText}}</button>
-  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-fail    pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
+  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-danger  pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
 
-  <div class="answerbox alert alert-success" role="alert" ng-if="main.wrongAnswer && main.newHighscore">
+  <div class="answerbox alert alert-success" role="alert" ng-if="main.newHighscore">
     <span class="glyphicon glyphicon-thumbs-up"></span>
     <strong>You set a new highscore:</strong> {{main.highScore}}
   </div>
