@@ -147,15 +147,6 @@
         vm.correctAnswer = false;
         vm.wrongAnswer   = false;
         vm.newHighscore  = false;
-        // assume the following answer options also contain pictures
-        if (vm.answers[0].text.includes('http')) {
-          vm.imageAnswer = true;
-          vm.textAnswer = false;
-        }
-        else {
-          vm.textAnswer = true;
-          vm.imageAnswer = false;
-        }
       }
 
     });
