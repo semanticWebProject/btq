@@ -22,16 +22,8 @@ public class QuestionService {
 
 		ObjectMapper mapper = new ObjectMapper();
 		SparqlInterface sparql = new SparqlInterface();
-		int questionLevel=level; //level of question 1:easy , 2:medium , 3:hard
-		
-		//Generate random level if level is null from input
-	   if(questionLevel==0) {
-		   Random randomLevelGenerator = new Random();
-		   questionLevel = randomLevelGenerator.nextInt(2) ;
-	   }
-				
-		
-		
+		int questionLevel=level; //level of question 0:easy , 1:medium , 2:hard, default: easy
+
 		String jsonResponse = "";
 		try {
 			jsonResponse = mapper.writeValueAsString(sparql.getQuestion(categoryId,questionLevel));

@@ -4,13 +4,15 @@
 			<endpoint>1</endpoint>
 			<text>What is the capital of {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 			SELECT DISTINCT ?{parameter1} ?{parameter2}
 			WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city .
 			SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  }
 			SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
 			FILTER (?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank} ) }
-			OFFSET {offset} LIMIT 10
+			OFFSET {offset} LIMIT 6
 			</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>cityLabel</parameter2>
@@ -26,6 +28,8 @@
 			<endpoint>1</endpoint>
 			<text>What is the population of {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 			SELECT DISTINCT ?{parameter1} ?{parameter2}
 			WHERE { ?country wdt:P31 wd:Q6256.
@@ -48,6 +52,8 @@
 			<endpoint>1</endpoint>
 			<text>To which country does this flag belong? {flag}</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 			 	SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
@@ -70,6 +76,8 @@
 		<endpoint>1</endpoint>
 			<text>Which is the flag of {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
@@ -92,6 +100,8 @@
 			<endpoint>1</endpoint>
 			<text>Which currency is used in {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
@@ -114,6 +124,8 @@
 			<endpoint>1</endpoint>
 			<text>What is the highest point in {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 				SELECT ?{parameter1} ?{parameter2}
 				WHERE {
@@ -144,6 +156,8 @@
 			<endpoint>1</endpoint>
 			<text>What is the deepest point in {country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 				SELECT  DISTINCT ?{parameter1}  ?{parameter2}
 				WHERE {
@@ -172,7 +186,9 @@
 		<!--<question>
 			<endpoint>1</endpoint>
 			<text>In which country is the {National Park} located?</text>
-			<sparql>  OFFSET {offset}</sparql>
+			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2></parameter2>
 			<offsetMax></offsetMax>
@@ -183,7 +199,9 @@
 		<!--<question>
 			<endpoint>1</endpoint>
 			<text>What is the distance between {twoPlaces}?</text>
-			<sparql>  OFFSET {offset}</sparql>
+			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2></parameter2>
 			<offsetMax></offsetMax>
@@ -195,6 +213,8 @@
 			<endpoint>1</endpoint>
 			<text>Who is the head of {Country}?</text>
 			<sparql>
+			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
+			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
 				SELECT DISTINCT ?{parameter1} ?{parameter2} WHERE {
 				?country wdt:P31 wd:Q6256.
