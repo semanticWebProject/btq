@@ -1,6 +1,7 @@
 package swt.controller;
 
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -142,8 +143,13 @@ public abstract class AbstractQueryEndpoint {
         HashSet<Integer> options = createRandomOptions(records.size());
 
         // set attributes in question
-        String questionParameter= records.get((int) options.toArray()[0]).get(questionXML.getParameter1());
-        String correctAnswer 	= records.get((int) options.toArray()[0]).get(questionXML.getParameter2());
+        String questionParameter = records.get((int) options.toArray()[0]).get(questionXML.getParameter1());
+        String correctAnswer = records.get((int) options.toArray()[0]).get(questionXML.getParameter2());
+
+        String type = records.get((int) options.toArray()[0]).get(questionXML.getParameter2() + " datatype");
+        if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
+            correctAnswer = formatNumber(correctAnswer);
+
         HashMap<Integer,ArrayList<String>> wrongAnswers = new HashMap<>();
 
         int index = 1;
@@ -158,6 +164,9 @@ public abstract class AbstractQueryEndpoint {
 
             // check for uniqueness
             if (! uniqueAnswers.contains(parameter2) && ! parameter2.equalsIgnoreCase(correctAnswer)) {
+
+                if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
+                    parameter2 = formatNumber(parameter2);
 
                 // save parameters for this answer
                 ArrayList<String> answerRecord = new ArrayList<>();
@@ -188,6 +197,13 @@ public abstract class AbstractQueryEndpoint {
         }
 
         return question;
+    }
+
+    private String formatNumber(String number) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        number = formatter.format(Integer.parseInt(number));
+
+        return number;
     }
 
 }
