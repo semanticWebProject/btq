@@ -91,7 +91,7 @@
 		<text>When was the actor/actress {parameter1} born?</text>
         <sparql>PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-            SELECT DISTINCT year(?dateOfBirth) as ?{parameter1}, ?{parameter2}
+            SELECT DISTINCT ?{parameter1}, year(?dateOfBirth) as ?{parameter2}
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {

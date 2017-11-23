@@ -136,7 +136,7 @@ public abstract class AbstractQueryEndpoint {
         int randomOffset = randomNumberGenerator.nextInt(questionXML.getLevelDetails(level).getOffsetMax());
         query = query.replace("{offset}", String.valueOf(randomOffset));
 
-        System.out.println("Query: "+ query);
+        System.out.println("Query: " + query);
 
         // run query and get result
         ArrayList<HashMap<String, String>> records = runSparqlQuery(endpoint, query);
