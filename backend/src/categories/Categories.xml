@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <categories>
-	<category id="0" name="Geography" image="http://allcomedyskits.com/wp-content/uploads/2016/10/Geography-1000x600.jpg" fileName="Geography.xml"/>
-	<category id="1" name="Actors &amp; Movies" image="http://www.enchantedmind.com/wp/wp-content/uploads/2013/01/Movies.jpg" fileName="Movies.xml"/>
+	<category id="0" name="Geography" image="https://images.unsplash.com/photo-1482059470115-0aadd6bf6834?auto=formatfit=crop&amp;w=1050&amp;q=60&amp;ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" fileName="Geography.xml"/>
+	<category id="1" name="Actors &amp; Movies" image="https://images.unsplash.com/photo-1485095329183-d0797cdc5676?auto=format&amp;fit=crop&amp;w=1050&amp;q=60&amp;ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" fileName="Movies.xml"/>
 </categories>

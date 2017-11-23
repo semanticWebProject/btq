@@ -32,8 +32,9 @@
 
       <!-- Category select - Image -->
       <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
-          <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
-            <img src="{{category.imageURL}}" alt="">
+        <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
+          <h3 style="color: #0f0f0f">{{category.name}}</h3>
+          <img src="{{category.imageURL}}" alt="">
           </a>
       </div>
 
