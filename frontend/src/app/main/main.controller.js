@@ -290,14 +290,14 @@
                 $('.difficultyLevel .hardOption').removeClass('btn-danger');
           break;
         case 1:
-                vm.gameLives = 3;
+                vm.gameLives = 4;
                 vm.dificultyLevelDescription = 'You selected the medium mode. You have 3 lives';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').addClass('btn-warning');
                 $('.difficultyLevel .hardOption').removeClass('btn-danger');
           break;
         case 2:
-                vm.gameLives = 1;
+                vm.gameLives = 3;
                 vm.dificultyLevelDescription = 'You selected the hard mode.  You have only 1 live';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').removeClass('btn-warning');
