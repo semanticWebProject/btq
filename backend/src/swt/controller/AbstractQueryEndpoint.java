@@ -6,8 +6,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.bordercloud.sparql.Endpoint;
-import com.bordercloud.sparql.EndpointException;
+
 
 
 import org.apache.jena.graph.Node;
@@ -83,16 +82,27 @@ public abstract class AbstractQueryEndpoint {
                     System.out.println("as literal: " + node.asLiteral());
                     System.out.println("Node literal datatype: " + n.getLiteralDatatype());
                     System.out.println("Node l datatype: " + l.getDatatype());
-                        System.out.println("Node literal datatype uri: " + n.getLiteralDatatypeURI());
-                        System.out.println("Node language: " + n.getLiteralLanguage());
-                        System.out.println("Node literalvalue: " + n.getLiteralValue());
-                        System.out.println("Node literal: " + n.getLiteral());
+                    System.out.println("Node literal datatype uri: " + n.getLiteralDatatypeURI());
+                    System.out.println("Node language: " + n.getLiteralLanguage());
+                    System.out.println("Node literalvalue: " + n.getLiteralValue());
+                    System.out.println("Node literal: " + n.getLiteral());
+
+                    if (n.getLiteralDatatypeURI().equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal")) {
+                        System.out.println("Decimal");
+                        String formattedNumber = formatNumber(n.getLiteralValue().toString());
+                        System.out.println(formattedNumber);
+                        answerOption.put(s, formattedNumber);
+                    }
+                    else {
+                        System.out.println("Non Decimal");
                         answerOption.put(s, n.getLiteralValue().toString());
                     }
 
+                }
 
-                    System.out.print("Label: " + s + " ") ;
-//                      System.out.println("Ressource: " + qs.getResource(s));
+
+                System.out.print("Label: " + s + " ") ;
+//              System.out.println("Ressource: " + qs.getResource(s));
 
             }
             endresult.add(answerOption);
@@ -104,24 +114,7 @@ public abstract class AbstractQueryEndpoint {
         }
         return endresult;
 
-/*      // Old endpoint
-        Endpoint endpoint = new Endpoint(sparqlEndpoint, true);
-        endpoint.setMethodHTTPRead("GET");
-        HashMap<String, HashMap> result = new HashMap<>();
-        
-        try {
-            sparql = sparql ;//+ " LIMIT 10";
-            result = endpoint.query(sparql);
-        } catch (EndpointException e) {
-            e.printStackTrace();
-        }
-        System.out.println("-- Abstract: runSparqlQuery: ");
-        for (HashMap<String, String> r : (ArrayList<HashMap<String, String>>)result.get("result").get("rows")) {
-            System.out.println(r.toString());
-        }
 
-        return (ArrayList<HashMap<String, String>>) result.get("result").get("rows");
-*/
     }
 
 
@@ -233,6 +226,10 @@ public abstract class AbstractQueryEndpoint {
         String correctAnswer 	= records.get((int) options.toArray()[0]).get(questionXML.getParameter2());
         HashMap<Integer,ArrayList<String>> wrongAnswers = new HashMap<>();
 
+        String type = records.get((int) options.toArray()[0]).get(questionXML.getParameter2() + " datatype");
+        if (type != null && type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
+            correctAnswer = formatNumber(correctAnswer);
+
         int index = 1;
         int position = 0;
         HashSet<String> uniqueAnswers = new HashSet<>();
@@ -246,8 +243,8 @@ public abstract class AbstractQueryEndpoint {
             // check for uniqueness
             if (! uniqueAnswers.contains(parameter2) && ! parameter2.equalsIgnoreCase(correctAnswer)) {
 
-//                if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
-//                    parameter2 = formatNumber(parameter2);
+                if (type != null && type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
+                    parameter2 = formatNumber(parameter2);
 
                 // save parameters for this answer
                 ArrayList<String> answerRecord = new ArrayList<>();

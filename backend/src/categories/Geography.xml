@@ -14,21 +14,21 @@
 			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
-			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
+			PREFIX vrank: #lthttp://purl.org/voc/vrank##gt
 			SELECT DISTINCT ?{parameter1} ?{parameter2}
 			WHERE { ?country wdt:P31 wd:Q6256 . ?country wdt:P36 ?city .
 			SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .  }
 			SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
 			FILTER (?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank} ) }
-			OFFSET {offset} LIMIT 6
+			OFFSET {offset} LIMIT 10
 			</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>cityLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="99" fromPageRank="245" toPageRank="11400"></level>
-        		<level id="1" offsetMax="24" fromPageRank="150" toPageRank="245"></level>
-        		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
+        		<level id="0" offsetMax="55" fromPageRank="500" toPageRank="11400"></level>
+        		<level id="1" offsetMax="48" fromPageRank="200" toPageRank="500"></level>
+        		<level id="2" offsetMax="77" fromPageRank="0"   toPageRank="200"></level>
         	</levels>
 			<description>{parameter2} is the capital of {parameter1}.</description>
 		</question>
@@ -90,9 +90,9 @@
 			<parameter2>countryLabel</parameter2>
 			<offsetMax>190</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="99"  fromPageRank="245" toPageRank="11400"></level>
-        		<level id="1" offsetMax="25" fromPageRank="150" toPageRank="245"></level>
-        		<level id="2" offsetMax="52" fromPageRank="0"  toPageRank="150"></level>
+        		<level id="0" offsetMax="52" fromPageRank="500" toPageRank="11400"></level>
+        		<level id="1" offsetMax="48" fromPageRank="200" toPageRank="500"></level>
+        		<level id="2" offsetMax="76" fromPageRank="0"   toPageRank="200"></level>
         	</levels>
 			<description>The flag of {parameter2} is {parameter1}.</description>
 		</question>
@@ -175,7 +175,7 @@
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-				SELECT ?{parameter1} ?{parameter2}
+				SELECT DISTINCT ?{parameter1} ?{parameter2}
 				WHERE {
 				?country wdt:P31 wd:Q6256.
 				?country wdt:P30 ?continent.
@@ -227,15 +227,15 @@
 				SERVICE #lthttp://dbpedia.org/sparql#gt { ?country vrank:hasRank/vrank:rankValue ?pr}
 				FILTER (?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank} )
 				}
-				Order by ?lowest   OFFSET {offset} LIMIT 10
+				Order by ?lowest   OFFSET {offset} LIMIT 50
 			</sparql>
 			<parameter1>countryLabel</parameter1>
 			<parameter2>pointLabel</parameter2>
 			<offsetMax>10</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="8"  fromPageRank="1500" toPageRank="3800"></level>
-        		<level id="1" offsetMax="8" fromPageRank="500" toPageRank="1500"></level>
-        		<level id="2" offsetMax="9" fromPageRank="0"  toPageRank="500"></level>
+        		<level id="0" offsetMax="2" fromPageRank="1500" toPageRank="3800"></level>
+        		<level id="1" offsetMax="2" fromPageRank="500" toPageRank="1500"></level>
+        		<level id="2" offsetMax="2" fromPageRank="0"  toPageRank="500"></level>
         	</levels>
 			<description>{parameter2} is the deepest point in {parameter1}.</description>
 		</question>
@@ -307,9 +307,9 @@
 			<parameter2>head_of_stateLabel</parameter2>
 			<offsetMax>200</offsetMax>
 			<levels>
-        		<level id="0" offsetMax="100"  fromPageRank="235" toPageRank="11400"></level>
-        		<level id="1" offsetMax="52" fromPageRank="100" toPageRank="235"></level>
-        		<level id="2" offsetMax="80" fromPageRank="0"  toPageRank="100"></level>
+        		<level id="0" offsetMax="50" fromPageRank="500" toPageRank="5000"></level>
+        		<level id="1" offsetMax="100" fromPageRank="100" toPageRank="500"></level>
+        		<level id="2" offsetMax="18" fromPageRank="0"  toPageRank="100"></level>
         	</levels>
 			<description>{parameter2} is the head of {parameter1}.</description>
 		</question>
