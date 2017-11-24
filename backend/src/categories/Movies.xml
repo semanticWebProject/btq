@@ -12,8 +12,8 @@
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 	        PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank: #lthttp://purl.org/voc/vrank##gt
-        	SELECT DISTINCT (str(?{parameter1}) as ?imageURL)
-        	(str(?{parameter2}) as ?actorLabel)
+        	SELECT DISTINCT ?{parameter1} 
+        	?{parameter2} 
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -48,8 +48,7 @@
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-        	SELECT DISTINCT (str(?{parameter1}) as ?imageURL)
-        	(str(?{parameter2}) as ?actorLabel)
+        	SELECT DISTINCT ?{parameter1} ?{parameter2}
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -133,7 +132,7 @@
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>stripped_actorLabel</parameter1>
-		<parameter2>dateOfBirth</parameter2>
+		<parameter2>yearOfBirth</parameter2>
         <offsetMax>5000</offsetMax>
         <levels>
         	<level id="0" offsetMax="152" fromPageRank="14" toPageRank="72"></level>
