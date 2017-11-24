@@ -4,12 +4,16 @@
 		<endpoint>0</endpoint>
 		<text>Who is this actor? {parameter1}</text>
         <sparql>
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
-	        PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/
-        	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-        	SELECT DISTINCT (str(?{parameter1})) as ?imageURL
-        	(str(?{parameter2})) as ?actorLabel
+	        PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
+        	PREFIX vrank: #lthttp://purl.org/voc/vrank##gt
+        	SELECT DISTINCT (str(?{parameter1}) as ?imageURL)
+        	(str(?{parameter2}) as ?actorLabel)
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -20,7 +24,7 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="male"@en)
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr#gt{fromPageRank} #amp#amp ?pr#lt{toPageRank})
             } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>imageURL</parameter1>
 		<parameter2>actorLabel</parameter2>
@@ -36,12 +40,16 @@
 		<endpoint>0</endpoint>
 		<text>Who is this actress? {parameter1}</text>
         <sparql>
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-        	SELECT DISTINCT (str(?{parameter1})) as ?imageURL
-        	(str(?{parameter2})) as ?actorLabel
+        	SELECT DISTINCT (str(?{parameter1}) as ?imageURL)
+        	(str(?{parameter2}) as ?actorLabel)
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -52,7 +60,7 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?gender="female"@en)
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank})
             } OFFSET {offset} LIMIT 10
         </sparql>
         <parameter1>imageURL</parameter1>
@@ -69,6 +77,10 @@
 		<endpoint>0</endpoint>
 		<text>In which year did the actor/actress {parameter1} start his/her career?</text>
 		<sparql>
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
@@ -82,7 +94,7 @@
             ?actor dbo:activeYearsStartYear ?startYear .
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank})
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             BIND (STR(?startYear)  AS ?stripped_startYear)} OFFSET {offset} LIMIT 10 </sparql>
 		<parameter1>stripped_actorLabel</parameter1>
@@ -99,11 +111,15 @@
 		<endpoint>0</endpoint>
 		<text>When was the actor/actress {parameter1} born?</text>
         <sparql>
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
             PREFIX umbel-rc: #lthttp://umbel.org/umbel/rc/#gt
         	PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
-            SELECT DISTINCT ?{parameter1} year(?dateOfBirth) as ?{parameter2}
+            SELECT DISTINCT ?{parameter1} (year(?dateOfBirth) as ?{parameter2})
             FROM #lthttp://people.aifb.kit.edu/ath/#DBpedia_PageRank#gt
             FROM #lthttp://dbpedia.org#gt
             WHERE {
@@ -113,7 +129,7 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(xsd:date(?dateOfBirth))
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank})
+            filter(?pr#gt{fromPageRank} #amp#amp ?pr#lt{toPageRank})
             BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>stripped_actorLabel</parameter1>
@@ -130,6 +146,10 @@
 		<endpoint>0</endpoint>
 		<text>Who is the writer as well as director of the movie {parameter1}? </text>
         <sparql>
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
             PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -148,7 +168,7 @@
             filter(langMatches(lang(?movieLabel),"EN"))  .
             filter(langMatches(lang(?writerLabel),"EN"))  .
             filter(langMatches(lang(?directorLabel),"EN"))  .
-            filter(?pr#gt{fromPageRank} AND ?pr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
+            filter(?pr#gt{fromPageRank} #amp#amp ?pr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>

@@ -9,6 +9,13 @@ import java.util.regex.Pattern;
 import com.bordercloud.sparql.Endpoint;
 import com.bordercloud.sparql.EndpointException;
 
+
+import org.apache.jena.query.*;
+
+
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 import swt.model.Answer;
 import swt.model.Question;
 import swt.model.QuestionXML;
@@ -25,7 +32,42 @@ public abstract class AbstractQueryEndpoint {
      */
     protected ArrayList<HashMap<String, String>> runSparqlQuery(String sparqlEndpoint, String sparql) {
         Endpoint endpoint = new Endpoint(sparqlEndpoint, true);
-        
+
+
+
+
+            Query query = QueryFactory.create(sparql);
+            QueryExecution qExe = QueryExecutionFactory.sparqlService( sparqlEndpoint, query );
+            ResultSet results = qExe.execSelect();
+//            ResultSetFormatter.out(System.out, results, query) ; // for pretty printing, ATTENTION: hasNext() is null if called
+
+            // Read results
+            if (results == null) System.out.println("results are null");
+
+            System.out.println("runSparql Query with jena");
+
+                System.out.println(results.hasNext());
+                ArrayList<HashMap<String, String>> endresult = new ArrayList<HashMap<String, String>>();
+
+
+                while(results.hasNext()) {
+
+                    QuerySolution qs = results.next();
+                    List<String> list = results.getResultVars();
+                    HashMap<String, String> answerOption = new HashMap<String, String>();
+                    for(String s : list) {
+//                        System.out.print("Label: " + s + " ") ;
+//                        System.out.println(qs.get(s).toString().replace("@en", ""));
+                        answerOption.put(s, qs.get(s).toString().replace("@en", ""));
+                    }
+                    endresult.add(answerOption);
+                }
+
+
+
+
+
+
         endpoint.setMethodHTTPRead("GET");
         HashMap<String, HashMap> result = new HashMap<>();
         
@@ -36,7 +78,18 @@ public abstract class AbstractQueryEndpoint {
             e.printStackTrace();
         }
 
-        return (ArrayList<HashMap<String, String>>) result.get("result").get("rows");
+        System.out.println("-- Abstract: Jena Result: ");
+        for (HashMap<String, String> r : endresult) {
+            System.out.println(r.toString());
+        }
+
+
+        System.out.println("-- Abstract: runSparqlQuery: ");
+        for (HashMap<String, String> r : (ArrayList<HashMap<String, String>>)result.get("result").get("rows")) {
+            System.out.println(r.toString());
+        }
+        return endresult;
+//        return (ArrayList<HashMap<String, String>>) result.get("result").get("rows");
     }
 
 
@@ -143,13 +196,8 @@ public abstract class AbstractQueryEndpoint {
         HashSet<Integer> options = createRandomOptions(records.size());
 
         // set attributes in question
-        String questionParameter = records.get((int) options.toArray()[0]).get(questionXML.getParameter1());
-        String correctAnswer = records.get((int) options.toArray()[0]).get(questionXML.getParameter2());
-
-        String type = records.get((int) options.toArray()[0]).get(questionXML.getParameter2() + " datatype");
-        if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
-            correctAnswer = formatNumber(correctAnswer);
-
+        String questionParameter= records.get((int) options.toArray()[0]).get(questionXML.getParameter1());
+        String correctAnswer 	= records.get((int) options.toArray()[0]).get(questionXML.getParameter2());
         HashMap<Integer,ArrayList<String>> wrongAnswers = new HashMap<>();
 
         int index = 1;
@@ -165,8 +213,8 @@ public abstract class AbstractQueryEndpoint {
             // check for uniqueness
             if (! uniqueAnswers.contains(parameter2) && ! parameter2.equalsIgnoreCase(correctAnswer)) {
 
-                if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
-                    parameter2 = formatNumber(parameter2);
+//                if (type.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal"))
+//                    parameter2 = formatNumber(parameter2);
 
                 // save parameters for this answer
                 ArrayList<String> answerRecord = new ArrayList<>();

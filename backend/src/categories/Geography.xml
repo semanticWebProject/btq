@@ -4,6 +4,14 @@
 			<endpoint>1</endpoint>
 			<text>What is the capital of {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -28,6 +36,14 @@
 			<endpoint>1</endpoint>
 			<text>What is the population of {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 			PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -52,6 +68,14 @@
 			<endpoint>1</endpoint>
 			<text>To which country does this flag belong? {flag}</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -76,6 +100,14 @@
 		<endpoint>1</endpoint>
 			<text>Which is the flag of {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -100,6 +132,14 @@
 			<endpoint>1</endpoint>
 			<text>Which currency is used in {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -124,6 +164,14 @@
 			<endpoint>1</endpoint>
 			<text>What is the highest point in {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -156,6 +204,14 @@
 			<endpoint>1</endpoint>
 			<text>What is the deepest point in {country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
@@ -187,6 +243,14 @@
 			<endpoint>1</endpoint>
 			<text>In which country is the {National Park} located?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lhttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
@@ -200,6 +264,14 @@
 			<endpoint>1</endpoint>
 			<text>What is the distance between {twoPlaces}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lhttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt  OFFSET {offset}</sparql>
 			<parameter1>countryLabel</parameter1>
@@ -213,6 +285,14 @@
 			<endpoint>1</endpoint>
 			<text>Who is the head of {Country}?</text>
 			<sparql>
+			PREFIX bd: #lthttp://www.bigdata.com/rdf##gt
+			PREFIX wikibase: #lthttp://wikiba.se/ontology##gt
+			PREFIX wd: #lthttp://www.wikidata.org/entity/#gt
+			PREFIX wdt: #lthttp://www.wikidata.org/prop/direct/#gt
+			PREFIX owl: #lthttp://www.w3.org/2002/07/owl##gt
+			PREFIX xsd: #lthttp://www.w3.org/2001/XMLSchema##gt
+			PREFIX foaf: #lthttp://xmlns.com/foaf/0.1/#gt
+			PREFIX dbo: #lthttp://dbpedia.org/ontology/#gt
 			PREFIX rdf: #lthttp://www.w3.org/1999/02/22-rdf-syntax-ns##gt
 			PREFIX rdfs: #lthttp://www.w3.org/2000/01/rdf-schema##gt
 				PREFIX vrank:#lthttp://purl.org/voc/vrank##gt
