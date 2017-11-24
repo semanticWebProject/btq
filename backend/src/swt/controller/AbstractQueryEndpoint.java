@@ -10,9 +10,11 @@ import com.bordercloud.sparql.Endpoint;
 import com.bordercloud.sparql.EndpointException;
 
 
+import org.apache.jena.graph.Node;
 import org.apache.jena.query.*;
 
 
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
@@ -56,9 +58,45 @@ public abstract class AbstractQueryEndpoint {
                     List<String> list = results.getResultVars();
                     HashMap<String, String> answerOption = new HashMap<String, String>();
                     for(String s : list) {
-//                        System.out.print("Label: " + s + " ") ;
-//                        System.out.println(qs.get(s).toString().replace("@en", ""));
-                        answerOption.put(s, qs.get(s).toString().replace("@en", ""));
+                        RDFNode node = qs.get(s);
+                        Node n = node.asNode();
+
+
+                        System.out.println("Is literal: " + node.isLiteral());
+                        System.out.println("Is ressource: " + node.isResource());
+                        System.out.println("Is uri resource: " + node.isURIResource());
+                        System.out.println("node: " + node.toString());
+
+                        if (node.isResource()) {
+                            Resource res = node.asResource();
+                            System.out.println("localname: " + res.getLocalName());
+                            System.out.println("uri: " + res.getURI());
+                            System.out.println("string: " + res.toString());
+                            System.out.println("ns: " + res.getNameSpace());
+                            System.out.println("id: " + res.getId());
+                            answerOption.put(s, res.getURI());
+                        }
+                        if (node.isLiteral()) {
+                            Literal l = node.asLiteral();
+
+                            System.out.println("as literal: " + node.asLiteral());
+                            System.out.println("Node literal datatype: " + n.getLiteralDatatype());
+                            System.out.println("Node l datatype: " + l.getDatatype());
+                            System.out.println("Node literal datatype uri: " + n.getLiteralDatatypeURI());
+                            System.out.println("Node language: " + n.getLiteralLanguage());
+                            System.out.println("Node literalvalue: " + n.getLiteralValue());
+                            System.out.println("Node literal: " + n.getLiteral());
+                            answerOption.put(s, n.getLiteralValue().toString());
+                        }
+
+
+
+
+
+                        System.out.print("Label: " + s + " ") ;
+//                      System.out.println("Ressource: " + qs.getResource(s));
+
+
                     }
                     endresult.add(answerOption);
                 }
