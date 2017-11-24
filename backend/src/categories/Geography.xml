@@ -155,7 +155,7 @@
 			<offsetMax>200</offsetMax>
 			<levels>
         		<level id="0" offsetMax="99"  fromPageRank="245" toPageRank="11400"></level>
-        		<level id="1" offsetMax="25" fromPageRank="150" toPageRank="25"></level>
+        		<level id="1" offsetMax="25" fromPageRank="150" toPageRank="245"></level>
         		<level id="2" offsetMax="52" fromPageRank="0"  toPageRank="150"></level>
         	</levels>
 			<description>{parameter2} is the currency of {parameter1}.</description>
