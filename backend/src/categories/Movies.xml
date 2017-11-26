@@ -30,9 +30,9 @@
 		<parameter2>actorLabel</parameter2>
         <offsetMax>70</offsetMax>
         <levels>
-        	<level id="0" offsetMax="60" fromPageRank="15" toPageRank="80"></level>
-        	<level id="1" offsetMax="180" fromPageRank="8" toPageRank="16"></level>
-        	<level id="2" offsetMax="2150" fromPageRank="0" toPageRank="9"></level>
+        	<level id="0" offsetMax="56" fromPageRank="20" toPageRank="80"></level>
+        	<level id="1" offsetMax="175" fromPageRank="10" toPageRank="20"></level>
+        	<level id="2" offsetMax="2294" fromPageRank="0" toPageRank="10"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
     </question>
@@ -66,9 +66,9 @@
 		<parameter2>actorLabel</parameter2>
         <offsetMax>1000</offsetMax>
         <levels>
-        	<level id="0" offsetMax="150" fromPageRank="5" toPageRank="56"></level>
-        	<level id="1" offsetMax="525" fromPageRank="2" toPageRank="6"></level>
-        	<level id="2" offsetMax="1510" fromPageRank="0" toPageRank="3"></level>
+        	<level id="0" offsetMax="52" fromPageRank="10" toPageRank="56"></level>
+        	<level id="1" offsetMax="252" fromPageRank="5" toPageRank="10"></level>
+        	<level id="2" offsetMax="1745" fromPageRank="0" toPageRank="5"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
     </question>
@@ -94,15 +94,14 @@
             ?actor vrank:hasRank/vrank:rankValue ?pr.
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(?pr #gt {fromPageRank} #amp#amp ?pr #lt {toPageRank})
-            BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
-            BIND (STR(?startYear)  AS ?stripped_startYear)} OFFSET {offset} LIMIT 10 </sparql>
-		<parameter1>stripped_actorLabel</parameter1>
-		<parameter2>stripped_startYear</parameter2>
+            } OFFSET {offset} LIMIT 10 </sparql>
+		<parameter1>actorLabel</parameter1>
+		<parameter2>startYear</parameter2>
         <offsetMax>5000</offsetMax>
          <levels>
-        	<level id="0" offsetMax="185" fromPageRank="12" toPageRank="80"></level>
-        	<level id="1" offsetMax="580" fromPageRank="5" toPageRank="12"></level>
-        	<level id="2" offsetMax="4300" fromPageRank="0" toPageRank="5"></level>
+        	<level id="0" offsetMax="63" fromPageRank="20" toPageRank="80"></level>
+        	<level id="1" offsetMax="305" fromPageRank="8" toPageRank="20"></level>
+        	<level id="2" offsetMax="4764" fromPageRank="0" toPageRank="8"></level>
         </levels>
         <description>{parameter2} is the year of when {parameter1} started a career.</description>
     </question>
@@ -129,15 +128,14 @@
             filter(langMatches(lang(?actorLabel),"EN"))
             filter(xsd:date(?dateOfBirth))
             filter(?pr#gt{fromPageRank} #amp#amp ?pr#lt{toPageRank})
-            BIND (STR(?actorLabel)  AS ?stripped_actorLabel)
             } OFFSET {offset} LIMIT 10</sparql>
-        <parameter1>stripped_actorLabel</parameter1>
+        <parameter1>actorLabel</parameter1>
 		<parameter2>yearOfBirth</parameter2>
         <offsetMax>5000</offsetMax>
         <levels>
-        	<level id="0" offsetMax="152" fromPageRank="14" toPageRank="72"></level>
-        	<level id="1" offsetMax="252" fromPageRank="8" toPageRank="14"></level>
-        	<level id="2" offsetMax="6700" fromPageRank="0" toPageRank="8"></level>
+        	<level id="0" offsetMax="68" fromPageRank="20" toPageRank="72"></level>
+        	<level id="1" offsetMax="335" fromPageRank="8" toPageRank="20"></level>
+        	<level id="2" offsetMax="6698" fromPageRank="0" toPageRank="8"></level>
         </levels>
         <description>{parameter2} is the birth date of {parameter1}, for example.</description>
     </question>
@@ -164,17 +162,19 @@
             ?director rdfs:label ?directorLabel .
             ?director owl:sameAs ?writer .
             ?movie vrank:hasRank/vrank:rankValue ?pr.
+            ?director vrank:hasRank/vrank:rankValue ?pr2.
             filter(langMatches(lang(?movieLabel),"EN"))  .
             filter(langMatches(lang(?writerLabel),"EN"))  .
             filter(langMatches(lang(?directorLabel),"EN"))  .
-            filter(?pr#gt{fromPageRank} #amp#amp ?pr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
+            BIND( if(?pr#lt?pr2,?pr,?pr2) as ?minpr) .
+            filter(?minpr#gt{fromPageRank} #amp#amp ?minpr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>
          <levels>
-        	<level id="0" offsetMax="276" fromPageRank="1" toPageRank="8.0"></level>
-        	<level id="1" offsetMax="1084" fromPageRank="0.5" toPageRank="1"></level>
-        	<level id="2" offsetMax="1378" fromPageRank="0" toPageRank="0.5"></level>
+        	<level id="0" offsetMax="213" fromPageRank="1" toPageRank="8.0"></level>
+        	<level id="1" offsetMax="944" fromPageRank="0.5" toPageRank="1"></level>
+        	<level id="2" offsetMax="1563" fromPageRank="0" toPageRank="0.5"></level>
         </levels>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
