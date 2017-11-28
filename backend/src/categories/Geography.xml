@@ -94,7 +94,7 @@
         		<level id="1" offsetMax="48" fromPageRank="200" toPageRank="500"></level>
         		<level id="2" offsetMax="76" fromPageRank="0"   toPageRank="200"></level>
         	</levels>
-			<description>The flag of {parameter2} is {parameter1}.</description>
+			<description>The flag of {parameter2} is {parameter1}</description>
 		</question>
 		<question>
 		<endpoint>1</endpoint>
@@ -126,7 +126,7 @@
         		<level id="1" offsetMax="25" fromPageRank="150" toPageRank="245"></level>
         		<level id="2" offsetMax="52" fromPageRank="0" toPageRank="150"></level>
         	</levels>
-			<description>{parameter2} is the flag of {parameter1}.</description>
+			<description>This is the flag of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
@@ -158,7 +158,7 @@
         		<level id="1" offsetMax="25" fromPageRank="150" toPageRank="245"></level>
         		<level id="2" offsetMax="52" fromPageRank="0"  toPageRank="150"></level>
         	</levels>
-			<description>{parameter2} is the currency of {parameter1}.</description>
+			<description>{parameter2} is a currency of {parameter1}.</description>
 		</question>
 		<question>
 			<endpoint>1</endpoint>
