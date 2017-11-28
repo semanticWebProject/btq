@@ -167,14 +167,14 @@
             filter(langMatches(lang(?writerLabel),"EN"))  .
             filter(langMatches(lang(?directorLabel),"EN"))  .
             BIND( if(?pr#lt?pr2,?pr,?pr2) as ?minpr) .
-            filter(?minpr#gt{fromPageRank} #amp#amp ?minpr#lt{toPageRank}) . } OFFSET {offset} LIMIT 10</sparql>
+            filter(?minpr#gt{fromPageRank} #amp#amp ?minpr#lt{toPageRank}) . } OFFSET {offset} LIMIT 30</sparql>
         <parameter1>movieLabel</parameter1>
 		<parameter2>writerLabel</parameter2>
         <offsetMax>900</offsetMax>
          <levels>
-        	<level id="0" offsetMax="213" fromPageRank="1" toPageRank="8.0"></level>
-        	<level id="1" offsetMax="944" fromPageRank="0.5" toPageRank="1"></level>
-        	<level id="2" offsetMax="1563" fromPageRank="0" toPageRank="0.5"></level>
+        	<level id="0" offsetMax="193" fromPageRank="1" toPageRank="8.0"></level>
+        	<level id="1" offsetMax="924" fromPageRank="0.5" toPageRank="1"></level>
+        	<level id="2" offsetMax="1543" fromPageRank="0" toPageRank="0.5"></level>
         </levels>
         <description>{parameter2} is the writer and director of {parameter1}.</description>
     </question>
