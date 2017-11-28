@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
 
     /**
-     * Generic function to run sparql query against a specified endpoint
+     * function to run sparql query against wikidata endpoint
      *
      * @param sparqlEndpoint specified endpoint to run the query on
      * @param sparql         query string
@@ -33,7 +33,7 @@ public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
             runSparqlQuery(sparqlEndpoint, sparql);
         }
 
-        System.out.println("-- Abstract: runSparqlQuery: ");
+        System.out.println("-- Wikidata: runSparqlQuery: ");
         for (HashMap<String, String> r : (ArrayList<HashMap<String, String>>) result.get("result").get("rows")) {
             System.out.println(r.toString());
         }
