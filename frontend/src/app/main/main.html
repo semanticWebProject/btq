@@ -22,14 +22,6 @@
         <div class="dificultyLevelDescription">{{main.dificultyLevelDescription}}</div>
       </div>
 
-      <!-- Category select - Text -->
-			<!--<div class="col-sm-{{12 / main.categories.length}}"-->
-				<!--ng-repeat="category in main.categories">-->
-				<!--<p>{{category.name}}</p>-->
-				<!--<a href="#/" class="btn btn-primary"-->
-					<!--ng-click="main.chooseCategory(category.id)">Select</a>-->
-			<!--</div>-->
-
       <!-- Category select - Image -->
       <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
         <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
@@ -46,9 +38,10 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item" aria-current="page" ng-click="main.reset(true)">Home</li>
       <li class="breadcrumb-item active" aria-current="page">{{main.chosenCategory.name}}</li>
-      <li>{{dificultyLevelText}}</li>
       <li class="pull-right">
-        <span class="circle level {{main.dificultyLevelText}}"></span>
+        <span class="circle" ng-class="(main.difficultyLevelText == 'easy') ? 'easy' : ''"></span>
+        <span class="circle" ng-class="(main.difficultyLevelText == 'medium') ? 'medium' : ''"></span>
+        <span class="circle" ng-class="(main.difficultyLevelText == 'hard') ? 'hard' : ''"></span>
       </li>
     </ol>
   </nav>

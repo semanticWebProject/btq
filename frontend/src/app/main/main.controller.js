@@ -35,6 +35,7 @@
     vm.dificultyLevelDescription = 'Easy mode is selected. You have 5 lives'; //default: easy
     vm.questionLoaded = false;
     vm.dificultyLevelText = 'easy';
+    vm.difficultyLevelText = 'easy';
 
     /* Init Functions */
     getCategories(); //retrieves the categories from the server
@@ -126,13 +127,10 @@
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
-          console.log(response);
           console.log("request error");
-          alert("Error occured!");
+          console.log(response);
           vm.loadQuestion();
-
         });
-
     });
 
     vm.loadFields = (function() {
@@ -293,7 +291,7 @@
       vm.dificultyLevel = difficultyLevel;
       switch(difficultyLevel) {
         case 0: vm.gameLives = 5;
-                vm.dificultyLevelText = 'easy';
+                vm.difficultyLevelText = 'easy';
                 vm.dificultyLevelDescription = 'You selected the easy mode. You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').addClass('btn-success');
                 $('.difficultyLevel .mediumOption').removeClass('btn-warning');
@@ -301,7 +299,7 @@
           break;
         case 1:
                 vm.gameLives = 4;
-                vm.dificultyLevelText = 'medium';
+                vm.difficultyLevelText = 'medium';
                 vm.dificultyLevelDescription = 'You selected the medium mode. You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').addClass('btn-warning');
@@ -309,7 +307,7 @@
           break;
         case 2:
                 vm.gameLives = 3;
-                vm.dificultyLevelText = 'hard';
+                vm.difficultyLevelText = 'hard';
                 vm.dificultyLevelDescription = 'You selected the hard mode.  You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').removeClass('btn-warning');
