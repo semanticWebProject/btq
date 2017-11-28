@@ -34,7 +34,7 @@
         	<level id="1" offsetMax="175" fromPageRank="10" toPageRank="20"></level>
         	<level id="2" offsetMax="2294" fromPageRank="0" toPageRank="10"></level>
         </levels>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
@@ -70,7 +70,7 @@
         	<level id="1" offsetMax="164" fromPageRank="5" toPageRank="10"></level>
         	<level id="2" offsetMax="1745" fromPageRank="0" toPageRank="5"></level>
         </levels>
-        <description>{parameter2} is this: {parameter1}.</description>
+        <description>{parameter2} is this: {parameter1}</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
@@ -103,7 +103,7 @@
         	<level id="1" offsetMax="305" fromPageRank="8" toPageRank="20"></level>
         	<level id="2" offsetMax="4764" fromPageRank="0" toPageRank="8"></level>
         </levels>
-        <description>{parameter2} is the year of when {parameter1} started a career.</description>
+        <description>In {parameter2}, {parameter1} started their career.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
@@ -137,7 +137,7 @@
         	<level id="1" offsetMax="335" fromPageRank="8" toPageRank="20"></level>
         	<level id="2" offsetMax="6676" fromPageRank="0" toPageRank="8"></level>
         </levels>
-        <description>{parameter2} is the birth date of {parameter1}, for example.</description>
+        <description>{parameter2} is, for example, the birth year of {parameter1}.</description>
     </question>
     <question>
 		<endpoint>0</endpoint>
