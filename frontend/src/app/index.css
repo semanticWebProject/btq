@@ -126,6 +126,12 @@ img {
 .btn {
   white-space: normal;
 }
+
+.btn-grey {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
 .difficultyLevel {
   margin-bottom: 20px;
 }

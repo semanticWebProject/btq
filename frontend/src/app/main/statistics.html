@@ -3,42 +3,43 @@
   <div class="page-header">
     <h1>Game Statistics</h1>
   </div>
-	<div class="jumbotron">
+  <div class="jumbotron">
 
-		<div class="row-statistics">
-				<p>
-					Answered Questions: <strong> {{main.answeredQuestions}} </strong>
-        </p>
-				<p>
-					<span class="glyphicon glyphicon-ok"></span> Correct Answers: <strong>
-						{{main.answeredQuestionsCorrect}} </strong>
-				</p>
-				<p>
-					<span class="glyphicon glyphicon-remove"></span> Wrong Answers: <strong> {{main.answeredQuestionsWrong}} </strong>
-				</p>
-				<p>
-					<span class="glyphicon glyphicon-thumbs-up"></span> Highscore: <strong> {{main.highScore}} </strong>
-				</p>
-        <button ng-click="main.resetStats()" class="btn">Reset statistics</button>
+    <div class="row-statistics">
+      <p>
+        Answered Questions: <strong> {{main.answeredQuestions}} </strong>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-ok"></span> Correct Answers: <strong>
+        {{main.answeredQuestionsCorrect}} </strong>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-remove"></span> Wrong Answers: <strong>
+        {{main.answeredQuestionsWrong}} </strong>
+      </p>
+      <p>
+        <span class="glyphicon glyphicon-thumbs-up"></span> Highscore: <strong> {{main.highScore}} </strong>
+      </p>
+      <button ng-click="main.resetStats()" class="btn">Reset statistics</button>
     </div>
   </div>
 
 
-	</div>
+</div>
 
-	<canvas id="barChart">Canvas can't be displayed</canvas>
+<div class="col-sm-{{4}}">
+  <h3 style="text-align: center">Easy Level</h3>
+  <canvas id="barChartEasy">Canvas can't be displayed</canvas>
+</div>
 
-	<!--<div class="row">-->
-	<!--<div class="col-sm-6 col-md-4" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">-->
-	<!--<div class="thumbnail">-->
-	<!--<img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">-->
-	<!--<div class="caption">-->
-	<!--<h3>{{ awesomeThing.title }}</h3>-->
-	<!--<p>{{ awesomeThing.description }}</p>-->
-	<!--<p><a ng-href="{{awesomeThing.url}}">{{ awesomeThing.url }}</a></p>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
-	<!--</div>-->
+<div class="col-sm-{{4}}">
+  <h3 style="text-align: center">Medium Level</h3>
+  <canvas id="barChartMedium">Canvas can't be displayed</canvas>
+</div>
+
+<div class="col-sm-{{4}}">
+  <h3 style="text-align: center">Hard Level</h3>
+  <canvas id="barChartHard">Canvas can't be displayed</canvas>
+</div>
 
 </div>

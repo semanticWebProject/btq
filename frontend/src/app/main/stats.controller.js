@@ -12,6 +12,12 @@
     var keyQuestionCounterCorrect = "questionCounterCorrect";
     var keyQuestionCounterWrong   = "questionCounterWrong";
     var keyHighScore = "highScore";
+    var keyQuestionCounterCorrectEasy = "questionCounterCorrectEasy";
+    var keyQuestionCounterWrongEasy   = "questionCounterWrongEasy";
+    var keyQuestionCounterCorrectMedium = "questionCounterCorrectMedium";
+    var keyQuestionCounterWrongMedium   = "questionCounterWrongMedium";
+    var keyQuestionCounterCorrectHard = "questionCounterCorrectHard";
+    var keyQuestionCounterWrongHard   = "questionCounterWrongHard";
 
 
     vm.resetStats = (function() {
@@ -25,6 +31,13 @@
       localStorage.setItem(keyQuestionCounterCorrect, 0);
       localStorage.setItem(keyQuestionCounterWrong, 0);
       localStorage.setItem(keyHighScore, 0);
+      localStorage.setItem(keyQuestionCounterCorrectEasy, 0);
+      localStorage.setItem(keyQuestionCounterCorrectMedium, 0);
+      localStorage.setItem(keyQuestionCounterCorrectHard, 0);
+      localStorage.setItem(keyQuestionCounterWrongEasy, 0);
+      localStorage.setItem(keyQuestionCounterWrongMedium, 0);
+      localStorage.setItem(keyQuestionCounterWrongHard, 0);
+
       vm.answeredQuestions        = 0;
       vm.answeredQuestionsCorrect = 0;
       vm.answeredQuestionsWrong   = 0;
@@ -38,40 +51,67 @@
     vm.highScore				        = localStorage.getItem(keyHighScore);
 
     //bar chart
-    var ctxB = document.getElementById("barChart").getContext('2d');
-    var myBarChart = new Chart(ctxB, {
-        type: 'bar',
+    var ctxBEasy = document.getElementById("barChartEasy").getContext('2d');
+    var easyChart = new Chart(ctxBEasy, {
+        type: 'doughnut',
         data: {
-            labels: ["All", "Correct", "Wrong"],
+            labels: ["Correct", "Wrong"],
             datasets: [{
-                label: '# of answered questions',
-                data: [ vm.answeredQuestions,
-                        vm.answeredQuestionsCorrect,
-                        vm.answeredQuestionsWrong
+                data: [ localStorage.getItem(keyQuestionCounterCorrectEasy),
+                  localStorage.getItem(keyQuestionCounterWrongEasy)
                       ],
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(255, 99, 132, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(54, 162, 235, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(255,99,132,1)'
-                ],
-                borderWidth: 1
+                ]
             }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
         }
     });
 
+    var ctxBMedium = document.getElementById("barChartMedium").getContext('2d');
+    var mediumChart = new Chart(ctxBMedium, {
+      type: 'doughnut',
+      data: {
+        labels: ["Correct", "Wrong"],
+        datasets: [{
+          data: [ localStorage.getItem(keyQuestionCounterCorrectMedium),
+            localStorage.getItem(keyQuestionCounterWrongMedium)
+          ],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255,99,132,1)'
+          ]
+        }]
+      }
+    });
+
+    var ctxBHard = document.getElementById("barChartHard").getContext('2d');
+    var hardChart = new Chart(ctxBHard, {
+      type: 'doughnut',
+      data: {
+        labels: ["Correct", "Wrong"],
+        datasets: [{
+          data: [ localStorage.getItem(keyQuestionCounterCorrectHard),
+            localStorage.getItem(keyQuestionCounterWrongHard)
+          ],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255,99,132,1)'
+          ]
+        }]
+      }
+    });
   }
 })();
