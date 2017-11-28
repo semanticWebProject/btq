@@ -67,7 +67,7 @@
         <offsetMax>1000</offsetMax>
         <levels>
         	<level id="0" offsetMax="52" fromPageRank="10" toPageRank="56"></level>
-        	<level id="1" offsetMax="252" fromPageRank="5" toPageRank="10"></level>
+        	<level id="1" offsetMax="164" fromPageRank="5" toPageRank="10"></level>
         	<level id="2" offsetMax="1745" fromPageRank="0" toPageRank="5"></level>
         </levels>
         <description>{parameter2} is this: {parameter1}.</description>
@@ -135,7 +135,7 @@
         <levels>
         	<level id="0" offsetMax="68" fromPageRank="20" toPageRank="72"></level>
         	<level id="1" offsetMax="335" fromPageRank="8" toPageRank="20"></level>
-        	<level id="2" offsetMax="6698" fromPageRank="0" toPageRank="8"></level>
+        	<level id="2" offsetMax="6676" fromPageRank="0" toPageRank="8"></level>
         </levels>
         <description>{parameter2} is the birth date of {parameter1}, for example.</description>
     </question>
