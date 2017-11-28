@@ -34,6 +34,7 @@
     vm.gameLives = 5;      // default: easy
     vm.dificultyLevelDescription = 'Easy mode is selected. You have 5 lives'; //default: easy
     vm.questionLoaded = false;
+    vm.dificultyLevelText = 'easy';
 
     /* Init Functions */
     getCategories(); //retrieves the categories from the server
@@ -73,7 +74,6 @@
       console.log('chosen category: ' + catID);
       for (var i = 0; i<vm.categories.length; i++) {
         if (vm.categories[i].id == catID) {
-          console.log('category chosen: ' + vm.categories[i]);
           vm.chosenCategory = vm.categories[i];
         }
       }
@@ -94,6 +94,8 @@
         method: 'GET',
         url: url
       }).then(function successCallback(response) {
+          console.log(response);
+
           vm.questionLoaded = true;
           jQuery("button.nextButton").removeAttr("disabled","disabled");
           if (vm.correctAnswer) {
@@ -101,10 +103,7 @@
           }
           else {
             if (vm.gameLives > 0){
-              vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
-            }
-            else {
-              vm.nextButtonText = 'You lost the game :(';
+              vm.nextButtonText = 'You got it wrong, but you still have ' + vm.gameLives  + ((vm.gameLives >1) ? ' lives' : ' life') + '  left :)';
             }
           }
 
@@ -128,6 +127,10 @@
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           console.log(response);
+          console.log("request error");
+          alert("Error occured!");
+          vm.loadQuestion();
+
         });
 
     });
@@ -144,6 +147,7 @@
         vm.questionField = vm.question;
         vm.imageURLField = vm.imageURL;
         vm.answersField  = vm.answers;
+        vm.correctField  = vm.correct;
         vm.correctAnswer = false;
         vm.wrongAnswer   = false;
         vm.newHighscore  = false;
@@ -160,15 +164,16 @@
       jQuery(".answers button").attr("disabled","disabled");
 
       // always load question once question was answered correctly (lives might be still there)
-      if (vm.correct == id || vm.gameLives > 0) {
+      if (vm.correct == id || vm.gameLives > 1) {
         vm.loadQuestion();
         jQuery("button.nextButton").attr("disabled","disabled");
         console.log(' ---- Loading new question already ---- ');
       }
+      vm.nextButtonText = 'Loading ...';
 
       // Correct answer is given
       if (vm.correct == id) {
-        vm.nextButtonText = 'Loading ...';
+
         jQuery('.answers button.option-'+id).addClass('btn-success');
 
         //Flashes score icon
@@ -206,10 +211,10 @@
         jQuery('.answers button.option-'+id).addClass('btn-danger');
         //Flashes the correct answer for 2s after 800ms
         setTimeout(function() {
-          jQuery('.answers button.option-'+vm.correct).addClass('btn-success flash-button');
+          jQuery('.answers button.option-'+vm.correctField).addClass('btn-success flash-button');
         }, 500);
         setTimeout(function() {
-          jQuery('.answers button.option-'+vm.correct).removeClass('flash-button');
+          jQuery('.answers button.option-'+vm.correctField).removeClass('flash-button');
         }, 1500);
 
         vm.gameLives--;
@@ -234,12 +239,16 @@
           localStorage.setItem(keyHighScore, vm.score);
         }
 
-        if (vm.gameLives > 0){
-          vm.nextButtonText = 'You lost, but you still have ' + vm.gameLives + ' lives left :)';
+        if (vm.gameLives == 0){
+          jQuery('.answers button.option-'+id).addClass('btn-danger');
+          vm.nextButtonText = 'Game over. You got ' + vm.score + ' point' + ((vm.score==1) ? '' : 's') + '!';
+          vm.nextButtonWrong = 'btn-danger';
         }
-        if (vm.gameLives == 0) {
-          vm.nextButtonText = 'You lost the game :(';
+        else {
+          jQuery('.answers button.option-'+id).addClass('btn-warning');
+          vm.nextButtonWrong = '';
         }
+
       }
 
       // scroll down for validation
@@ -284,6 +293,7 @@
       vm.dificultyLevel = difficultyLevel;
       switch(difficultyLevel) {
         case 0: vm.gameLives = 5;
+                vm.dificultyLevelText = 'easy';
                 vm.dificultyLevelDescription = 'You selected the easy mode. You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').addClass('btn-success');
                 $('.difficultyLevel .mediumOption').removeClass('btn-warning');
@@ -291,6 +301,7 @@
           break;
         case 1:
                 vm.gameLives = 4;
+                vm.dificultyLevelText = 'medium';
                 vm.dificultyLevelDescription = 'You selected the medium mode. You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').addClass('btn-warning');
@@ -298,6 +309,7 @@
           break;
         case 2:
                 vm.gameLives = 3;
+                vm.dificultyLevelText = 'hard';
                 vm.dificultyLevelDescription = 'You selected the hard mode.  You have ' + vm.gameLives + ' lives';
                 $('.difficultyLevel .easyOption').removeClass('btn-success');
                 $('.difficultyLevel .mediumOption').removeClass('btn-warning');

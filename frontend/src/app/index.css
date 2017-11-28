@@ -75,14 +75,34 @@ img {
   margin-bottom: 25px;
 }
 
+.circle {
+  background: #ddd;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.breadcrumb li.pull-right:before {
+  content: '';
+}
+.circle.easy {
+  background: #449d44;
+}
+.circle.medium {
+  background: #f0ad4e;
+}
+.circle.hard {
+  background: #c9302c;
+}
+
 .question span {
   display: block;
   text-align: center;
 }
 .question .questionImage img {
-  max-height: 150px;
-  max-width: 300px;
-  width: auto;
+
+  max-width: 20em;
   margin-bottom: 0px;
 }
 .jumbotron.question {

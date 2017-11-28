@@ -2,7 +2,7 @@
 
 	<div class="jumbotron text-center" ng-if="main.selectCategory">
 
-		<h2>Beat the Quiz!</h2>
+		<h2>Beat the Quizzlybear!</h2>
 
 		<div class="row">
 
@@ -34,7 +34,7 @@
       <div class="col-sm-{{12 / main.categories.length}}" ng-repeat="category in main.categories">
         <a href="#/" class="" ng-click="main.chooseCategory(category.id)">
           <h3 style="color: #0f0f0f">{{category.name}}</h3>
-          <img src="{{category.imageURL}}" alt="">
+          <img src="{{category.imageURL}}" alt="{{category.name}}">
           </a>
       </div>
 
@@ -46,6 +46,10 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item" aria-current="page" ng-click="main.reset(true)">Home</li>
       <li class="breadcrumb-item active" aria-current="page">{{main.chosenCategory.name}}</li>
+      <li>{{dificultyLevelText}}</li>
+      <li class="pull-right">
+        <span class="circle level {{main.dificultyLevelText}}"></span>
+      </li>
     </ol>
   </nav>
 
@@ -69,7 +73,7 @@
 			<button type="button" class="btn btn-outline-primary btn-block option-{{answer.id}}" ng-click="main.validate(answer.id)">
         <div ng-if="answer.text.indexOf('http') == -1">{{answer.text}}</div>
         <img ng-if="answer.text.indexOf('http') > -1"  src="{{answer.text}}" >
-        <div ng-if="main.selectedAnswer === answer.id && main.correct !== answer.id">
+        <div ng-if="main.selectedAnswer === answer.id && main.correctField !== answer.id">
           <strong>{{answer.description}}</strong>
           <img ng-if="answer.descriptionImage" src="{{answer.descriptionImage}}">
         </div>
@@ -80,7 +84,7 @@
 
   <!-- Boxes after validation -->
   <button ng-if="main.correctAnswer" type="button" class="nextButton btn btn-success pull-right" ng-click="main.loadFields()">{{main.nextButtonText}}</button>
-  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn btn-danger  pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
+  <button ng-if="main.wrongAnswer"   type="button" class="nextButton btn {{main.nextButtonWrong}}  pull-right" ng-click="main.reset(false)">{{main.nextButtonText}}</button>
 
   <div class="answerbox alert alert-success" role="alert" ng-if="main.newHighscore">
     <span class="glyphicon glyphicon-thumbs-up"></span>
