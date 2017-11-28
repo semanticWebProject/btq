@@ -26,13 +26,12 @@ public class SparqlInterface {
 			DbpediaSparqlEndpoint de = new DbpediaSparqlEndpoint();
 			question = de.getQuestionFromSparqlEndpoint(questionXML, DBPEDIA_ENDPOINT,level);
 		}
-		else if(queryEndpointId == 1) {
+		else if (queryEndpointId == 1) {
 			// wikidata
 			WikidataSparqlEndpoint we = new WikidataSparqlEndpoint();
 			question = we.getQuestionFromSparqlEndpoint(questionXML, WIKIDATA_ENDPOINT,level);
 		}
 		else {
-			
 			System.err.println("No question endpoint specified");
 		}
 		

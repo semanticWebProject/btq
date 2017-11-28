@@ -17,26 +17,22 @@ public class WikidataSparqlEndpoint extends AbstractQueryEndpoint {
      */
     protected ArrayList<HashMap<String, String>> runSparqlQuery(String sparqlEndpoint, String sparql) {
         System.out.println("Wikidata endpoint");
-        // Old endpoint used for wikidata
         Endpoint endpoint = new Endpoint(sparqlEndpoint, true);
 
         endpoint.setMethodHTTPRead("GET");
         HashMap<String, HashMap> result = new HashMap<>();
 
         try {
-            sparql = sparql;//+ " LIMIT 10";
+            System.out.println("-- Wikidata: runSparqlQuery: ");
             result = endpoint.query(sparql);
-        } catch (EndpointException e) {
-            e.printStackTrace();
         } catch(Exception ex) {
             System.out.println("Exception: run again");
             runSparqlQuery(sparqlEndpoint, sparql);
         }
 
-        System.out.println("-- Wikidata: runSparqlQuery: ");
-        for (HashMap<String, String> r : (ArrayList<HashMap<String, String>>) result.get("result").get("rows")) {
-            System.out.println(r.toString());
-        }
+//        for (HashMap<String, String> r : (ArrayList<HashMap<String, String>>) result.get("result").get("rows")) {
+//            System.out.println(r.toString());
+//        }
 
         return (ArrayList<HashMap<String, String>>) result.get("result").get("rows");
     }

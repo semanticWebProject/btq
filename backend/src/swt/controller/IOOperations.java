@@ -41,12 +41,11 @@ public class IOOperations {
         // get a random number and select question
         Random randomNumberGenerator = new Random();
         int totalResults = questionsXML.getQuestion().length;
-        System.out.println("Total Questions: " + totalResults);
-//        totalResults = 2; // for testing
+//        System.out.println("Total Questions: " + totalResults);
+
         if (totalResults > 0) {
             int randomNumber = randomNumberGenerator.nextInt(totalResults);
-        	
-            System.out.println("Random Number: " + randomNumber);
+//            System.out.println("Random Number: " + randomNumber);
 
             // select random question from questions
             question = questionsXML.getQuestion()[randomNumber];
@@ -54,17 +53,16 @@ public class IOOperations {
         }
 
         // just for testing
-        System.out.println("Query endpoint: " + question.getQueryEndpoint());
-        System.out.println("Text: " + question.getQuestionText());
-        System.out.println("Sparql: " + question.getSparqlQuery());
-        System.out.println("Parameter1: " + question.getParameter1());
-        System.out.println("Parameter2: " + question.getParameter2());
-        System.out.println("Levels: " + question.getLevels());
-
-        System.out.println("Easy : "+question.getLevelDetails(1).getOffsetMax());
-        System.out.println("Medium : "+question.getLevelDetails(2).getOffsetMax());
-        System.out.println("Hard : "+question.getLevelDetails(3).getOffsetMax());
-
+//        System.out.println("Query endpoint: " + question.getQueryEndpoint());
+//        System.out.println("Text: " + question.getQuestionText());
+//        System.out.println("Sparql: " + question.getSparqlQuery());
+//        System.out.println("Parameter1: " + question.getParameter1());
+//        System.out.println("Parameter2: " + question.getParameter2());
+//        System.out.println("Levels: " + question.getLevels());
+//
+//        System.out.println("Easy : "+question.getLevelDetails(1).getOffsetMax());
+//        System.out.println("Medium : "+question.getLevelDetails(2).getOffsetMax());
+//        System.out.println("Hard : "+question.getLevelDetails(3).getOffsetMax());
         //System.out.println("Medium: " + question.getMediumFilter());
         //System.out.println("Hard: " + question.getHardFilter());
 
